@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Sage / Vite build output
+public/build/
+public/hot/
+public/*.js
+public/*.css
+
+# Env & local config
+.env
+.env.local
+*.local
+
+# WordPress core / uploads (nie wersjonujemy — instalacja żyje na OVH)
+wp-admin/
+wp-includes/
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/cache/
+wp-*.php
+!wp-content/
+xmlrpc.php
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# ACF Pro (jeśli commitujemy tylko definicje pól przez acf-json, klucz licencyjny out)
+.acf-pro-key
