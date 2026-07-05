@@ -59,10 +59,10 @@
             {{-- Didn't find an answer? --}}
             <div class="bg-navy text-white flex flex-wrap gap-5 items-center justify-between mt-5" style="padding:clamp(28px,4vw,40px);">
                 <div>
-                    <h3 class="font-heading font-extrabold m-0 mb-1.5" style="font-size:22px;">Nie znalazłeś odpowiedzi?</h3>
-                    <p class="m-0 text-onnavy" style="font-size:15px;">Napisz do nas — chętnie pomożemy postawić pierwsze kroki w sporcie mikrolotowym.</p>
+                    <h3 class="font-heading font-extrabold m-0 mb-1.5" style="font-size:22px;">{{ __('Nie znalazłeś odpowiedzi?', 'mikroloty') }}</h3>
+                    <p class="m-0 text-onnavy" style="font-size:15px;">{{ __('Napisz do nas — chętnie pomożemy postawić pierwsze kroki w sporcie mikrolotowym.', 'mikroloty') }}</p>
                 </div>
-                <a href="{{ $contactUrl }}" class="btn btn-gold whitespace-nowrap">Skontaktuj się →</a>
+                <a href="{{ $contactUrl }}" class="btn btn-gold whitespace-nowrap">{{ __('Skontaktuj się', 'mikroloty') }} →</a>
             </div>
         </div>
     </section>

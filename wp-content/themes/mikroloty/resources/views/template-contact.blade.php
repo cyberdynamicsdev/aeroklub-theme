@@ -17,12 +17,18 @@
         $map = get_field('contact_map', 'option');
 
         $info = array_filter([
-            ['icon' => '@', 'label' => 'E-mail', 'value' => $email],
-            $phone ? ['icon' => '☎', 'label' => 'Telefon', 'value' => $phone] : null,
-            $address ? ['icon' => '⌖', 'label' => 'Adres', 'value' => wp_strip_all_tags($address)] : null,
+            ['icon' => '@', 'label' => __('E-mail', 'mikroloty'), 'value' => $email],
+            $phone ? ['icon' => '☎', 'label' => __('Telefon', 'mikroloty'), 'value' => $phone] : null,
+            $address ? ['icon' => '⌖', 'label' => __('Adres', 'mikroloty'), 'value' => wp_strip_all_tags($address)] : null,
         ]);
 
-        $topics = ['Chcę zacząć startować', 'Pytanie o zawody', 'Licencje i przepisy', 'Media / współpraca', 'Inne'];
+        $topics = [
+            __('Chcę zacząć startować', 'mikroloty'),
+            __('Pytanie o zawody', 'mikroloty'),
+            __('Licencje i przepisy', 'mikroloty'),
+            __('Media / współpraca', 'mikroloty'),
+            __('Inne', 'mikroloty'),
+        ];
         $status = $_GET['contact'] ?? null;
         $inputCls = 'border border-line-2 bg-white outline-none w-full text-ink';
         $inputStyle = 'padding:12px 14px;font-size:14.5px;';
@@ -35,7 +41,7 @@
 
             {{-- Info --}}
             <div>
-                <h2 class="font-heading font-extrabold text-navy m-0 mb-6 pb-3.5 border-b-2 border-navy" style="font-size:24px;">Dane kontaktowe</h2>
+                <h2 class="font-heading font-extrabold text-navy m-0 mb-6 pb-3.5 border-b-2 border-navy" style="font-size:24px;">{{ __('Dane kontaktowe', 'mikroloty') }}</h2>
                 <div class="flex flex-col gap-[22px]">
                     @foreach ($info as $c)
                         <div class="flex gap-4 items-start">
@@ -49,7 +55,7 @@
                 </div>
 
                 @if ($people)
-                    <h3 class="font-heading font-bold text-navy uppercase mt-9 mb-3.5" style="font-size:15px;letter-spacing:0.04em;">Kontakty tematyczne</h3>
+                    <h3 class="font-heading font-bold text-navy uppercase mt-9 mb-3.5" style="font-size:15px;letter-spacing:0.04em;">{{ __('Kontakty tematyczne', 'mikroloty') }}</h3>
                     <div class="border border-line">
                         @foreach ($people as $person)
                             <div class="flex justify-between gap-4 border-b border-line-3" style="padding:15px 18px;">
@@ -74,12 +80,12 @@
 
             {{-- Form --}}
             <div class="bg-surface border border-line" style="padding:clamp(28px,3.5vw,40px);">
-                <h2 class="font-heading font-extrabold text-navy m-0 mb-6" style="font-size:24px;">Napisz do nas</h2>
+                <h2 class="font-heading font-extrabold text-navy m-0 mb-6" style="font-size:24px;">{{ __('Napisz do nas', 'mikroloty') }}</h2>
 
                 @if ($status === 'sent')
-                    <div class="mb-5 border border-[var(--color-status-live)] text-[var(--color-status-live)] bg-white" style="padding:14px 16px;font-size:14px;">Dziękujemy! Wiadomość została wysłana.</div>
+                    <div class="mb-5 border border-[var(--color-status-live)] text-[var(--color-status-live)] bg-white" style="padding:14px 16px;font-size:14px;">{{ __('Dziękujemy! Wiadomość została wysłana.', 'mikroloty') }}</div>
                 @elseif ($status === 'error')
-                    <div class="mb-5 border border-[#c0392b] text-[#c0392b] bg-white" style="padding:14px 16px;font-size:14px;">Nie udało się wysłać wiadomości. Sprawdź pola i spróbuj ponownie.</div>
+                    <div class="mb-5 border border-[#c0392b] text-[#c0392b] bg-white" style="padding:14px 16px;font-size:14px;">{{ __('Nie udało się wysłać wiadomości. Sprawdź pola i spróbuj ponownie.', 'mikroloty') }}</div>
                 @endif
 
                 <form action="{{ esc_url(admin_url('admin-post.php')) }}" method="post" class="flex flex-col gap-[18px]">
@@ -91,26 +97,26 @@
                     </div>
 
                     <div class="grid gap-[18px]" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));">
-                        <label class="flex flex-col gap-[7px] font-semibold text-ink-2" style="font-size:13px;">Imię i nazwisko
+                        <label class="flex flex-col gap-[7px] font-semibold text-ink-2" style="font-size:13px;">{{ __('Imię i nazwisko', 'mikroloty') }}
                             <input type="text" name="name" required placeholder="Jan Kowalski" class="{{ $inputCls }}" style="{{ $inputStyle }}">
                         </label>
-                        <label class="flex flex-col gap-[7px] font-semibold text-ink-2" style="font-size:13px;">Adres e-mail
+                        <label class="flex flex-col gap-[7px] font-semibold text-ink-2" style="font-size:13px;">{{ __('Adres e-mail', 'mikroloty') }}
                             <input type="email" name="email" required placeholder="jan@example.com" class="{{ $inputCls }}" style="{{ $inputStyle }}">
                         </label>
                     </div>
-                    <label class="flex flex-col gap-[7px] font-semibold text-ink-2" style="font-size:13px;">Temat
+                    <label class="flex flex-col gap-[7px] font-semibold text-ink-2" style="font-size:13px;">{{ __('Temat', 'mikroloty') }}
                         <select name="subject" class="{{ $inputCls }}" style="{{ $inputStyle }}">
                             @foreach ($topics as $t)<option>{{ $t }}</option>@endforeach
                         </select>
                     </label>
-                    <label class="flex flex-col gap-[7px] font-semibold text-ink-2" style="font-size:13px;">Wiadomość
-                        <textarea name="message" rows="6" required placeholder="Twoja wiadomość..." class="{{ $inputCls }}" style="{{ $inputStyle }}"></textarea>
+                    <label class="flex flex-col gap-[7px] font-semibold text-ink-2" style="font-size:13px;">{{ __('Wiadomość', 'mikroloty') }}
+                        <textarea name="message" rows="6" required placeholder="{{ __('Twoja wiadomość...', 'mikroloty') }}" class="{{ $inputCls }}" style="{{ $inputStyle }}"></textarea>
                     </label>
                     <label class="flex gap-2.5 items-start text-ink-3" style="font-size:12.5px;line-height:1.5;">
                         <input type="checkbox" name="consent" required style="margin-top:3px;">
-                        Wyrażam zgodę na przetwarzanie danych w celu udzielenia odpowiedzi zgodnie z polityką prywatności.
+                        {{ __('Wyrażam zgodę na przetwarzanie danych w celu udzielenia odpowiedzi zgodnie z polityką prywatności.', 'mikroloty') }}
                     </label>
-                    <button type="submit" class="btn text-white bg-navy hover:bg-navy-light self-start" style="border:none;">Wyślij wiadomość</button>
+                    <button type="submit" class="btn text-white bg-navy hover:bg-navy-light self-start" style="border:none;">{{ __('Wyślij wiadomość', 'mikroloty') }}</button>
                 </form>
             </div>
         </div>

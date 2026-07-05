@@ -16,9 +16,9 @@
                 <nav class="mb-[22px] text-onnavy-2" style="font-size:12.5px;">
                     <a href="{{ home_url('/') }}" class="text-onnavy-2 hover:text-white">Home</a>
                     <span class="mx-2">/</span>
-                    <a href="{{ $archiveUrl }}" class="text-onnavy-2 hover:text-white">Aktualności</a>
+                    <a href="{{ $archiveUrl }}" class="text-onnavy-2 hover:text-white">{{ __('Aktualności', 'mikroloty') }}</a>
                     <span class="mx-2">/</span>
-                    <span class="text-white">Wpis</span>
+                    <span class="text-white">{{ __('Wpis', 'mikroloty') }}</span>
                 </nav>
                 @if ($tag)
                     <span class="inline-block uppercase font-bold text-navy bg-gold mb-[18px]" style="font-size:11px;letter-spacing:0.1em;padding:5px 11px;">{{ $tag }}</span>
@@ -26,8 +26,8 @@
                 <h1 class="font-heading font-extrabold m-0 mb-5" style="font-size:clamp(28px,4.4vw,44px);line-height:1.12;letter-spacing:-0.01em;">{{ get_the_title() }}</h1>
                 <div class="flex flex-wrap gap-x-[22px] gap-y-2" style="font-size:13.5px;color:#aab6d2;">
                     <span>{{ get_the_date('j F Y') }}</span><span>·</span>
-                    <span>{{ get_the_author() ?: 'Redakcja mikroloty.com' }}</span><span>·</span>
-                    <span>{{ $readingTime }} min czytania</span>
+                    <span>{{ get_the_author() ?: __('Redakcja mikroloty.com', 'mikroloty') }}</span><span>·</span>
+                    <span>{{ $readingTime }} {{ __('min czytania', 'mikroloty') }}</span>
                 </div>
             </div>
         </section>
@@ -52,9 +52,9 @@
 
                 {{-- Back / share --}}
                 <div class="flex flex-wrap gap-4 items-center justify-between mt-11 pt-[26px] border-t border-line">
-                    <a href="{{ $archiveUrl }}" class="uppercase font-bold text-navy" style="font-size:13px;letter-spacing:0.04em;">← Wróć do aktualności</a>
+                    <a href="{{ $archiveUrl }}" class="uppercase font-bold text-navy" style="font-size:13px;letter-spacing:0.04em;">← {{ __('Wróć do aktualności', 'mikroloty') }}</a>
                     <div class="flex gap-2.5 items-center">
-                        <span class="text-ink-5" style="font-size:13px;">Udostępnij:</span>
+                        <span class="text-ink-5" style="font-size:13px;">{{ __('Udostępnij:', 'mikroloty') }}</span>
                         @php
                             $shareUrl = urlencode(get_permalink());
                             $shareTitle = urlencode(get_the_title());
@@ -81,7 +81,7 @@
             <section class="bg-surface" style="padding-block:clamp(48px,6vw,72px);">
                 <div class="container-site">
                     <div class="border-b-2 border-navy mb-8" style="padding-bottom:18px;">
-                        <h2 class="font-heading font-extrabold text-navy m-0" style="font-size:clamp(22px,3vw,30px);">Powiązane aktualności</h2>
+                        <h2 class="font-heading font-extrabold text-navy m-0" style="font-size:clamp(22px,3vw,30px);">{{ __('Powiązane aktualności', 'mikroloty') }}</h2>
                     </div>
                     <div class="grid gap-[26px]" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
                         @while ($relatedQ->have_posts())

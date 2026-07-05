@@ -1,0 +1,477 @@
+# Copyright (C) 2026 Cyber Dynamics
+# This file is distributed under the MIT License.
+msgid ""
+msgstr ""
+"Project-Id-Version: Mikroloty 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/mikroloty\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-05T21:18:28+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: mikroloty\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Mikroloty"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://www.mikroloty.com/"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "Motyw dla mikroloty.com — oficjalnej strony Komisji Mikrolotowej Aeroklubu Polskiego. Zbudowany na Sage 11 (Tailwind v4, Vite, Blade) + ACF Pro."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Cyber Dynamics"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://github.com/cyberdynamicsdev"
+msgstr ""
+
+#: app/acf.php:46
+msgid "Motyw mikroloty wymaga wtyczki Advanced Custom Fields PRO do obsługi pól zawodów, kadry i dokumentów."
+msgstr ""
+
+#: app/acf.php:60
+#: app/acf.php:61
+msgid "Ustawienia motywu"
+msgstr ""
+
+#: app/acf.php:70
+#: app/acf.php:71
+msgid "Strona główna"
+msgstr ""
+
+#: app/acf.php:78
+#: app/acf.php:79
+msgid "Nagłówek i stopka"
+msgstr ""
+
+#. Template Name of the theme
+#: app/acf.php:86
+#: app/acf.php:87
+msgid "Kontakt"
+msgstr ""
+
+#: app/helpers.php:95
+msgid "W trakcie"
+msgstr ""
+
+#: app/helpers.php:99
+msgid "Zakończone"
+msgstr ""
+
+#: app/helpers.php:103
+msgid "Planowane"
+msgstr ""
+
+#: app/post-types.php:24
+#: app/post-types.php:25
+#: app/post-types.php:26
+#: app/post-types.php:168
+msgid "Zawody"
+msgstr ""
+
+#: app/post-types.php:27
+msgid "Dodaj zawody"
+msgstr ""
+
+#: app/post-types.php:28
+msgid "Dodaj nowe zawody"
+msgstr ""
+
+#: app/post-types.php:29
+msgid "Edytuj zawody"
+msgstr ""
+
+#: app/post-types.php:30
+msgid "Zobacz zawody"
+msgstr ""
+
+#: app/post-types.php:31
+msgid "Szukaj zawodów"
+msgstr ""
+
+#: app/post-types.php:32
+msgid "Nie znaleziono zawodów"
+msgstr ""
+
+#: app/post-types.php:33
+msgid "Wszystkie zawody"
+msgstr ""
+
+#: app/post-types.php:34
+msgid "Kalendarz zawodów"
+msgstr ""
+
+#: app/post-types.php:54
+#: app/post-types.php:56
+#: app/post-types.php:169
+msgid "Kadra"
+msgstr ""
+
+#: app/post-types.php:55
+msgid "Zawodnik"
+msgstr ""
+
+#: app/post-types.php:57
+msgid "Dodaj zawodnika"
+msgstr ""
+
+#: app/post-types.php:58
+msgid "Dodaj nowego zawodnika"
+msgstr ""
+
+#: app/post-types.php:59
+msgid "Edytuj zawodnika"
+msgstr ""
+
+#: app/post-types.php:60
+msgid "Szukaj zawodników"
+msgstr ""
+
+#: app/post-types.php:61
+msgid "Nie znaleziono zawodników"
+msgstr ""
+
+#: app/post-types.php:62
+msgid "Wszyscy zawodnicy"
+msgstr ""
+
+#: app/post-types.php:63
+msgid "Kadra narodowa"
+msgstr ""
+
+#: app/post-types.php:81
+msgid "Sezony"
+msgstr ""
+
+#: app/post-types.php:82
+msgid "Sezon"
+msgstr ""
+
+#: app/post-types.php:83
+msgid "Sezony kadry"
+msgstr ""
+
+#: app/post-types.php:84
+msgid "Dodaj rok"
+msgstr ""
+
+#: app/post-types.php:85
+msgid "Rok (np. 2026)"
+msgstr ""
+
+#: app/post-types.php:86
+msgid "Lata po przecinku, np. 2025, 2026"
+msgstr ""
+
+#. Template Name of the theme
+#: app/post-types.php:113
+#: app/post-types.php:115
+#: resources/views/single-competition.blade.php:67
+msgid "Dokumenty"
+msgstr ""
+
+#: app/post-types.php:114
+msgid "Dokument"
+msgstr ""
+
+#: app/post-types.php:116
+msgid "Dodaj dokument"
+msgstr ""
+
+#: app/post-types.php:117
+msgid "Dodaj nowy dokument"
+msgstr ""
+
+#: app/post-types.php:118
+msgid "Edytuj dokument"
+msgstr ""
+
+#: app/post-types.php:119
+msgid "Zobacz dokument"
+msgstr ""
+
+#: app/post-types.php:120
+msgid "Szukaj dokumentów"
+msgstr ""
+
+#: app/post-types.php:121
+msgid "Nie znaleziono dokumentów"
+msgstr ""
+
+#: app/post-types.php:122
+msgid "Wszystkie dokumenty"
+msgstr ""
+
+#. Template Name of the theme
+#: app/post-types.php:140
+#: app/post-types.php:142
+msgid "FAQ"
+msgstr ""
+
+#: app/post-types.php:141
+msgid "Pytanie FAQ"
+msgstr ""
+
+#: app/post-types.php:143
+msgid "Dodaj pytanie"
+msgstr ""
+
+#: app/post-types.php:144
+msgid "Dodaj nowe pytanie"
+msgstr ""
+
+#: app/post-types.php:145
+msgid "Edytuj pytanie"
+msgstr ""
+
+#: app/post-types.php:146
+msgid "Zobacz pytanie"
+msgstr ""
+
+#: app/post-types.php:147
+msgid "Szukaj w FAQ"
+msgstr ""
+
+#: app/post-types.php:148
+msgid "Nie znaleziono pytań"
+msgstr ""
+
+#: app/post-types.php:149
+msgid "Wszystkie pytania"
+msgstr ""
+
+#: app/post-types.php:170
+msgid "Komisja"
+msgstr ""
+
+#: app/post-types.php:171
+msgid "Szkolenie"
+msgstr ""
+
+#: app/setup.php:93
+#: resources/views/sections/header.blade.php:26
+msgid "Menu główne"
+msgstr ""
+
+#: app/setup.php:94
+msgid "Menu w stopce"
+msgstr ""
+
+#: resources/views/archive-competition.blade.php:21
+msgid "Śledź na żywo"
+msgstr ""
+
+#: resources/views/archive-competition.blade.php:22
+#: resources/views/single-competition.blade.php:44
+msgid "Wyniki"
+msgstr ""
+
+#: resources/views/archive-competition.blade.php:23
+msgid "Szczegóły"
+msgstr ""
+
+#: resources/views/archive-competition.blade.php:49
+msgid "Brak zawodów do wyświetlenia."
+msgstr ""
+
+#: resources/views/components/news-card.blade.php:28
+#: resources/views/front-page.blade.php:156
+msgid "Czytaj więcej"
+msgstr ""
+
+#: resources/views/components/page-header.blade.php:14
+msgid "Okruszki"
+msgstr ""
+
+#: resources/views/components/page-header.blade.php:15
+msgid "Home"
+msgstr ""
+
+#: resources/views/front-page.blade.php:185
+msgid "Wczytaj więcej aktualności"
+msgstr ""
+
+#: resources/views/index.blade.php:48
+msgid "Brak aktualności do wyświetlenia."
+msgstr ""
+
+#: resources/views/layouts/app.blade.php:17
+msgid "Przejdź do treści"
+msgstr ""
+
+#: resources/views/partials/kadra-list.blade.php:19
+msgid "Sezon:"
+msgstr ""
+
+#: resources/views/partials/kadra-list.blade.php:42
+msgid "Brak zawodników do wyświetlenia."
+msgstr ""
+
+#: resources/views/single-competition.blade.php:47
+msgid "Msc."
+msgstr ""
+
+#: resources/views/single-competition.blade.php:48
+msgid "Pilot"
+msgstr ""
+
+#: resources/views/single-competition.blade.php:49
+msgid "Wynik"
+msgstr ""
+
+#: resources/views/single-competition.blade.php:76
+#: resources/views/template-documents.blade.php:69
+msgid "Pobierz"
+msgstr ""
+
+#: resources/views/single-competition.blade.php:84
+msgid "Wróć do kalendarza"
+msgstr ""
+
+#: resources/views/single.blade.php:19
+msgid "Aktualności"
+msgstr ""
+
+#: resources/views/single.blade.php:21
+msgid "Wpis"
+msgstr ""
+
+#: resources/views/single.blade.php:29
+msgid "Redakcja mikroloty.com"
+msgstr ""
+
+#: resources/views/single.blade.php:30
+msgid "min czytania"
+msgstr ""
+
+#: resources/views/single.blade.php:56
+msgid "Wróć do aktualności"
+msgstr ""
+
+#: resources/views/single.blade.php:58
+msgid "Udostępnij:"
+msgstr ""
+
+#: resources/views/single.blade.php:85
+msgid "Powiązane aktualności"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:20
+msgid "E-mail"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:21
+msgid "Telefon"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:22
+msgid "Adres"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:26
+msgid "Chcę zacząć startować"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:27
+msgid "Pytanie o zawody"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:28
+msgid "Licencje i przepisy"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:29
+msgid "Media / współpraca"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:30
+msgid "Inne"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:44
+msgid "Dane kontaktowe"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:59
+msgid "Kontakty tematyczne"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:86
+msgid "Napisz do nas"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:89
+msgid "Dziękujemy! Wiadomość została wysłana."
+msgstr ""
+
+#: resources/views/template-contact.blade.php:91
+msgid "Nie udało się wysłać wiadomości. Sprawdź pola i spróbuj ponownie."
+msgstr ""
+
+#: resources/views/template-contact.blade.php:104
+msgid "Imię i nazwisko"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:108
+msgid "Adres e-mail"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:113
+msgid "Temat"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:120
+msgid "Wiadomość"
+msgstr ""
+
+#: resources/views/template-contact.blade.php:122
+msgid "Twoja wiadomość..."
+msgstr ""
+
+#: resources/views/template-contact.blade.php:126
+msgid "Wyrażam zgodę na przetwarzanie danych w celu udzielenia odpowiedzi zgodnie z polityką prywatności."
+msgstr ""
+
+#: resources/views/template-contact.blade.php:129
+msgid "Wyślij wiadomość"
+msgstr ""
+
+#: resources/views/template-documents.blade.php:24
+msgid "Szukaj dokumentu…"
+msgstr ""
+
+#: resources/views/template-documents.blade.php:26
+msgid "Szukaj"
+msgstr ""
+
+#: resources/views/template-documents.blade.php:51
+msgid "dokument"
+msgid_plural "dokumentów"
+msgstr[0] ""
+msgstr[1] ""
+
+#: resources/views/template-faq.blade.php:65
+msgid "Nie znalazłeś odpowiedzi?"
+msgstr ""
+
+#: resources/views/template-faq.blade.php:66
+msgid "Napisz do nas — chętnie pomożemy postawić pierwsze kroki w sporcie mikrolotowym."
+msgstr ""
+
+#: resources/views/template-faq.blade.php:68
+msgid "Skontaktuj się"
+msgstr ""

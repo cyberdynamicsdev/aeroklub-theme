@@ -14,7 +14,7 @@
 
     <x-page-header
         :title="'Kadra narodowa ' . $term->name"
-        lead="Skład reprezentacji Polski w sezonie."
+        :lead="__('Skład reprezentacji Polski w sezonie.', 'mikroloty')"
         :crumbs="[['label' => 'Kadra', 'url' => get_post_type_archive_link('athlete')], ['label' => $term->name]]" />
 
     @include('partials.kadra-list', ['athletes' => $athletes, 'activeTermId' => $term->term_id])

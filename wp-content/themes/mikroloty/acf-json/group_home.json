@@ -169,6 +169,97 @@
             "name": "cta_btn_link",
             "type": "link",
             "return_format": "array"
+        },
+        {
+            "key": "field_home_tab_headers",
+            "label": "Nagłówki sekcji",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_home_sec_comp_eyebrow",
+            "label": "Zawody — etykieta",
+            "name": "sec_comp_eyebrow",
+            "type": "text",
+            "default_value": "Kalendarz sportowy"
+        },
+        {
+            "key": "field_home_sec_comp_title",
+            "label": "Zawody — tytuł",
+            "name": "sec_comp_title",
+            "type": "text",
+            "default_value": "Nadchodzące zawody"
+        },
+        {
+            "key": "field_home_sec_news_eyebrow",
+            "label": "Aktualności — etykieta",
+            "name": "sec_news_eyebrow",
+            "type": "text",
+            "default_value": "Z życia komisji"
+        },
+        {
+            "key": "field_home_sec_news_title",
+            "label": "Aktualności — tytuł",
+            "name": "sec_news_title",
+            "type": "text",
+            "default_value": "Ostatnie aktualności"
+        },
+        {
+            "key": "field_home_sec_gallery_eyebrow",
+            "label": "Galeria — etykieta",
+            "name": "sec_gallery_eyebrow",
+            "type": "text",
+            "default_value": "Fotorelacje z zawodów"
+        },
+        {
+            "key": "field_home_sec_gallery_title",
+            "label": "Galeria — tytuł",
+            "name": "sec_gallery_title",
+            "type": "text",
+            "default_value": "Galeria zawodów"
+        },
+        {
+            "key": "field_home_sec_squad_eyebrow",
+            "label": "Kadra — etykieta (rok dopisze się automatycznie)",
+            "name": "sec_squad_eyebrow",
+            "type": "text",
+            "default_value": "Sezon"
+        },
+        {
+            "key": "field_home_sec_squad_title",
+            "label": "Kadra — tytuł",
+            "name": "sec_squad_title",
+            "type": "text",
+            "default_value": "Aktualna kadra narodowa"
+        },
+        {
+            "key": "field_home_tab_archives",
+            "label": "Archiwa",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_home_archive_comp_title",
+            "label": "Zawody — tytuł strony",
+            "name": "archive_comp_title",
+            "type": "text",
+            "default_value": "Kalendarz zawodów"
+        },
+        {
+            "key": "field_home_archive_comp_lead",
+            "label": "Zawody — opis pod tytułem",
+            "name": "archive_comp_lead",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "Pełna lista zawodów mikrolotowych — terminy, miejsca i wyniki zakończonych rund."
+        },
+        {
+            "key": "field_home_archive_squad_lead",
+            "label": "Kadra — opis pod tytułem",
+            "name": "archive_squad_lead",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "Zawodnicy reprezentujący Polskę w sporcie mikrolotowym."
         }
     ],
     "location": [

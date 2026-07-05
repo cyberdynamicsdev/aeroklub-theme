@@ -2,8 +2,8 @@
 
 @section('content')
     <x-page-header
-        title="Kalendarz zawodów"
-        lead="Pełna lista zawodów mikrolotowych — terminy, miejsca i wyniki zakończonych rund."
+        :title="get_field('archive_comp_title', 'option') ?: 'Kalendarz zawodów'"
+        :lead="get_field('archive_comp_lead', 'option') ?: 'Pełna lista zawodów mikrolotowych — terminy, miejsca i wyniki zakończonych rund.'"
         :crumbs="[['label' => 'Zawody']]" />
 
     <section style="padding-block:clamp(40px,5vw,64px);" class="bg-white">
@@ -18,9 +18,9 @@
                             $ds = $start ? DateTime::createFromFormat('Ymd', $start) : null;
                             $location = get_field('location');
                             $ctaLabel = match (get_field('status')) {
-                                'ongoing' => 'Śledź na żywo',
-                                'finished' => 'Wyniki',
-                                default => 'Szczegóły',
+                                'ongoing' => __('Śledź na żywo', 'mikroloty'),
+                                'finished' => __('Wyniki', 'mikroloty'),
+                                default => __('Szczegóły', 'mikroloty'),
                             };
                         @endphp
                         <div class="flex flex-wrap items-center gap-x-6 gap-y-4 border-b border-line transition-colors hover:bg-[#f7f8fb]" style="padding:24px 4px;">

@@ -72,6 +72,12 @@ add_filter('should_load_separate_core_block_assets', '__return_false');
  */
 add_action('after_setup_theme', function () {
     /**
+     * Load theme translations (text domain "mikroloty").
+     * Enables editing UI strings via a plugin like Loco Translate.
+     */
+    load_theme_textdomain('mikroloty', get_theme_file_path('resources/lang'));
+
+    /**
      * Disable full-site editing support.
      *
      * @link https://wptavern.com/gutenberg-10-5-embeds-pdfs-adds-verse-block-color-options-and-introduces-new-patterns

@@ -15,7 +15,7 @@
 
     <x-page-header
         :title="$title"
-        lead="Zawodnicy reprezentujący Polskę w sporcie mikrolotowym."
+        :lead="get_field('archive_squad_lead', 'option') ?: 'Zawodnicy reprezentujący Polskę w sporcie mikrolotowym.'"
         :crumbs="[['label' => 'Kadra']]" />
 
     @include('partials.kadra-list', ['athletes' => $athletes, 'activeTermId' => $activeTermId])

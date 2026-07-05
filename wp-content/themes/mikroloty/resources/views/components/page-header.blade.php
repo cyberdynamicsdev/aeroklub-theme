@@ -12,7 +12,7 @@
 <section class="bg-navy text-white">
     <div class="container-site" style="{{ $maxw }}padding-block:clamp(40px,6vw,68px);">
         <nav class="mb-4 text-onnavy-2" style="font-size:12.5px;" aria-label="{{ __('Okruszki', 'mikroloty') }}">
-            <a href="{{ home_url('/') }}" class="text-onnavy-2 hover:text-white">Home</a>
+            <a href="{{ home_url('/') }}" class="text-onnavy-2 hover:text-white">{{ __('Home', 'mikroloty') }}</a>
             @foreach ($crumbs as $c)
                 <span class="mx-2">/</span>
                 @if (! empty($c['url']))

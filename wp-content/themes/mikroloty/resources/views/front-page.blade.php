@@ -29,6 +29,16 @@
         $ctaBtnLabel = get_field('cta_btn_label', 'option') ?: 'Dowiedz się jak zacząć';
         $ctaBtnLink = get_field('cta_btn_link', 'option');
 
+        // Section headers (editable via theme options → Strona główna → Nagłówki sekcji)
+        $secCompEyebrow = get_field('sec_comp_eyebrow', 'option') ?: 'Kalendarz sportowy';
+        $secCompTitle = get_field('sec_comp_title', 'option') ?: 'Nadchodzące zawody';
+        $secNewsEyebrow = get_field('sec_news_eyebrow', 'option') ?: 'Z życia komisji';
+        $secNewsTitle = get_field('sec_news_title', 'option') ?: 'Ostatnie aktualności';
+        $secGalleryEyebrow = get_field('sec_gallery_eyebrow', 'option') ?: 'Fotorelacje z zawodów';
+        $secGalleryTitle = get_field('sec_gallery_title', 'option') ?: 'Galeria zawodów';
+        $secSquadEyebrow = get_field('sec_squad_eyebrow', 'option') ?: 'Sezon';
+        $secSquadTitle = get_field('sec_squad_title', 'option') ?: 'Aktualna kadra narodowa';
+
         // --- Queries ---
         $competitionsQ = new WP_Query([
             'post_type' => 'competition',
@@ -94,10 +104,10 @@
         <section id="competitions" class="section-y bg-white">
             <div class="container-site">
                 <x-section-head
-                    eyebrow="Kalendarz sportowy"
-                    title="Nadchodzące zawody"
+                    :eyebrow="$secCompEyebrow"
+                    :title="$secCompTitle"
                     :link="get_post_type_archive_link('competition')"
-                    link-label="Pełny kalendarz" />
+                    :link-label="__('Pełny kalendarz', 'mikroloty')" />
                 <div class="grid gap-6" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
                     @while ($competitionsQ->have_posts())
                         @php $competitionsQ->the_post(); @endphp                        <x-competition-card />
@@ -118,10 +128,10 @@
         <section id="news" class="section-y bg-surface">
             <div class="container-site">
                 <x-section-head
-                    eyebrow="Z życia komisji"
-                    title="Ostatnie aktualności"
+                    :eyebrow="$secNewsEyebrow"
+                    :title="$secNewsTitle"
                     :link="$newsUrl"
-                    link-label="Wszystkie aktualności" />
+                    :link-label="__('Wszystkie aktualności', 'mikroloty')" />
 
                 <div class="grid gap-[26px] items-start" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
                     {{-- Featured --}}
@@ -141,7 +151,7 @@
                             </h3>
                             <p class="text-ink-3 m-0 mb-5" style="font-size:15px;line-height:1.6;">{{ get_the_excerpt($featured) }}</p>
                             <a href="{{ get_permalink($featured) }}" class="mt-auto inline-flex items-center gap-2 uppercase font-bold text-navy" style="font-size:13px;letter-spacing:0.04em;">
-                                Czytaj więcej <span class="text-gold">→</span>
+                                {{ __('Czytaj więcej', 'mikroloty') }} <span class="text-gold">→</span>
                             </a>
                         </div>
                     </article>
@@ -168,7 +178,7 @@
                                 </div>
                             </article>
                         @endforeach
-                        @php wp_reset_postdata(); @endphp                        <a href="{{ $newsUrl }}" class="border border-line-2 text-center uppercase font-bold text-navy hover:bg-[#e9ecf2]" style="padding:16px;font-size:13px;letter-spacing:0.04em;">Wczytaj więcej aktualności</a>
+                        @php wp_reset_postdata(); @endphp                        <a href="{{ $newsUrl }}" class="border border-line-2 text-center uppercase font-bold text-navy hover:bg-[#e9ecf2]" style="padding:16px;font-size:13px;letter-spacing:0.04em;">{{ __('Wczytaj więcej aktualności', 'mikroloty') }}</a>
                     </div>
                 </div>
             </div>
@@ -194,10 +204,10 @@
         <section id="gallery" class="section-y bg-white">
             <div class="container-site">
                 <x-section-head
-                    eyebrow="Fotorelacje z zawodów"
-                    title="Galeria zawodów"
+                    :eyebrow="$secGalleryEyebrow"
+                    :title="$secGalleryTitle"
                     :link="$galleryLink['url'] ?? null"
-                    :link-label="$galleryLink['title'] ?? ($galleryLink ? 'Wszystkie zdjęcia' : null)" />
+                    :link-label="$galleryLink['title'] ?? ($galleryLink ? __('Wszystkie zdjęcia', 'mikroloty') : null)" />
                 <div class="grid gap-3" style="grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;">
                     @foreach (array_slice($gallery, 0, 5) as $i => $image)
                         <div class="relative overflow-hidden bg-placeholder {{ $i === 0 ? 'col-span-2 row-span-2' : '' }}" style="aspect-ratio:1/1;">
@@ -214,10 +224,10 @@
         <section id="squad" class="section-y bg-surface">
             <div class="container-site">
                 <x-section-head
-                    :eyebrow="'Sezon ' . ($currentSeason?->name ?: date('Y'))"
-                    title="Aktualna kadra narodowa"
+                    :eyebrow="$secSquadEyebrow . ' ' . ($currentSeason?->name ?: date('Y'))"
+                    :title="$secSquadTitle"
                     :link="get_post_type_archive_link('athlete')"
-                    link-label="Zobacz pełną kadrę" />
+                    :link-label="__('Zobacz pełną kadrę', 'mikroloty')" />
                 <div class="grid gap-5" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr));">
                     @while ($athletesQ->have_posts())
                         @php $athletesQ->the_post(); @endphp                        <x-athlete-card />

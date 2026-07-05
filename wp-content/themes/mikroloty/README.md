@@ -138,6 +138,30 @@ pozostałych sezonów. Widok konkretnego roku: `/kadra-sezon/{rok}/`.
 
 ---
 
+## Edytowalność treści
+
+Dwie warstwy — wszystko da się zmienić bez dotykania kodu:
+
+1. **Treść i teksty sekcji → pola WP / ACF**
+   - Wpisy, zawody, kadra, dokumenty, FAQ, strony — panel WP.
+   - Hero, statystyki, galeria, CTA, **nagłówki sekcji strony głównej**,
+     **wprowadzenia archiwów** → Ustawienia motywu → *Strona główna*.
+   - Pasek górny, stopka, kontakt → Ustawienia motywu.
+   - Menu, kategorie → panel WP.
+
+2. **Mikrocopy UI → wtyczka tłumaczeń (Loco Translate)**
+   Przyciski („Czytaj więcej", „Pobierz", „Wróć…"), etykiety formularza,
+   komunikaty, banner FAQ itd. są opakowane w funkcje tłumaczeń
+   (`__('…', 'mikroloty')`) i edytowalne bez kodu:
+   - Zainstaluj **Loco Translate**.
+   - Loco → Motywy → **Mikroloty** → utwórz język **polski (pl_PL)**.
+   - Jako szablon wskaż `resources/lang/mikroloty.pot`; zapisz do lokalizacji
+     **„System"** (`wp-content/languages/themes/`) — przetrwa aktualizacje motywu.
+   - Edytuj dowolny string; WP automatycznie ładuje `mikroloty-pl_PL.mo`.
+
+   Aktualizacja szablonu po zmianach w kodzie: `npm run translate:pot`
+   (generuje `resources/lang/mikroloty.pot`; wykrywa też stringi z Blade).
+
 ## Design tokens
 
 Wszystkie kolory/fonty w `resources/css/app.css` (blok `@theme`). Zmiana tam
@@ -154,6 +178,7 @@ propaguje się do utility Tailwinda **oraz** do edytora Gutenberga (przez
 - **Advanced Custom Fields PRO** — wymagane (pola + strony opcji + repeatery)
 - **Polylang** — wielojęzyczność PL/EN (przełącznik w nav podpina się automatycznie)
 - **Yoast SEO** — SEO
+- **Loco Translate** — edycja mikrocopy UI bez kodu (patrz „Edytowalność treści")
 - **WP Super Cache** / **W3 Total Cache** — cache
 
 > Repeatery i strony opcji wymagają ACF **Pro**. Bez Pro motyw działa, ale

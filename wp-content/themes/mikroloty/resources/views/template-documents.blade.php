@@ -21,9 +21,9 @@
     <div x-data="{ q: '' }">
         <x-page-header :title="$title" :lead="$lead" :crumbs="[['label' => $title]]">
             <div class="flex items-center max-w-[460px] bg-white mt-6">
-                <input type="text" x-model="q" placeholder="Szukaj dokumentu…"
+                <input type="text" x-model="q" placeholder="{{ __('Szukaj dokumentu…', 'mikroloty') }}"
                        class="flex-1 border-none outline-none text-ink" style="padding:14px 18px;font-size:14.5px;" />
-                <span class="bg-gold text-navy font-bold" style="padding:14px 22px;font-size:14px;">Szukaj</span>
+                <span class="bg-gold text-navy font-bold" style="padding:14px 22px;font-size:14px;">{{ __('Szukaj', 'mikroloty') }}</span>
             </div>
         </x-page-header>
 
@@ -65,7 +65,7 @@
                                         <span class="block font-semibold text-ink" style="font-size:15.5px;">{{ get_the_title() }}</span>
                                         <span class="block text-ink-5 mt-[3px]" style="font-size:13px;">{{ $description ? $description . ' · ' : '' }}{{ implode(' · ', $metaParts) }}</span>
                                     </span>
-                                    <span class="uppercase font-bold text-navy inline-flex items-center gap-2" style="flex:0 0 auto;font-size:12.5px;letter-spacing:0.04em;">Pobierz <span class="text-gold" style="font-size:15px;">↓</span></span>
+                                    <span class="uppercase font-bold text-navy inline-flex items-center gap-2" style="flex:0 0 auto;font-size:12.5px;letter-spacing:0.04em;">{{ __('Pobierz', 'mikroloty') }} <span class="text-gold" style="font-size:15px;">↓</span></span>
                                 </a>
                             @endwhile
                             @php wp_reset_postdata(); @endphp                        </div>

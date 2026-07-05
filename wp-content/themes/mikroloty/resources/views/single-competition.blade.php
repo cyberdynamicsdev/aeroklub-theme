@@ -40,12 +40,12 @@
                 {{-- Results --}}
                 @if ($results)
                     <div>
-                        <h2 class="font-heading font-extrabold text-navy m-0 mb-4 pb-3.5 border-b-2 border-navy" style="font-size:24px;">Wyniki</h2>
+                        <h2 class="font-heading font-extrabold text-navy m-0 mb-4 pb-3.5 border-b-2 border-navy" style="font-size:24px;">{{ __('Wyniki', 'mikroloty') }}</h2>
                         <div class="border border-line">
                             <div class="flex items-center gap-4 px-[18px] py-3 bg-surface uppercase font-bold text-ink-4" style="font-size:11.5px;letter-spacing:0.06em;">
-                                <span style="flex:0 0 48px;">Msc.</span>
-                                <span class="flex-1">Pilot</span>
-                                <span>Wynik</span>
+                                <span style="flex:0 0 48px;">{{ __('Msc.', 'mikroloty') }}</span>
+                                <span class="flex-1">{{ __('Pilot', 'mikroloty') }}</span>
+                                <span>{{ __('Wynik', 'mikroloty') }}</span>
                             </div>
                             @foreach ($results as $row)
                                 @php $place = (int) ($row['place'] ?? 0); @endphp
@@ -62,7 +62,7 @@
                 {{-- Competition documents --}}
                 @if ($documents)
                     <div>
-                        <h2 class="font-heading font-extrabold text-navy m-0 mb-4 pb-3.5 border-b-2 border-navy" style="font-size:24px;">Dokumenty</h2>
+                        <h2 class="font-heading font-extrabold text-navy m-0 mb-4 pb-3.5 border-b-2 border-navy" style="font-size:24px;">{{ __('Dokumenty', 'mikroloty') }}</h2>
                         <div class="flex flex-col">
                             @foreach ($documents as $doc)
                                 @php $file = $doc['file'] ?? null; @endphp
@@ -70,7 +70,7 @@
                                     <a href="{{ $file['url'] }}" target="_blank" rel="noopener" class="flex items-center gap-[18px] border-b border-line hover:bg-[#f7f8fb] transition-colors" style="padding:16px 8px;">
                                         <span class="font-heading font-extrabold bg-navy text-gold flex items-center justify-center" style="flex:0 0 auto;width:40px;height:48px;font-size:11px;">PDF</span>
                                         <span class="flex-1 font-semibold text-ink" style="font-size:15.5px;">{{ $doc['name'] }}</span>
-                                        <span class="uppercase font-bold text-navy" style="font-size:12.5px;letter-spacing:0.04em;">Pobierz <span class="text-gold">↓</span></span>
+                                        <span class="uppercase font-bold text-navy" style="font-size:12.5px;letter-spacing:0.04em;">{{ __('Pobierz', 'mikroloty') }} <span class="text-gold">↓</span></span>
                                     </a>
                                 @endif
                             @endforeach
@@ -78,7 +78,7 @@
                     </div>
                 @endif
 
-                <a href="{{ get_post_type_archive_link('competition') }}" class="uppercase font-bold text-navy justify-self-start" style="font-size:13px;letter-spacing:0.04em;">← Wróć do kalendarza</a>
+                <a href="{{ get_post_type_archive_link('competition') }}" class="uppercase font-bold text-navy justify-self-start" style="font-size:13px;letter-spacing:0.04em;">← {{ __('Wróć do kalendarza', 'mikroloty') }}</a>
             </div>
         </section>
     @endwhile
