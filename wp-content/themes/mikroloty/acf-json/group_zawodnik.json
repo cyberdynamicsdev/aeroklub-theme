@@ -64,6 +64,34 @@
             "required": 0
         },
         {
+            "key": "field_zawodnik_statystyki",
+            "label": "Statystyki (pasek na profilu)",
+            "name": "statystyki",
+            "type": "repeater",
+            "instructions": "Pasek liczb pod nagłówkiem profilu. Ukrywa się, gdy pusty.",
+            "layout": "table",
+            "max": 4,
+            "button_label": "Dodaj statystykę",
+            "sub_fields": [
+                {
+                    "key": "field_zawodnik_stat_value",
+                    "label": "Wartość",
+                    "name": "value",
+                    "type": "text",
+                    "required": 1,
+                    "placeholder": "9"
+                },
+                {
+                    "key": "field_zawodnik_stat_label",
+                    "label": "Opis",
+                    "name": "label",
+                    "type": "text",
+                    "required": 1,
+                    "placeholder": "sezonów w kadrze"
+                }
+            ]
+        },
+        {
             "key": "field_zawodnik_sprzet",
             "label": "Sprzęt zawodnika",
             "name": "sprzet",

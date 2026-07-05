@@ -21,6 +21,22 @@ if (! function_exists('mikroloty_miesiac_dopelniacz')) {
     }
 }
 
+if (! function_exists('mikroloty_miesiac_skrot')) {
+    /**
+     * Trzyliterowy polski skrót miesiąca (1 → „Sty", 7 → „Lip").
+     */
+    function mikroloty_miesiac_skrot(int $m): string
+    {
+        $skroty = [
+            1 => 'Sty', 2 => 'Lut', 3 => 'Mar', 4 => 'Kwi',
+            5 => 'Maj', 6 => 'Cze', 7 => 'Lip', 8 => 'Sie',
+            9 => 'Wrz', 10 => 'Paź', 11 => 'Lis', 12 => 'Gru',
+        ];
+
+        return $skroty[$m] ?? '';
+    }
+}
+
 if (! function_exists('mikroloty_zakres_dat')) {
     /**
      * Formatuje zakres dat zawodów z pól ACF (format Ymd).

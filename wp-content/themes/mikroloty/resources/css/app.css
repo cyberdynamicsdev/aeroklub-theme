@@ -83,6 +83,9 @@
     background: var(--color-gold);
     color: var(--color-navy);
   }
+
+  summary { list-style: none; }
+  summary::-webkit-details-marker { display: none; }
 }
 
 /*
@@ -226,6 +229,16 @@
     color: var(--color-navy);
     border-bottom-color: var(--color-gold);
   }
+
+  /* FAQ — wskaźnik +/− przy rozwijaniu (natywne <details>) */
+  .faq-toggle { transition: background 0.15s, color 0.15s, border-color 0.15s; }
+  details[open] .faq-toggle {
+    background: var(--color-navy);
+    color: #fff;
+    border-color: var(--color-navy);
+  }
+  details[open] .faq-toggle::after { content: "−"; }
+  .faq-toggle::after { content: "+"; }
 
   /* Treść z edytora Gutenberga — spójny wygląd .prose w barwach marki */
   .content .wp-block-file {
