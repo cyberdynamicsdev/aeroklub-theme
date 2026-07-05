@@ -162,6 +162,33 @@ Dwie warstwy — wszystko da się zmienić bez dotykania kodu:
    Aktualizacja szablonu po zmianach w kodzie: `npm run translate:pot`
    (generuje `resources/lang/mikroloty.pot`; wykrywa też stringi z Blade).
 
+## Wielojęzyczność (PL / EN)
+
+Oparta na **Polylang** (darmowy). Motyw jest w pełni przygotowany:
+
+- **Przełącznik PL|EN** w nawigacji — podpina się automatycznie, gdy Polylang
+  jest aktywny (partial `language-switcher`).
+- **CPT i taksonomia sezonów** są rejestrowane jako tłumaczalne
+  (`pll_get_post_types` / `pll_get_taxonomies` w `app/polylang.php`) — działają
+  archiwa per język (np. `/en/kadra/`).
+- **Mikrocopy UI** — angielskie tłumaczenie dołączone w
+  `resources/lang/mikroloty-en_US.mo` (ładuje się dla wersji EN). Poprawki przez
+  Loco Translate.
+- **Globalne teksty ACF** (hero, CTA, nagłówki sekcji, stopka, kontakt) są
+  rejestrowane jako stringi Polylang → tłumaczysz je w **Języki → Tłumaczenia
+  ciągów** (grupa „Mikroloty").
+
+### Konfiguracja Polylang (jednorazowo)
+1. Zainstaluj i aktywuj **Polylang**.
+2. Dodaj języki: **Polski (pl_PL)** jako domyślny i **English (en_US)**.
+3. Przypisz istniejącą treść do języka domyślnego (Polylang zaproponuje to
+   powiadomieniem) i **przebuduj bezpośrednie odnośniki** (Ustawienia → Bezpośrednie odnośniki → Zapisz).
+4. Tłumacz treść wg potrzeb: strony (główna, O komisji, Jak zacząć), wpisy,
+   opcjonalnie CPT. Etykiety UI działają automatycznie (EN dołączony).
+
+> Zakres dwujęzyczności treści zależy od redakcji — strony i aktualności zwykle
+> w obu językach; zawody/kadra/dokumenty można trzymać w jednym języku.
+
 ## Design tokens
 
 Wszystkie kolory/fonty w `resources/css/app.css` (blok `@theme`). Zmiana tam

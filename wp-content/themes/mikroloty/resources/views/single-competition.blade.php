@@ -13,7 +13,7 @@
 
         <x-page-header
             :title="get_the_title()"
-            :crumbs="[['label' => 'Zawody', 'url' => get_post_type_archive_link('competition')], ['label' => get_the_title()]]">
+            :crumbs="[['label' => __('Zawody', 'mikroloty'), 'url' => get_post_type_archive_link('competition')], ['label' => get_the_title()]]">
             <div class="flex flex-wrap gap-x-6 gap-y-2 mt-5 text-onnavy" style="font-size:14.5px;">
                 @if ($date)<span>◆ {{ $date }}</span>@endif
                 @if ($location)<span>◆ {{ $location }}</span>@endif

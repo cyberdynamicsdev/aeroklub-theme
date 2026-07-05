@@ -13,9 +13,9 @@
     @endphp
 
     <x-page-header
-        :title="'Kadra narodowa ' . $term->name"
+        :title="__('Kadra narodowa', 'mikroloty') . ' ' . $term->name"
         :lead="__('Skład reprezentacji Polski w sezonie.', 'mikroloty')"
-        :crumbs="[['label' => 'Kadra', 'url' => get_post_type_archive_link('athlete')], ['label' => $term->name]]" />
+        :crumbs="[['label' => __('Kadra', 'mikroloty'), 'url' => get_post_type_archive_link('athlete')], ['label' => $term->name]]" />
 
     @include('partials.kadra-list', ['athletes' => $athletes, 'activeTermId' => $term->term_id])
 @endsection

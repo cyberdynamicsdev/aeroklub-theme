@@ -1,7 +1,7 @@
 @php
-    $barText = get_field('bar_text', 'option') ?: 'Komisja Mikrolotowa · Aeroklub Polski';
+    $barText = mikroloty_t(get_field('bar_text', 'option') ?: 'Komisja Mikrolotowa · Aeroklub Polski');
     $barEmail = get_field('bar_email', 'option') ?: 'biuro@mikroloty.com';
-    $barLinkLabel = get_field('bar_link_label', 'option');
+    $barLinkLabel = mikroloty_t(get_field('bar_link_label', 'option'));
     $barLinkUrl = get_field('bar_link_url', 'option');
 @endphp
 

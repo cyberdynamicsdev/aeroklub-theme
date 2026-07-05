@@ -3,7 +3,7 @@
 @section('content')
     @php
         $current = mikroloty_current_season_term();
-        $title = $current ? 'Kadra narodowa ' . $current->name : 'Kadra narodowa';
+        $title = __('Kadra narodowa', 'mikroloty') . ($current ? ' ' . $current->name : '');
 
         $args = ['post_type' => 'athlete', 'posts_per_page' => -1, 'orderby' => 'menu_order title', 'order' => 'ASC'];
         if ($current) {
@@ -15,8 +15,8 @@
 
     <x-page-header
         :title="$title"
-        :lead="get_field('archive_squad_lead', 'option') ?: 'Zawodnicy reprezentujący Polskę w sporcie mikrolotowym.'"
-        :crumbs="[['label' => 'Kadra']]" />
+        :lead="mikroloty_t(get_field('archive_squad_lead', 'option') ?: 'Zawodnicy reprezentujący Polskę w sporcie mikrolotowym.')"
+        :crumbs="[['label' => __('Kadra', 'mikroloty')]]" />
 
     @include('partials.kadra-list', ['athletes' => $athletes, 'activeTermId' => $activeTermId])
 @endsection

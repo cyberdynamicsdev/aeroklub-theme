@@ -4,14 +4,14 @@
     @php
         // --- Theme options (Homepage) ---
         $heroImage = get_field('hero_image', 'option');
-        $heroEyebrow = get_field('hero_eyebrow', 'option') ?: 'Sport lotniczy · klasa mikrolotowa';
-        $heroTitle = get_field('hero_title', 'option') ?: 'Lataj, rywalizuj,<br>reprezentuj Polskę.';
-        $heroLead = get_field('hero_lead', 'option') ?: 'Oficjalny serwis Komisji Mikrolotowej Aeroklubu Polskiego — aktualności, kalendarz zawodów, wyniki i kadra narodowa sportu mikrolotowego.';
-        $btn1Label = get_field('hero_btn1_label', 'option') ?: 'Nadchodzące zawody';
+        $heroEyebrow = mikroloty_t(get_field('hero_eyebrow', 'option') ?: 'Sport lotniczy · klasa mikrolotowa');
+        $heroTitle = mikroloty_t(get_field('hero_title', 'option') ?: 'Lataj, rywalizuj,<br>reprezentuj Polskę.');
+        $heroLead = mikroloty_t(get_field('hero_lead', 'option') ?: 'Oficjalny serwis Komisji Mikrolotowej Aeroklubu Polskiego — aktualności, kalendarz zawodów, wyniki i kadra narodowa sportu mikrolotowego.');
+        $btn1Label = mikroloty_t(get_field('hero_btn1_label', 'option') ?: 'Nadchodzące zawody');
         $btn1Link = get_field('hero_btn1_link', 'option');
-        $btn2Label = get_field('hero_btn2_label', 'option') ?: 'Jak zacząć startować';
+        $btn2Label = mikroloty_t(get_field('hero_btn2_label', 'option') ?: 'Jak zacząć startować');
         $btn2Link = get_field('hero_btn2_link', 'option');
-        $heroCaption = get_field('hero_caption', 'option');
+        $heroCaption = mikroloty_t(get_field('hero_caption', 'option'));
 
         $stats = get_field('stats', 'option') ?: [
             ['value' => '2', 'label' => 'klasy sportowe'],
@@ -23,21 +23,21 @@
         $gallery = get_field('gallery', 'option') ?: [];
         $galleryLink = get_field('gallery_link', 'option');
 
-        $ctaEyebrow = get_field('cta_eyebrow', 'option') ?: 'Dołącz do sportu';
-        $ctaTitle = get_field('cta_title', 'option') ?: 'Masz licencję i marzenie o zawodach? Zacznij od pierwszego startu.';
-        $ctaText = get_field('cta_text', 'option') ?: 'Prowadzimy zawodników od pierwszych zawodów regionalnych aż po kadrę narodową i mistrzostwa świata FAI. Sprawdź, jak dołączyć do rywalizacji.';
-        $ctaBtnLabel = get_field('cta_btn_label', 'option') ?: 'Dowiedz się jak zacząć';
+        $ctaEyebrow = mikroloty_t(get_field('cta_eyebrow', 'option') ?: 'Dołącz do sportu');
+        $ctaTitle = mikroloty_t(get_field('cta_title', 'option') ?: 'Masz licencję i marzenie o zawodach? Zacznij od pierwszego startu.');
+        $ctaText = mikroloty_t(get_field('cta_text', 'option') ?: 'Prowadzimy zawodników od pierwszych zawodów regionalnych aż po kadrę narodową i mistrzostwa świata FAI. Sprawdź, jak dołączyć do rywalizacji.');
+        $ctaBtnLabel = mikroloty_t(get_field('cta_btn_label', 'option') ?: 'Dowiedz się jak zacząć');
         $ctaBtnLink = get_field('cta_btn_link', 'option');
 
         // Section headers (editable via theme options → Strona główna → Nagłówki sekcji)
-        $secCompEyebrow = get_field('sec_comp_eyebrow', 'option') ?: 'Kalendarz sportowy';
-        $secCompTitle = get_field('sec_comp_title', 'option') ?: 'Nadchodzące zawody';
-        $secNewsEyebrow = get_field('sec_news_eyebrow', 'option') ?: 'Z życia komisji';
-        $secNewsTitle = get_field('sec_news_title', 'option') ?: 'Ostatnie aktualności';
-        $secGalleryEyebrow = get_field('sec_gallery_eyebrow', 'option') ?: 'Fotorelacje z zawodów';
-        $secGalleryTitle = get_field('sec_gallery_title', 'option') ?: 'Galeria zawodów';
-        $secSquadEyebrow = get_field('sec_squad_eyebrow', 'option') ?: 'Sezon';
-        $secSquadTitle = get_field('sec_squad_title', 'option') ?: 'Aktualna kadra narodowa';
+        $secCompEyebrow = mikroloty_t(get_field('sec_comp_eyebrow', 'option') ?: 'Kalendarz sportowy');
+        $secCompTitle = mikroloty_t(get_field('sec_comp_title', 'option') ?: 'Nadchodzące zawody');
+        $secNewsEyebrow = mikroloty_t(get_field('sec_news_eyebrow', 'option') ?: 'Z życia komisji');
+        $secNewsTitle = mikroloty_t(get_field('sec_news_title', 'option') ?: 'Ostatnie aktualności');
+        $secGalleryEyebrow = mikroloty_t(get_field('sec_gallery_eyebrow', 'option') ?: 'Fotorelacje z zawodów');
+        $secGalleryTitle = mikroloty_t(get_field('sec_gallery_title', 'option') ?: 'Galeria zawodów');
+        $secSquadEyebrow = mikroloty_t(get_field('sec_squad_eyebrow', 'option') ?: 'Sezon');
+        $secSquadTitle = mikroloty_t(get_field('sec_squad_title', 'option') ?: 'Aktualna kadra narodowa');
 
         // --- Queries ---
         $competitionsQ = new WP_Query([
@@ -92,7 +92,7 @@
                 @foreach ($stats as $s)
                     <div class="flex items-baseline gap-2.5" style="padding:16px 4px;border-right:1px solid rgba(255,255,255,0.10);">
                         <span class="font-heading font-extrabold text-white" style="font-size:24px;">{{ $s['value'] }}</span>
-                        <span style="font-size:12.5px;color:#a4b1cc;">{{ $s['label'] }}</span>
+                        <span style="font-size:12.5px;color:#a4b1cc;">{{ mikroloty_t($s['label']) }}</span>
                     </div>
                 @endforeach
             </div>

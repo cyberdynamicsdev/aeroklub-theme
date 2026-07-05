@@ -107,6 +107,22 @@ if (! function_exists('mikroloty_competition_status')) {
     }
 }
 
+if (! function_exists('mikroloty_t')) {
+    /**
+     * Translate a global (ACF options) string via Polylang, when active.
+     * Falls back to the original text if Polylang is not installed.
+     * Strings must be registered first (see app/polylang.php).
+     */
+    function mikroloty_t($text)
+    {
+        if (($text || $text === '0') && function_exists('pll__')) {
+            return pll__($text);
+        }
+
+        return $text;
+    }
+}
+
 if (! function_exists('mikroloty_current_season_term')) {
     /**
      * The "current" squad season term: the current year if it exists,

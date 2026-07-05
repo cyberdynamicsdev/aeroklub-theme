@@ -2,9 +2,9 @@
 
 @section('content')
     <x-page-header
-        :title="get_field('archive_comp_title', 'option') ?: 'Kalendarz zawodów'"
-        :lead="get_field('archive_comp_lead', 'option') ?: 'Pełna lista zawodów mikrolotowych — terminy, miejsca i wyniki zakończonych rund.'"
-        :crumbs="[['label' => 'Zawody']]" />
+        :title="mikroloty_t(get_field('archive_comp_title', 'option') ?: 'Kalendarz zawodów')"
+        :lead="mikroloty_t(get_field('archive_comp_lead', 'option') ?: 'Pełna lista zawodów mikrolotowych — terminy, miejsca i wyniki zakończonych rund.')"
+        :crumbs="[['label' => __('Zawody', 'mikroloty')]]" />
 
     <section style="padding-block:clamp(40px,5vw,64px);" class="bg-white">
         <div class="container-site">

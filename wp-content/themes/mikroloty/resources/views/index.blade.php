@@ -21,7 +21,7 @@
         }
     @endphp
 
-    <x-page-header :title="$title" :lead="$lead" :crumbs="[['label' => 'Aktualności']]" />
+    <x-page-header :title="$title" :lead="$lead" :crumbs="[['label' => __('Aktualności', 'mikroloty')]]" />
 
     {{-- Category filter --}}
     <div class="border-b border-line bg-white sticky top-0 z-40">

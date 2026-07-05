@@ -50,7 +50,7 @@ Application::configure()
 |
 */
 
-collect(['helpers', 'setup', 'filters', 'post-types', 'acf', 'contact-form'])
+collect(['helpers', 'setup', 'filters', 'post-types', 'acf', 'contact-form', 'polylang'])
     ->each(function ($file) {
         if (! locate_template($file = "app/{$file}.php", true, true)) {
             wp_die(

@@ -1,0 +1,214 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Mikroloty\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# --- Status ---
+msgid "Planowane"
+msgstr "Planned"
+
+msgid "W trakcie"
+msgstr "Ongoing"
+
+msgid "Zakończone"
+msgstr "Finished"
+
+# --- Competitions ---
+msgid "Kalendarz zawodów"
+msgstr "Competition calendar"
+
+msgid "Pełna lista zawodów mikrolotowych — terminy, miejsca i wyniki zakończonych rund."
+msgstr "The full microlight competition calendar — dates, venues and results of finished rounds."
+
+msgid "Śledź na żywo"
+msgstr "Watch live"
+
+msgid "Wyniki"
+msgstr "Results"
+
+msgid "Szczegóły"
+msgstr "Details"
+
+msgid "Msc."
+msgstr "Pos."
+
+msgid "Pilot"
+msgstr "Pilot"
+
+msgid "Wynik"
+msgstr "Score"
+
+msgid "Dokumenty"
+msgstr "Documents"
+
+msgid "Pobierz"
+msgstr "Download"
+
+msgid "Wróć do kalendarza"
+msgstr "Back to calendar"
+
+msgid "Brak zawodów do wyświetlenia."
+msgstr "No competitions to display."
+
+msgid "Pełny kalendarz"
+msgstr "Full calendar"
+
+# --- News ---
+msgid "Aktualności"
+msgstr "News"
+
+msgid "Wpis"
+msgstr "Post"
+
+msgid "min czytania"
+msgstr "min read"
+
+msgid "Redakcja mikroloty.com"
+msgstr "mikroloty.com editorial"
+
+msgid "Wróć do aktualności"
+msgstr "Back to news"
+
+msgid "Udostępnij:"
+msgstr "Share:"
+
+msgid "Powiązane aktualności"
+msgstr "Related news"
+
+msgid "Czytaj więcej"
+msgstr "Read more"
+
+msgid "Wczytaj więcej aktualności"
+msgstr "Load more news"
+
+msgid "Wszystkie aktualności"
+msgstr "All news"
+
+msgid "Brak aktualności do wyświetlenia."
+msgstr "No news to display."
+
+# --- Squad ---
+msgid "Kadra narodowa"
+msgstr "National squad"
+
+msgid "Zobacz pełną kadrę"
+msgstr "See full squad"
+
+msgid "Sezon:"
+msgstr "Season:"
+
+msgid "Skład reprezentacji Polski w sezonie."
+msgstr "Poland's national squad for the season."
+
+msgid "Zawodnicy reprezentujący Polskę w sporcie mikrolotowym."
+msgstr "Athletes representing Poland in microlight sport."
+
+msgid "Brak zawodników do wyświetlenia."
+msgstr "No athletes to display."
+
+# --- Gallery ---
+msgid "Wszystkie zdjęcia"
+msgstr "All photos"
+
+# --- Documents page ---
+msgid "Szukaj dokumentu…"
+msgstr "Search documents…"
+
+msgid "Szukaj"
+msgstr "Search"
+
+msgid "dokument"
+msgid_plural "dokumentów"
+msgstr[0] "document"
+msgstr[1] "documents"
+
+# --- FAQ ---
+msgid "Nie znalazłeś odpowiedzi?"
+msgstr "Didn't find an answer?"
+
+msgid "Napisz do nas — chętnie pomożemy postawić pierwsze kroki w sporcie mikrolotowym."
+msgstr "Write to us — we'll gladly help you take your first steps in microlight sport."
+
+msgid "Skontaktuj się"
+msgstr "Get in touch"
+
+# --- Contact ---
+msgid "Dane kontaktowe"
+msgstr "Contact details"
+
+msgid "Kontakty tematyczne"
+msgstr "Topic contacts"
+
+msgid "Napisz do nas"
+msgstr "Write to us"
+
+msgid "Dziękujemy! Wiadomość została wysłana."
+msgstr "Thank you! Your message has been sent."
+
+msgid "Nie udało się wysłać wiadomości. Sprawdź pola i spróbuj ponownie."
+msgstr "The message could not be sent. Please check the fields and try again."
+
+msgid "Imię i nazwisko"
+msgstr "Full name"
+
+msgid "Adres e-mail"
+msgstr "Email address"
+
+msgid "Temat"
+msgstr "Subject"
+
+msgid "Wiadomość"
+msgstr "Message"
+
+msgid "Twoja wiadomość..."
+msgstr "Your message..."
+
+msgid "Wyrażam zgodę na przetwarzanie danych w celu udzielenia odpowiedzi zgodnie z polityką prywatności."
+msgstr "I consent to the processing of my data in order to receive a reply, in accordance with the privacy policy."
+
+msgid "Wyślij wiadomość"
+msgstr "Send message"
+
+msgid "E-mail"
+msgstr "Email"
+
+msgid "Telefon"
+msgstr "Phone"
+
+msgid "Adres"
+msgstr "Address"
+
+msgid "Chcę zacząć startować"
+msgstr "I want to start competing"
+
+msgid "Pytanie o zawody"
+msgstr "Question about competitions"
+
+msgid "Licencje i przepisy"
+msgstr "Licenses and rules"
+
+msgid "Media / współpraca"
+msgstr "Media / partnership"
+
+msgid "Inne"
+msgstr "Other"
+
+# --- Breadcrumbs / labels ---
+msgid "Zawody"
+msgstr "Competitions"
+
+msgid "Kadra"
+msgstr "Squad"
+
+# --- Misc UI ---
+msgid "Home"
+msgstr "Home"
+
+msgid "Przejdź do treści"
+msgstr "Skip to content"
+
+msgid "Okruszki"
+msgstr "Breadcrumbs"

@@ -18,8 +18,8 @@
 
         $info = array_filter([
             ['icon' => '@', 'label' => __('E-mail', 'mikroloty'), 'value' => $email],
-            $phone ? ['icon' => '☎', 'label' => __('Telefon', 'mikroloty'), 'value' => $phone] : null,
-            $address ? ['icon' => '⌖', 'label' => __('Adres', 'mikroloty'), 'value' => wp_strip_all_tags($address)] : null,
+            $phone ? ['icon' => '☎', 'label' => __('Telefon', 'mikroloty'), 'value' => mikroloty_t($phone)] : null,
+            $address ? ['icon' => '⌖', 'label' => __('Adres', 'mikroloty'), 'value' => mikroloty_t(wp_strip_all_tags($address))] : null,
         ]);
 
         $topics = [
@@ -60,8 +60,8 @@
                         @foreach ($people as $person)
                             <div class="flex justify-between gap-4 border-b border-line-3" style="padding:15px 18px;">
                                 <div>
-                                    <div class="font-semibold text-ink" style="font-size:14.5px;">{{ $person['name'] }}</div>
-                                    @if (! empty($person['role']))<div class="text-ink-5" style="font-size:13px;">{{ $person['role'] }}</div>@endif
+                                    <div class="font-semibold text-ink" style="font-size:14.5px;">{{ mikroloty_t($person['name']) }}</div>
+                                    @if (! empty($person['role']))<div class="text-ink-5" style="font-size:13px;">{{ mikroloty_t($person['role']) }}</div>@endif
                                 </div>
                                 @if (! empty($person['email']))
                                     <a href="mailto:{{ $person['email'] }}" class="text-navy font-semibold self-center" style="font-size:13.5px;">{{ $person['email'] }}</a>

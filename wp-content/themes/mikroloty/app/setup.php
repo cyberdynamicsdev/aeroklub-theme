@@ -76,6 +76,31 @@ add_action('after_setup_theme', function () {
      * Enables editing UI strings via a plugin like Loco Translate.
      */
     load_theme_textdomain('mikroloty', get_theme_file_path('resources/lang'));
+}, 20);
+
+/**
+ * Ship theme translations from resources/lang.
+ *
+ * WordPress 6.7+ just-in-time loading only scans default locations
+ * (wp-content/languages/themes/, theme /languages). This points it at our
+ * bundled .mo in resources/lang when no override exists — so a Loco/system
+ * translation still wins, and the bundled one (e.g. English UI) loads otherwise.
+ */
+add_filter('load_textdomain_mofile', function ($mofile, $domain) {
+    if ($domain !== 'mikroloty') {
+        return $mofile;
+    }
+
+    if ($mofile && is_readable($mofile)) {
+        return $mofile;
+    }
+
+    $bundled = get_theme_file_path('resources/lang/mikroloty-'.determine_locale().'.mo');
+
+    return is_readable($bundled) ? $bundled : $mofile;
+}, 10, 2);
+
+add_action('after_setup_theme', function () {
 
     /**
      * Disable full-site editing support.
