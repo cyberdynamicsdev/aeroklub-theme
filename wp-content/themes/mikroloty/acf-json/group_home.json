@@ -108,6 +108,29 @@
             ]
         },
         {
+            "key": "field_home_tab_galeria",
+            "label": "Galeria",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_home_galeria",
+            "label": "Galeria zawodów",
+            "name": "galeria",
+            "type": "gallery",
+            "instructions": "Pierwsze zdjęcie wyświetla się jako duże (2×2). Sekcja ukrywa się, gdy galeria jest pusta.",
+            "return_format": "array",
+            "library": "all",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_home_galeria_link",
+            "label": "Link „Wszystkie zdjęcia\"",
+            "name": "galeria_link",
+            "type": "link",
+            "return_format": "array"
+        },
+        {
             "key": "field_home_tab_cta",
             "label": "Baner CTA",
             "type": "tab",

@@ -14,20 +14,14 @@
 
     <div id="app">
       <a class="sr-only focus:not-sr-only" href="#main">
-        {{ __('Skip to content', 'sage') }}
+        {{ __('Przejdź do treści', 'mikroloty') }}
       </a>
 
       @include('sections.header')
 
-      <main id="main" class="main">
+      <main id="main">
         @yield('content')
       </main>
-
-      @hasSection('sidebar')
-        <aside class="sidebar">
-          @yield('sidebar')
-        </aside>
-      @endif
 
       @include('sections.footer')
     </div>
