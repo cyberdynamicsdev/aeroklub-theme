@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1a2233; background: #fff; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  ::selection { background: #f3c200; color: #0e1f42; }
+</style>
+</helmet>
+
+<div style="width:100%;overflow-x:hidden;font-family:'IBM Plex Sans',sans-serif;line-height:1.5;">
+  <dc-import name="MikrolotyNav" active="zawody" hint-size="100%,112px"></dc-import>
+
+  <section style="background:#0e1f42;color:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,68px) clamp(20px,4vw,40px);">
+      <div style="font-size:12.5px;color:#9fb0d0;margin-bottom:16px;"><a href="Mikroloty AP.dc.html" style="color:#9fb0d0;">Home</a> &nbsp;/&nbsp; <span style="color:#fff;">Zawody</span></div>
+      <h1 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,4.6vw,48px);letter-spacing:-0.01em;margin:0 0 14px;">Kalendarz zawodów</h1>
+      <p style="font-size:clamp(15px,1.4vw,17px);color:#c1cbe0;max-width:620px;margin:0;">Pełna lista zawodów mikrolotowych w sezonie 2026 — terminy, miejsca, klasy i wyniki zakończonych rund.</p>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <div style="border-bottom:1px solid #dfe3ea;background:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:18px clamp(20px,4vw,40px);display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;">
+      <div style="display:flex;gap:6px;">
+        <sc-for list="{{ klasaTabs }}" as="t" hint-placeholder-count="3">
+          <button onClick="{{ t.onClick }}" style="{{ t.style }}">{{ t.label }}</button>
+        </sc-for>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:12px;align-items:center;">
+        <span style="font-size:13px;color:#6b7791;">Sezon:</span>
+        <div style="border:1px solid #cfd6e2;padding:9px 16px;font-size:13.5px;font-weight:600;color:#1a2233;display:flex;align-items:center;gap:10px;">2026 <span style="color:#8792a8;">▾</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIST -->
+  <section style="padding:clamp(40px,5vw,64px) 0;background:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid #dfe3ea;">
+        <sc-for list="{{ events }}" as="e" hint-placeholder-count="6">
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px 24px;padding:24px 4px;border-bottom:1px solid #dfe3ea;transition:background .15s;" style-hover="background:#f7f8fb;">
+            <div style="flex:0 0 84px;text-align:center;border-right:2px solid #eef1f6;padding-right:20px;">
+              <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;line-height:1;color:#0e1f42;">{{ e.day }}</div>
+              <div style="font-size:12.5px;font-weight:700;text-transform:uppercase;color:#57627a;margin-top:3px;">{{ e.month }}</div>
+            </div>
+            <div style="flex:1 1 300px;min-width:240px;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                <span style="font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0e1f42;background:#eef1f8;border:1px solid #dbe2ef;padding:3px 9px;">{{ e.klasa }}</span>
+                <span style="{{ e.statusStyle }}">{{ e.status }}</span>
+              </div>
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:18.5px;margin:0 0 4px;color:#1a2233;">{{ e.name }}</h3>
+              <div style="font-size:13.5px;color:#6b7791;">◆ {{ e.miejsce }} &nbsp;·&nbsp; {{ e.rank }}</div>
+            </div>
+            <a href="#" style="flex:0 0 auto;font-weight:700;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:#0e1f42;border:1px solid #cfd6e2;padding:11px 18px;transition:background .15s;" style-hover="background:#0e1f42;color:#fff;">{{ e.cta }} →</a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="MikrolotyFooter" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { klasa: 'Wszystkie' };
+  renderVals() {
+    const tabBase = 'border:1px solid #cfd6e2;background:#fff;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;letter-spacing:.03em;padding:9px 16px;transition:all .15s;';
+    const klasaTabs = ['Wszystkie', 'ULM', 'Paralotnia'].map(label => ({
+      label,
+      style: tabBase + (label === this.state.klasa ? 'background:#0e1f42;color:#fff;border-color:#0e1f42;' : 'color:#3a465f;'),
+      onClick: () => this.setState({ klasa: label }),
+    }));
+    const planowane = 'font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#0e1f42;border:1px solid #cbd4e6;padding:3px 9px;';
+    const trakcie = 'font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:#0a7a3f;padding:3px 9px;';
+    const koniec = 'font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#6b7791;background:#eef0f4;padding:3px 9px;';
+    return {
+      klasaTabs,
+      events: [
+        { day: '04', month: 'Lip', klasa: 'ULM', name: 'Regionalne Zawody Mikrolotowe', miejsce: 'Aeroklub Warmińsko-Mazurski', rank: 'ranga krajowa', status: 'W trakcie', statusStyle: trakcie, cta: 'Śledź na żywo' },
+        { day: '18', month: 'Lip', klasa: 'ULM', name: 'Mistrzostwa Polski Mikrolotów 2026', miejsce: 'Aeroklub Krakowski, Pobiednik', rank: 'mistrzostwa kraju', status: 'Planowane', statusStyle: planowane, cta: 'Szczegóły' },
+        { day: '05', month: 'Wrz', klasa: 'Paralotnia', name: 'Puchar Polski Paralotni w Celności Lądowania', miejsce: 'Góra Żar, Międzybrodzie', rank: 'ranga krajowa', status: 'Planowane', statusStyle: planowane, cta: 'Szczegóły' },
+        { day: '20', month: 'Wrz', klasa: 'ULM', name: 'Puchar Prezesa Aeroklubu Polskiego', miejsce: 'Aeroklub Poznański, Kobylnica', rank: 'ranga krajowa', status: 'Planowane', statusStyle: planowane, cta: 'Szczegóły' },
+        { day: '17', month: 'Maj', klasa: 'ULM', name: 'Otwarcie sezonu — zawody eliminacyjne', miejsce: 'Aeroklub Nowy Targ', rank: 'eliminacje do kadry', status: 'Zakończone', statusStyle: koniec, cta: 'Wyniki' },
+        { day: '26', month: 'Kwi', klasa: 'Paralotnia', name: 'Zimowy Puchar Precyzji', miejsce: 'Bezmiechowa', rank: 'ranga krajowa', status: 'Zakończone', statusStyle: koniec, cta: 'Wyniki' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

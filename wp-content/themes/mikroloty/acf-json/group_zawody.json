@@ -34,15 +34,16 @@
             "key": "field_zawody_klasa_statku",
             "label": "Klasa statku",
             "name": "klasa_statku",
-            "type": "checkbox",
-            "required": 0,
+            "type": "select",
+            "required": 1,
             "choices": {
                 "ULM": "ULM",
                 "Paralotnia": "Paralotnia",
                 "Inne": "Inne"
             },
-            "layout": "horizontal",
-            "return_format": "value"
+            "default_value": "ULM",
+            "return_format": "value",
+            "ui": 1
         },
         {
             "key": "field_zawody_status",

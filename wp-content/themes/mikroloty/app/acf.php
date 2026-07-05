@@ -46,3 +46,47 @@ add_action('admin_notices', function () {
         esc_html__('Motyw mikroloty wymaga wtyczki Advanced Custom Fields PRO do obsługi pól zawodów, kadry i dokumentów.', 'mikroloty')
     );
 });
+
+/**
+ * Strony opcji motywu — globalne, edytowalne treści (hero, CTA, pasek górny,
+ * stopka, dane kontaktowe). Dzięki temu redaktor zmienia je bez dotykania kodu.
+ */
+add_action('acf/init', function () {
+    if (! function_exists('acf_add_options_page')) {
+        return;
+    }
+
+    acf_add_options_page([
+        'page_title' => __('Ustawienia motywu', 'mikroloty'),
+        'menu_title' => __('Ustawienia motywu', 'mikroloty'),
+        'menu_slug' => 'ustawienia-motywu',
+        'capability' => 'edit_theme_options',
+        'icon_url' => 'dashicons-admin-customizer',
+        'position' => 59,
+        'redirect' => true,
+    ]);
+
+    acf_add_options_sub_page([
+        'page_title' => __('Strona główna', 'mikroloty'),
+        'menu_title' => __('Strona główna', 'mikroloty'),
+        'menu_slug' => 'ustawienia-strona-glowna',
+        'parent_slug' => 'ustawienia-motywu',
+        'capability' => 'edit_theme_options',
+    ]);
+
+    acf_add_options_sub_page([
+        'page_title' => __('Nagłówek i stopka', 'mikroloty'),
+        'menu_title' => __('Nagłówek i stopka', 'mikroloty'),
+        'menu_slug' => 'ustawienia-naglowek-stopka',
+        'parent_slug' => 'ustawienia-motywu',
+        'capability' => 'edit_theme_options',
+    ]);
+
+    acf_add_options_sub_page([
+        'page_title' => __('Kontakt', 'mikroloty'),
+        'menu_title' => __('Kontakt', 'mikroloty'),
+        'menu_slug' => 'ustawienia-kontakt',
+        'parent_slug' => 'ustawienia-motywu',
+        'capability' => 'edit_theme_options',
+    ]);
+});

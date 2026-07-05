@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1a2233; background: #ffffff; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  ::selection { background: #f3c200; color: #0e1f42; }
+</style>
+</helmet>
+
+<div style="width:100%;overflow-x:hidden;font-family:'IBM Plex Sans',sans-serif;line-height:1.5;">
+
+  <!-- UTILITY BAR -->
+  <sc-if value="{{ showBar }}" hint-placeholder-val="{{ true }}">
+    <div style="background:#0e1f42;color:#9fb0d0;font-size:12.5px;">
+      <div style="max-width:1240px;margin:0 auto;padding:8px clamp(20px,4vw,40px);display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between;">
+        <span style="letter-spacing:.05em;text-transform:uppercase;font-weight:600;font-size:11.5px;">Komisja Mikrolotowa &middot; Aeroklub Polski</span>
+        <div style="display:flex;gap:22px;align-items:center;">
+          <a href="#" style="color:#9fb0d0;">biuro@mikroloty.com</a>
+          <a href="#" style="color:#9fb0d0;">Portal Informacyjny AP</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #dfe3ea;">
+    <div style="max-width:1240px;margin:0 auto;padding:16px clamp(20px,4vw,40px);display:flex;align-items:center;gap:28px;justify-content:space-between;">
+      <a href="#" style="display:flex;align-items:center;gap:13px;flex-shrink:0;">
+        <span style="display:inline-flex;">{{ logoMark }}</span>
+        <span style="display:flex;flex-direction:column;line-height:1;">
+          <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;letter-spacing:.1em;color:#0e1f42;">MIKROLOTY</span>
+          <span style="font-size:10px;letter-spacing:.24em;color:#7c88a3;font-weight:600;margin-top:4px;">AEROKLUB POLSKI</span>
+        </span>
+      </a>
+
+      <nav style="display:flex;align-items:center;gap:clamp(10px,1.5vw,24px);flex-wrap:wrap;justify-content:flex-end;">
+        <sc-for list="{{ menu }}" as="item" hint-placeholder-count="6">
+          <a href="#" style="font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#3a465f;white-space:nowrap;padding:8px 0;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;" style-hover="color:#0e1f42;border-bottom:2px solid {{ accent }};">{{ item }}</a>
+        </sc-for>
+        <div style="display:inline-flex;border:1px solid #cfd6e2;font-size:12px;font-weight:700;margin-left:6px;">
+          <button onClick="{{ setPL }}" style="{{ plStyle }}">PL</button>
+          <button onClick="{{ setEN }}" style="{{ enStyle }}">EN</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="position:relative;background:#0e1f42;color:#fff;overflow:hidden;min-height:clamp(460px,62vh,640px);display:flex;align-items:stretch;">
+    <!-- photo placeholder layer -->
+    <img src="images/aeroprakt-sunset.jpg" alt="Zawody mikrolotowe" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;" />
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,22,48,0.95) 0%,rgba(10,22,48,0.82) 46%,rgba(10,22,48,0.35) 100%);"></div>
+    <div style="position:relative;z-index:2;width:100%;max-width:1240px;margin:0 auto;padding:clamp(56px,9vw,104px) clamp(20px,4vw,40px);display:flex;flex-direction:column;justify-content:center;">
+      <div style="max-width:700px;">
+        <div style="display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#f3c200;margin-bottom:24px;">
+          <span style="width:34px;height:2px;background:#f3c200;display:inline-block;"></span>Sport lotniczy · klasa mikrolotowa
+        </div>
+        <h1 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(36px,5.6vw,62px);line-height:1.05;letter-spacing:-0.01em;margin:0 0 22px;">Lataj, rywalizuj,<br>reprezentuj Polskę.</h1>
+        <p style="font-size:clamp(15px,1.5vw,18px);line-height:1.65;color:#c1cbe0;max-width:540px;margin:0 0 34px;">Oficjalny serwis Komisji Mikrolotowej Aeroklubu Polskiego — aktualności, kalendarz zawodów, wyniki i kadra narodowa klas ULM oraz paralotniowej.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0;">
+          <a href="#zawody" style="display:inline-flex;align-items:center;gap:10px;background:{{ accent }};color:#0e1f42;font-weight:700;font-size:14px;letter-spacing:.03em;text-transform:uppercase;padding:16px 28px;border-radius:{{ btnRadius }};" style-hover="background:#ffd633;">Nadchodzące zawody</a>
+          <a href="#start" style="display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;font-weight:700;font-size:14px;letter-spacing:.03em;text-transform:uppercase;padding:16px 28px;border-radius:{{ btnRadius }};border:1.5px solid rgba(255,255,255,0.55);margin-left:14px;" style-hover="background:rgba(255,255,255,0.10);">Jak zacząć startować</a>
+        </div>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:12px;right:clamp(20px,4vw,40px);z-index:2;font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:.02em;">Miejsce na zdjęcie · podpis / autor zdjęcia</div>
+    <!-- stats strip -->
+    <div style="position:absolute;left:0;right:0;bottom:0;z-index:2;background:rgba(8,18,40,0.55);border-top:1px solid rgba(255,255,255,0.12);">
+      <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+          <div style="padding:16px 4px;border-right:1px solid rgba(255,255,255,0.10);display:flex;align-items:baseline;gap:10px;">
+            <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:24px;color:#fff;">{{ s.value }}</span>
+            <span style="font-size:12.5px;color:#a4b1cc;">{{ s.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- NADCHODZĄCE ZAWODY -->
+  <section id="zawody" style="padding:clamp(56px,8vw,92px) 0;background:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:40px;border-bottom:2px solid #0e1f42;padding-bottom:18px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#b58a00;margin-bottom:10px;">Kalendarz sportowy</div>
+          <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.01em;margin:0;color:#0e1f42;">Nadchodzące zawody</h2>
+        </div>
+        <a href="#" style="font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#0e1f42;">Pełny kalendarz →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
+        <sc-for list="{{ zawody }}" as="z" hint-placeholder-count="3">
+          <article style="border:1px solid #dfe3ea;border-radius:{{ cardRadius }};overflow:hidden;background:#fff;display:flex;flex-direction:column;transition:border-color .18s;" style-hover="border-color:#0e1f42;">
+            <!-- photo band -->
+            <div style="position:relative;aspect-ratio:16/9;background:#e6e9ef;overflow:hidden;">
+              <img src="{{ z.img }}" alt="{{ z.name }}" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              <span style="position:absolute;top:0;left:0;background:#0e1f42;color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;">{{ z.klasa }}</span>
+              <span style="{{ z.statusStyle }}">{{ z.status }}</span>
+            </div>
+            <div style="padding:22px 24px 24px;flex:1;display:flex;flex-direction:column;">
+              <div style="display:flex;align-items:center;gap:9px;color:#b58a00;font-weight:700;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px;">
+                <span style="width:16px;height:2px;background:{{ accent }};"></span>{{ z.dateFull }}
+              </div>
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:20px;line-height:1.25;margin:0 0 14px;color:#1a2233;">{{ z.name }}</h3>
+              <div style="display:flex;align-items:center;gap:8px;color:#57627a;font-size:14px;margin-top:auto;">
+                <span style="color:#0e1f42;">◆</span>{{ z.miejsce }}
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- OSTATNIE AKTUALNOŚCI -->
+  <section id="aktualnosci" style="padding:clamp(56px,8vw,92px) 0;background:#f3f4f6;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:40px;border-bottom:2px solid #0e1f42;padding-bottom:18px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#b58a00;margin-bottom:10px;">Z życia komisji</div>
+          <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.01em;margin:0;color:#0e1f42;">Ostatnie aktualności</h2>
+        </div>
+        <a href="#" style="font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#0e1f42;">Wszystkie aktualności →</a>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:26px;align-items:start;">
+        <!-- FEATURED -->
+        <article style="background:#fff;border:1px solid #dfe3ea;border-radius:{{ cardRadius }};overflow:hidden;display:flex;flex-direction:column;">
+          <div style="position:relative;aspect-ratio:16/9;background:#e6e9ef;overflow:hidden;">
+            <img src="{{ featured.img }}" alt="{{ featured.title }}" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <span style="position:absolute;left:0;bottom:0;background:#0e1f42;color:#fff;font-size:12px;font-weight:600;padding:7px 13px;">{{ featured.date }}</span>
+          </div>
+          <div style="padding:26px 28px 28px;flex:1;display:flex;flex-direction:column;">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#b58a00;margin-bottom:12px;">{{ featured.tag }}</span>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(22px,2.4vw,27px);line-height:1.2;margin:0 0 12px;color:#1a2233;">{{ featured.title }}</h3>
+            <p style="font-size:15px;color:#57627a;line-height:1.6;margin:0 0 20px;">{{ featured.excerpt }}</p>
+            <a href="#" style="margin-top:auto;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#0e1f42;display:inline-flex;align-items:center;gap:8px;">Czytaj więcej <span style="color:{{ accent }};">→</span></a>
+          </div>
+        </article>
+
+        <!-- SIDE LIST -->
+        <div style="display:flex;flex-direction:column;gap:18px;">
+          <sc-for list="{{ sideNews }}" as="n" hint-placeholder-count="2">
+            <article style="background:#fff;border:1px solid #dfe3ea;border-radius:{{ cardRadius }};overflow:hidden;display:flex;gap:0;transition:border-color .18s;" style-hover="border-color:#0e1f42;">
+              <div style="flex:0 0 130px;background:#e6e9ef;overflow:hidden;">
+                <img src="{{ n.img }}" alt="{{ n.title }}" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              </div>
+              <div style="padding:18px 20px;flex:1;">
+                <div style="display:flex;gap:12px;align-items:center;margin-bottom:8px;">
+                  <span style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#b58a00;">{{ n.tag }}</span>
+                  <span style="font-size:12px;color:#8792a8;">{{ n.date }}</span>
+                </div>
+                <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;line-height:1.3;margin:0;color:#1a2233;">{{ n.title }}</h3>
+              </div>
+            </article>
+          </sc-for>
+          <a href="#" style="border:1px solid #cfd6e2;padding:16px;text-align:center;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#0e1f42;transition:background .15s;" style-hover="background:#e9ecf2;">Wczytaj więcej aktualności</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section id="start" style="background:#0e1f42;color:#fff;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-70px;right:-30px;width:300px;height:300px;opacity:.10;">{{ heroGlyph }}</div>
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(52px,7vw,80px) clamp(20px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:36px;align-items:center;">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#f3c200;margin-bottom:18px;"><span style="width:34px;height:2px;background:#f3c200;"></span>Dołącz do sportu</div>
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,4vw,42px);line-height:1.1;letter-spacing:-0.01em;margin:0 0 16px;">Masz licencję i&nbsp;marzenie o&nbsp;zawodach? Zacznij od pierwszego startu.</h2>
+        <p style="font-size:16px;line-height:1.65;color:#c1cbe0;margin:0;max-width:560px;">Prowadzimy zawodników od pierwszych zawodów regionalnych aż po kadrę narodową i mistrzostwa świata FAI. Sprawdź, jak dołączyć do rywalizacji.</p>
+      </div>
+      <div style="display:flex;justify-content:flex-start;">
+        <a href="#" style="display:inline-flex;align-items:center;gap:10px;background:{{ accent }};color:#0e1f42;font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;padding:18px 32px;border-radius:{{ btnRadius }};" style-hover="background:#ffd633;">Dowiedz się jak zacząć →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section id="galeria" style="padding:clamp(56px,8vw,92px) 0;background:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:34px;border-bottom:2px solid #0e1f42;padding-bottom:18px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#b58a00;margin-bottom:10px;">Fotorelacje z&nbsp;zawodów</div>
+          <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.01em;margin:0;color:#0e1f42;">Galeria zawodów</h2>
+        </div>
+        <a href="#" style="font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#0e1f42;">Wszystkie zdjęcia →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:12px;">
+        <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="6">
+          <div style="{{ g.style }}">
+            <img src="{{ g.img }}" alt="Galeria zawodów mikrolotowych" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s;" style-hover="transform:scale(1.05);" />
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- AKTUALNA KADRA -->
+  <section id="kadra" style="padding:clamp(56px,8vw,92px) 0;background:#f3f4f6;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:40px;border-bottom:2px solid #0e1f42;padding-bottom:18px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#b58a00;margin-bottom:10px;">Sezon 2026</div>
+          <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.01em;margin:0;color:#0e1f42;">Aktualna kadra narodowa</h2>
+        </div>
+        <a href="#" style="font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#0e1f42;">Zobacz pełną kadrę →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;">
+        <sc-for list="{{ kadra }}" as="p" hint-placeholder-count="6">
+          <article style="border:1px solid #dfe3ea;border-radius:{{ cardRadius }};overflow:hidden;background:#fff;transition:border-color .18s;" style-hover="border-color:#0e1f42;">
+            <div style="aspect-ratio:4/5;background:#e6e9ef;display:flex;align-items:flex-end;justify-content:center;position:relative;">
+              <span style="opacity:.35;transform:translateY(4px);">{{ avatarGlyph }}</span>
+              <span style="position:absolute;top:0;left:0;background:{{ accent }};color:#0e1f42;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;">{{ p.klasa }}</span>
+            </div>
+            <div style="padding:16px 18px 18px;border-top:2px solid #0e1f42;">
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:16.5px;margin:0 0 3px;color:#1a2233;">{{ p.name }}</h3>
+              <div style="font-size:12.5px;color:#7c88a3;">{{ p.rola }}</div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#0e1f42;color:#9fb0d0;">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,72px) clamp(20px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+          <span style="display:inline-flex;">{{ logoMarkLight }}</span>
+          <div style="line-height:1.1;">
+            <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:17px;letter-spacing:.1em;color:#fff;">MIKROLOTY</div>
+            <div style="font-size:9.5px;letter-spacing:.22em;color:#7f90b3;font-weight:600;margin-top:3px;">AEROKLUB POLSKI</div>
+          </div>
+        </div>
+        <p style="font-size:13.5px;line-height:1.6;color:#8797b8;margin:0 0 16px;max-width:260px;">Komisja Mikrolotowa Aeroklubu Polskiego — organizacja sportu mikrolotowego w klasach ULM i paralotniowej.</p>
+        <div style="font-size:13px;line-height:1.7;color:#8797b8;">Aeroklub Polski<br>ul. Wybrzeże Gdyńskie 4<br>01-531 Warszawa</div>
+      </div>
+      <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
+        <div>
+          <h4 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin:0 0 18px;">{{ col.title }}</h4>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;">
+            <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="4">
+              <li><a href="#" style="font-size:14px;color:#9fb0d0;transition:color .15s;" style-hover="color:{{ accent }};">{{ l }}</a></li>
+            </sc-for>
+          </ul>
+        </div>
+      </sc-for>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.10);">
+      <div style="max-width:1240px;margin:0 auto;padding:20px clamp(20px,4vw,40px);display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:space-between;font-size:12.5px;color:#6f7fa0;">
+        <span>© 1999–2026 Aeroklub Polski. Wszelkie prawa zastrzeżone.</span>
+        <div style="display:flex;gap:20px;">
+          <a href="#" style="color:#6f7fa0;">Polityka prywatności</a>
+          <a href="#" style="color:#6f7fa0;">aeroklubpolski.pl</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#f3c200&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Wygląd&quot;},&quot;roundedCards&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Wygląd&quot;},&quot;showUtilityBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Wygląd&quot;}}">
+class Component extends DCLogic {
+  state = { lang: 'PL' };
+
+  renderVals() {
+    const accent = this.props.accentColor ?? '#f3c200';
+    const rounded = this.props.roundedCards ?? false;
+    const cardRadius = rounded ? '10px' : '0px';
+    const btnRadius = rounded ? '6px' : '0px';
+    const showBar = this.props.showUtilityBar ?? true;
+
+    const segBase = 'border:none;cursor:pointer;padding:6px 13px;font-family:inherit;font-weight:700;font-size:12px;';
+    const activeSeg = segBase + 'background:#0e1f42;color:#fff;';
+    const idleSeg = segBase + 'background:transparent;color:#57627a;';
+
+    const roundel = (fill, ring, glyph) => React.createElement('svg', { width: 40, height: 40, viewBox: '0 0 40 40', fill: 'none' },
+      React.createElement('circle', { cx: 20, cy: 20, r: 18.5, fill: fill, stroke: ring, strokeWidth: 2 }),
+      React.createElement('path', { d: 'M9 25 L20 11 L31 25 L20 20 Z', fill: glyph }),
+      React.createElement('path', { d: 'M13.5 27.5 L20 22.5 L26.5 27.5', stroke: glyph, strokeWidth: 2, strokeLinecap: 'round', fill: 'none' })
+    );
+
+    const bigGlyph = React.createElement('svg', { width: '100%', height: '100%', viewBox: '0 0 200 200', fill: 'none' },
+      React.createElement('circle', { cx: 100, cy: 100, r: 92, stroke: '#ffffff', strokeWidth: 5 }),
+      React.createElement('path', { d: 'M45 128 L100 55 L155 128 L100 100 Z', fill: '#ffffff' }),
+      React.createElement('path', { d: 'M68 138 L100 113 L132 138', stroke: '#ffffff', strokeWidth: 8, strokeLinecap: 'round' })
+    );
+
+    const photoGlyph = (size) => React.createElement('svg', { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: '#6b7791', strokeWidth: 1.3 },
+      React.createElement('rect', { x: 3, y: 5, width: 18, height: 14, rx: 1 }),
+      React.createElement('circle', { cx: 8.5, cy: 10, r: 1.6 }),
+      React.createElement('path', { d: 'M3 16 L9 11 L14 15 L17 13 L21 16' })
+    );
+
+    const avatarGlyph = React.createElement('svg', { width: 78, height: 78, viewBox: '0 0 24 24', fill: '#9aa7c0' },
+      React.createElement('circle', { cx: 12, cy: 9, r: 4 }),
+      React.createElement('path', { d: 'M4 21 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 21 Z' })
+    );
+
+    const pillPlanowane = 'position:absolute;top:0;right:0;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#0e1f42;background:#ffffff;border:1px solid #cbd4e6;padding:5px 11px;';
+    const pillTrakcie = 'position:absolute;top:0;right:0;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:#0a7a3f;padding:5px 11px;';
+
+    const galBase = 'position:relative;overflow:hidden;background:#e6e9ef;border-radius:' + cardRadius + ';';
+
+    return {
+      accent, cardRadius, btnRadius, showBar,
+      logoMark: roundel('#f3c200', '#0e1f42', '#0e1f42'),
+      logoMarkLight: roundel('#f3c200', '#f3c200', '#0e1f42'),
+      heroGlyph: bigGlyph,
+      photoGlyph: photoGlyph(46),
+      photoGlyphLg: photoGlyph(72),
+      avatarGlyph,
+      menu: ['Aktualności', 'O komisji', 'Zawody', 'Kadra', 'Dokumenty', 'Jak zacząć'],
+      setPL: () => this.setState({ lang: 'PL' }),
+      setEN: () => this.setState({ lang: 'EN' }),
+      plStyle: this.state.lang === 'PL' ? activeSeg : idleSeg,
+      enStyle: this.state.lang === 'EN' ? activeSeg : idleSeg,
+      stats: [
+        { value: '2', label: 'klasy sportowe' },
+        { value: '14', label: 'zawodów w sezonie' },
+        { value: '48', label: 'zawodników w kadrze' },
+        { value: 'FAI', label: 'ranga międzynarodowa' },
+      ],
+      zawody: [
+        { klasa: 'ULM', dateFull: '18–20 lipca 2026', name: 'Mistrzostwa Polski Mikrolotów 2026', miejsce: 'Aeroklub Krakowski, Pobiednik', status: 'Planowane', statusStyle: pillPlanowane, img: 'images/aeroprakt-grass.jpg' },
+        { klasa: 'Paralotnia', dateFull: '5–7 września 2026', name: 'Puchar Polski Paralotni w Celności Lądowania', miejsce: 'Góra Żar, Międzybrodzie', status: 'Planowane', statusStyle: pillPlanowane, img: 'images/trike-fly.jpg' },
+        { klasa: 'ULM', dateFull: '4–6 lipca 2026', name: 'Regionalne Zawody Mikrolotowe', miejsce: 'Aeroklub Warmińsko-Mazurski', status: 'W trakcie', statusStyle: pillTrakcie, img: 'images/gyro-white.jpg' },
+      ],
+      featured: { date: '28.06.2026', tag: 'Kadra narodowa', title: 'Kadra narodowa mikrolotów powołana na sezon 2026', excerpt: 'Komisja ogłosiła skład reprezentacji w klasach ULM i paralotniowej na nadchodzący sezon międzynarodowy. Poznaj nazwiska zawodników, którzy powalczą o medale mistrzostw świata FAI.', img: 'images/trophy.jpg' },
+      sideNews: [
+        { date: '20.06.2026', tag: 'Przepisy', title: 'Nowe przepisy sportowe FAI dla klasy mikrolotowej', img: 'images/nav-map.jpg' },
+        { date: '12.06.2026', tag: 'Relacja', title: 'Relacja z Mistrzostw Europy w Mikrolotach', img: 'images/gyro-yellow.jpg' },
+      ],
+      gallery: [
+        { style: galBase + 'grid-column:span 2;grid-row:span 2;aspect-ratio:1/1;', img: 'images/gyro-yellow.jpg' },
+        { style: galBase + 'aspect-ratio:1/1;', img: 'images/refuel.jpg' },
+        { style: galBase + 'aspect-ratio:1/1;', img: 'images/aeroprakt-sunset.jpg' },
+        { style: galBase + 'aspect-ratio:1/1;', img: 'images/gyro-white.jpg' },
+        { style: galBase + 'aspect-ratio:1/1;', img: 'images/trike-fly.jpg' },
+      ],
+      kadra: [
+        { name: 'Marek Zieliński', klasa: 'ULM', rola: 'Kadra A · pilot' },
+        { name: 'Anna Kowalczyk', klasa: 'Paralotnia', rola: 'Kadra A · pilot' },
+        { name: 'Piotr Nowicki', klasa: 'ULM', rola: 'Kadra A · pilot' },
+        { name: 'Katarzyna Wójcik', klasa: 'Paralotnia', rola: 'Kadra B · pilot' },
+        { name: 'Tomasz Lewandowski', klasa: 'ULM', rola: 'Kadra A · nawigator' },
+        { name: 'Ewa Kaczmarek', klasa: 'Paralotnia', rola: 'Kadra B · pilot' },
+      ],
+      footerCols: [
+        { title: 'Komisja', links: ['O komisji', 'Zarząd', 'Kadra narodowa', 'Kontakt'] },
+        { title: 'Sport', links: ['Kalendarz zawodów', 'Wyniki', 'Przepisy sportowe', 'Jak zacząć startować'] },
+        { title: 'Pomoc', links: ['FAQ', 'Dokumenty do pobrania', 'Przydatne linki', 'aeroklubpolski.pl'] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

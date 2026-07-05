@@ -1,0 +1,84 @@
+{
+    "key": "group_kontakt",
+    "title": "Kontakt",
+    "fields": [
+        {
+            "key": "field_kontakt_adres",
+            "label": "Adres",
+            "name": "kontakt_adres",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": "br",
+            "default_value": "Aeroklub Polski\nul. Wybrzeże Gdyńskie 4\n01-531 Warszawa"
+        },
+        {
+            "key": "field_kontakt_email",
+            "label": "E-mail ogólny",
+            "name": "kontakt_email",
+            "type": "text",
+            "default_value": "biuro@mikroloty.com"
+        },
+        {
+            "key": "field_kontakt_telefon",
+            "label": "Telefon",
+            "name": "kontakt_telefon",
+            "type": "text"
+        },
+        {
+            "key": "field_kontakt_osoby",
+            "label": "Kontakty tematyczne",
+            "name": "kontakt_osoby",
+            "type": "repeater",
+            "layout": "table",
+            "button_label": "Dodaj osobę",
+            "sub_fields": [
+                {
+                    "key": "field_kontakt_osoba_imie",
+                    "label": "Osoba",
+                    "name": "osoba",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_kontakt_osoba_rola",
+                    "label": "Rola",
+                    "name": "rola",
+                    "type": "text",
+                    "required": 0
+                },
+                {
+                    "key": "field_kontakt_osoba_email",
+                    "label": "E-mail",
+                    "name": "email",
+                    "type": "text",
+                    "required": 0
+                }
+            ]
+        },
+        {
+            "key": "field_kontakt_mapa",
+            "label": "Mapa (kod osadzenia)",
+            "name": "kontakt_mapa",
+            "type": "textarea",
+            "rows": 4,
+            "instructions": "Wklej kod iframe z Google Maps / OpenStreetMap. Zostaw puste, aby ukryć mapę."
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "ustawienia-kontakt"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "show_in_rest": 0,
+    "modified": 1783254190
+}

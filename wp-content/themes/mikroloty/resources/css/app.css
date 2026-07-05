@@ -1,7 +1,8 @@
 @import "tailwindcss" theme(static);
 
-/* Font Inter — self-hostowany (wariant zmienny), bez zależności od zewnętrznego CDN. */
-@import "@fontsource-variable/inter";
+/* Fonty self-hostowane (RODO — bez CDN Google). Archivo = nagłówki/liczby/etykiety, IBM Plex Sans = tekst/UI. */
+@import "@fontsource-variable/archivo";
+@import "@fontsource-variable/ibm-plex-sans";
 
 /* Style dla treści z edytora Gutenberg (klasa .prose). */
 @plugin "@tailwindcss/typography";
@@ -9,3 +10,188 @@
 @source "../../app/**/*.php";
 @source "../**/*.blade.php";
 @source "../**/*.js";
+
+/*
+|--------------------------------------------------------------------------
+| Design tokens (wiążące — z handoffu Claude Design)
+|--------------------------------------------------------------------------
+| Wygląd instytucjonalny: ostre krawędzie, płaskie, granat + złoto.
+| Nazwy semantyczne → utility w Tailwind (bg-navy, text-gold, border-line…).
+*/
+@theme {
+  /* Granat */
+  --color-navy: #0e1f42;
+  --color-navy-light: #16294a;
+  --color-navy-dark: #0a1630;
+
+  /* Złoto (akcent / CTA) */
+  --color-gold: #f3c200;
+  --color-gold-hover: #ffd633;
+  --color-gold-dark: #b58a00;
+
+  /* Tekst na jasnym tle */
+  --color-ink: #1a2233;
+  --color-ink-2: #33405c;
+  --color-ink-3: #57627a;
+  --color-ink-4: #7c88a3;
+  --color-ink-5: #8792a8;
+
+  /* Tła i powierzchnie */
+  --color-surface: #f3f4f6;
+  --color-placeholder: #e6e9ef;
+
+  /* Obramowania */
+  --color-line: #dfe3ea;
+  --color-line-2: #cfd6e2;
+  --color-line-3: #eef1f5;
+
+  /* Tekst na granacie */
+  --color-onnavy: #c1cbe0;
+  --color-onnavy-2: #9fb0d0;
+  --color-onnavy-3: #8797b8;
+
+  /* Status zawodów */
+  --color-status-live: #0a7a3f;
+
+  /* Typografia */
+  --font-heading: "Archivo Variable", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans Variable", system-ui, sans-serif;
+
+  /* Kontener */
+  --container-site: 1240px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Warstwa bazowa
+|--------------------------------------------------------------------------
+*/
+@layer base {
+  body {
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    background: #ffffff;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-navy);
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Komponenty wielokrotnego użytku (odwzorowanie systemu, nie kopia 1:1)
+|--------------------------------------------------------------------------
+*/
+@layer components {
+
+  /* Kontener strony: 1240px + płynny padding poziomy */
+  .container-site {
+    max-width: var(--container-site);
+    margin-inline: auto;
+    padding-inline: clamp(20px, 4vw, 40px);
+  }
+
+  /* Padding pionowy sekcji */
+  .section-y {
+    padding-block: clamp(56px, 8vw, 92px);
+  }
+
+  /* Eyebrow — mała etykieta UPPERCASE nad nagłówkiem sekcji */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold-dark);
+  }
+  .eyebrow--onnavy { color: var(--color-gold); }
+  .eyebrow::before {
+    content: "";
+    width: 34px;
+    height: 2px;
+    background: var(--color-gold);
+    display: inline-block;
+    flex: none;
+  }
+
+  /* Nagłówek sekcji z grubą granatową linią pod spodem */
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 40px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid var(--color-navy);
+  }
+  .section-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(26px, 3.6vw, 38px);
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--color-navy);
+  }
+
+  /* Link "więcej →" przy nagłówku sekcji */
+  .section-link {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-navy);
+  }
+
+  /* Przyciski — płaskie, prostokątne, UPPERCASE */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 16px 28px;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    cursor: pointer;
+  }
+  .btn-gold {
+    background: var(--color-gold);
+    color: var(--color-navy);
+  }
+  .btn-gold:hover { background: var(--color-gold-hover); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--color-navy);
+    border: 1.5px solid var(--color-navy);
+  }
+  .btn-outline:hover { background: var(--color-navy); color: #fff; }
+
+  .btn-outline-light {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+  }
+  .btn-outline-light:hover { background: rgba(255, 255, 255, 0.1); }
+
+  /* Karta — obrys, ostre krawędzie, hover = granatowe obramowanie */
+  .card {
+    background: #fff;
+    border: 1px solid var(--color-line);
+    transition: border-color 0.18s;
+  }
+  .card:hover { border-color: var(--color-navy); }
+}

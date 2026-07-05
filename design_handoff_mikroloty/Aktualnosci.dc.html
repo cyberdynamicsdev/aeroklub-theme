@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1a2233; background: #fff; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  ::selection { background: #f3c200; color: #0e1f42; }
+</style>
+</helmet>
+
+<div style="width:100%;overflow-x:hidden;font-family:'IBM Plex Sans',sans-serif;line-height:1.5;">
+  <dc-import name="MikrolotyNav" active="aktualnosci" hint-size="100%,112px"></dc-import>
+
+  <!-- PAGE HEADER -->
+  <section style="background:#0e1f42;color:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,68px) clamp(20px,4vw,40px);">
+      <div style="font-size:12.5px;color:#9fb0d0;margin-bottom:16px;letter-spacing:.02em;"><a href="Mikroloty AP.dc.html" style="color:#9fb0d0;">Home</a> &nbsp;/&nbsp; <span style="color:#fff;">Aktualności</span></div>
+      <h1 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,4.6vw,48px);letter-spacing:-0.01em;margin:0 0 14px;">Aktualności</h1>
+      <p style="font-size:clamp(15px,1.4vw,17px);color:#c1cbe0;max-width:620px;margin:0;">Najnowsze informacje z życia Komisji Mikrolotowej — relacje z zawodów, komunikaty kadry oraz sprawy organizacyjne i sportowe.</p>
+    </div>
+  </section>
+
+  <!-- FILTER TABS -->
+  <div style="border-bottom:1px solid #dfe3ea;background:#fff;position:sticky;top:0;z-index:40;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);display:flex;gap:6px;overflow-x:auto;">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+        <button onClick="{{ f.onClick }}" style="{{ f.style }}">{{ f.label }}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- NEWS GRID -->
+  <section style="padding:clamp(44px,6vw,72px) 0;background:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:26px;">
+        <sc-for list="{{ news }}" as="n" hint-placeholder-count="9">
+          <a href="Aktualnosc-wpis.dc.html" style="background:#fff;border:1px solid #dfe3ea;overflow:hidden;display:flex;flex-direction:column;transition:border-color .18s;" style-hover="border-color:#0e1f42;">
+            <div style="position:relative;aspect-ratio:16/10;background:#e6e9ef;overflow:hidden;">
+              <img src="{{ n.img }}" alt="{{ n.title }}" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              <span style="position:absolute;left:0;bottom:0;background:#0e1f42;color:#fff;font-size:12px;font-weight:600;padding:6px 12px;">{{ n.date }}</span>
+            </div>
+            <div style="padding:22px 24px 24px;flex:1;display:flex;flex-direction:column;">
+              <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#b58a00;margin-bottom:10px;">{{ n.tag }}</span>
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:18.5px;line-height:1.28;margin:0 0 10px;color:#1a2233;">{{ n.title }}</h3>
+              <p style="font-size:14.5px;color:#57627a;line-height:1.55;margin:0 0 18px;">{{ n.excerpt }}</p>
+              <span style="margin-top:auto;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#0e1f42;display:inline-flex;align-items:center;gap:7px;">Czytaj więcej <span style="color:#f3c200;font-size:15px;">→</span></span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+
+      <!-- PAGINATION -->
+      <div style="display:flex;justify-content:center;align-items:center;gap:8px;margin-top:48px;">
+        <a href="#" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:1px solid #cfd6e2;color:#8792a8;">←</a>
+        <a href="#" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:#0e1f42;color:#fff;font-weight:700;">1</a>
+        <a href="#" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:1px solid #cfd6e2;color:#1a2233;font-weight:600;">2</a>
+        <a href="#" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:1px solid #cfd6e2;color:#1a2233;font-weight:600;">3</a>
+        <a href="#" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:1px solid #cfd6e2;color:#1a2233;">→</a>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="MikrolotyFooter" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { active: 'Wszystkie' };
+  renderVals() {
+    const tabBase = 'border:none;background:none;cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:600;letter-spacing:.03em;padding:16px 18px;white-space:nowrap;transition:color .15s,box-shadow .15s;';
+    const filters = ['Wszystkie', 'Zawody', 'Kadra', 'Komisja', 'Szkolenie'].map(label => ({
+      label,
+      style: tabBase + (label === this.state.active
+        ? 'color:#0e1f42;box-shadow:inset 0 -3px 0 #f3c200;'
+        : 'color:#6b7791;box-shadow:inset 0 0 0 transparent;'),
+      onClick: () => this.setState({ active: label }),
+    }));
+    // attach onClick via style-carrying objects won't bind; expose handler separately isn't needed for static demo
+    const news = [
+      { date: '28.06.2026', tag: 'Kadra narodowa', title: 'Kadra narodowa mikrolotów powołana na sezon 2026', excerpt: 'Komisja ogłosiła skład reprezentacji w klasach ULM i paralotniowej na sezon międzynarodowy.', img: 'images/trophy.jpg' },
+      { date: '20.06.2026', tag: 'Przepisy', title: 'Nowe przepisy sportowe FAI dla klasy mikrolotowej', excerpt: 'Weszły w życie zaktualizowane zasady rozgrywania konkurencji. Sprawdź najważniejsze zmiany.', img: 'images/nav-map.jpg' },
+      { date: '12.06.2026', tag: 'Relacja', title: 'Relacja z Mistrzostw Europy w Mikrolotach', excerpt: 'Polscy zawodnicy wrócili z medalami. Podsumowanie występu reprezentacji i najlepsze momenty.', img: 'images/gyro-yellow.jpg' },
+      { date: '04.06.2026', tag: 'Zawody', title: 'Rusza sezon — pierwsze zawody regionalne za nami', excerpt: 'Ponad trzydziestu pilotów stanęło na starcie inauguracji sezonu na lotnisku klubowym.', img: 'images/aeroprakt-grass.jpg' },
+      { date: '27.05.2026', tag: 'Szkolenie', title: 'Zapisy na obóz szkoleniowy dla kandydatów do kadry', excerpt: 'Otwieramy nabór na letni obóz treningowy z nawigacji i precyzji lądowania.', img: 'images/trike-fly.jpg' },
+      { date: '18.05.2026', tag: 'Komisja', title: 'Sprawozdanie z posiedzenia Komisji Mikrolotowej', excerpt: 'Podsumowanie ustaleń dotyczących kalendarza startów i budżetu na bieżący rok.', img: 'images/gyro-white.jpg' },
+      { date: '09.05.2026', tag: 'Zawody', title: 'Otwarte zawody wiatrakowcowe — zaproszenie', excerpt: 'Zapraszamy pilotów wiatrakowców do udziału w otwartej rundzie pucharowej.', img: 'images/gyro-yellow.jpg' },
+      { date: '30.04.2026', tag: 'Relacja', title: 'Fotorelacja z treningu kadry na lotnisku', excerpt: 'Zajrzeliśmy za kulisy przygotowań reprezentacji przed startem sezonu.', img: 'images/refuel.jpg' },
+      { date: '22.04.2026', tag: 'Przepisy', title: 'Aktualizacja regulaminu licencji sportowej', excerpt: 'Przypominamy o terminie przedłużenia licencji zawodniczych na rok 2026.', img: 'images/aeroprakt-sunset.jpg' },
+    ];
+    return { filters, news };
+  }
+}
+</script>
+</body>
+</html>

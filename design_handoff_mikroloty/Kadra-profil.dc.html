@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1a2233; background: #fff; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  ::selection { background: #f3c200; color: #0e1f42; }
+</style>
+</helmet>
+
+<div style="width:100%;overflow-x:hidden;font-family:'IBM Plex Sans',sans-serif;line-height:1.5;">
+  <dc-import name="MikrolotyNav" active="kadra" hint-size="100%,112px"></dc-import>
+
+  <!-- PROFILE HEADER -->
+  <section style="background:#0e1f42;color:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(32px,4vw,44px) clamp(20px,4vw,40px);">
+      <div style="font-size:12.5px;color:#9fb0d0;margin-bottom:28px;"><a href="Mikroloty AP.dc.html" style="color:#9fb0d0;">Home</a> &nbsp;/&nbsp; <a href="Kadra.dc.html" style="color:#9fb0d0;">Kadra</a> &nbsp;/&nbsp; <span style="color:#fff;">{{ name }}</span></div>
+      <div style="display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:clamp(24px,4vw,48px);align-items:end;">
+        <div style="aspect-ratio:4/5;background:#16294a;border:1px solid rgba(255,255,255,0.14);display:flex;align-items:flex-end;justify-content:center;position:relative;">
+          <span style="opacity:.4;transform:translateY(6px);">{{ avatarGlyph }}</span>
+          <span style="position:absolute;top:0;left:0;background:#f3c200;color:#0e1f42;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;">{{ klasa }}</span>
+        </div>
+        <div style="padding-bottom:8px;">
+          <div style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#f3c200;margin-bottom:14px;">{{ grupa }} · {{ rola }}</div>
+          <h1 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(32px,5vw,54px);line-height:1.02;letter-spacing:-0.01em;margin:0 0 18px;">{{ name }}</h1>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14.5px;color:#c1cbe0;">
+            <span>◆ {{ klub }}</span><span>◆ Rocznik {{ rocznik }}</span><span>◆ Lic. {{ licencja }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div style="background:#16294a;color:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+        <div style="padding:22px 4px;border-right:1px solid rgba(255,255,255,0.10);display:flex;align-items:baseline;gap:10px;">
+          <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:28px;color:#f3c200;">{{ s.value }}</span>
+          <span style="font-size:12.5px;color:#a4b1cc;">{{ s.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <section style="padding:clamp(48px,7vw,80px) 0;background:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);display:grid;grid-template-columns:1fr;gap:clamp(36px,5vw,56px);">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(36px,5vw,56px);align-items:start;">
+        <!-- bio -->
+        <div>
+          <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:24px;color:#0e1f42;margin:0 0 18px;border-bottom:2px solid #0e1f42;padding-bottom:14px;">Sylwetka</h2>
+          <p style="font-size:16px;line-height:1.75;color:#33405c;margin:0 0 18px;">{{ bio1 }}</p>
+          <p style="font-size:16px;line-height:1.75;color:#33405c;margin:0;">{{ bio2 }}</p>
+
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;color:#0e1f42;margin:32px 0 14px;text-transform:uppercase;letter-spacing:.04em;">Sprzęt zawodnika</h3>
+          <div style="display:flex;flex-direction:column;gap:0;border:1px solid #dfe3ea;">
+            <sc-for list="{{ sprzet }}" as="r" hint-placeholder-count="3">
+              <div style="display:flex;justify-content:space-between;gap:16px;padding:13px 18px;border-bottom:1px solid #eef1f5;font-size:14.5px;">
+                <span style="color:#7c88a3;">{{ r.k }}</span><span style="font-weight:600;color:#1a2233;">{{ r.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- results -->
+        <div>
+          <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:24px;color:#0e1f42;margin:0 0 18px;border-bottom:2px solid #0e1f42;padding-bottom:14px;">Najważniejsze wyniki</h2>
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <sc-for list="{{ wyniki }}" as="w" hint-placeholder-count="5">
+              <div style="display:flex;gap:16px;align-items:center;padding:15px 0;border-bottom:1px solid #eef1f5;">
+                <span style="{{ w.medalStyle }}">{{ w.pozycja }}</span>
+                <div style="flex:1;">
+                  <div style="font-weight:600;font-size:15px;color:#1a2233;">{{ w.event }}</div>
+                  <div style="font-size:13px;color:#8792a8;">{{ w.miejsce }}</div>
+                </div>
+                <span style="font-family:'Archivo',sans-serif;font-weight:700;color:#0e1f42;font-size:15px;">{{ w.rok }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <a href="Kadra.dc.html" style="justify-self:start;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#0e1f42;">← Wróć do kadry</a>
+    </div>
+  </section>
+
+  <dc-import name="MikrolotyFooter" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const avatarGlyph = React.createElement('svg', { width: 96, height: 96, viewBox: '0 0 24 24', fill: '#8393b5' },
+      React.createElement('circle', { cx: 12, cy: 9, r: 4 }),
+      React.createElement('path', { d: 'M4 21 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 21 Z' })
+    );
+    const gold = 'flex:0 0 44px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-weight:800;font-size:16px;background:#f3c200;color:#0e1f42;';
+    const plain = 'flex:0 0 44px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-weight:800;font-size:16px;background:#eef1f5;color:#57627a;';
+    return {
+      avatarGlyph,
+      name: 'Marek Zieliński',
+      klasa: 'ULM', grupa: 'Kadra A', rola: 'Pilot',
+      klub: 'Aeroklub Krakowski', rocznik: '1988', licencja: 'ULM-2417',
+      stats: [
+        { value: '9', label: 'sezonów w kadrze' },
+        { value: '4', label: 'medale MP' },
+        { value: '2', label: 'starty MŚ FAI' },
+        { value: '#3', label: 'ranking krajowy' },
+      ],
+      bio1: 'Doświadczony pilot samolotów ultralekkich, w kadrze narodowej nieprzerwanie od 2018 roku. Specjalizuje się w konkurencjach nawigacyjnych i precyzji lądowania.',
+      bio2: 'Wielokrotny medalista mistrzostw Polski, reprezentant kraju na mistrzostwach świata i Europy FAI. Poza sportem instruktor i popularyzator lotnictwa mikrolotowego.',
+      sprzet: [
+        { k: 'Statek powietrzny', v: 'Aeroprakt A-22' },
+        { k: 'Klasa', v: 'ULM (WL/RL1)' },
+        { k: 'Numer startowy', v: '17' },
+      ],
+      wyniki: [
+        { pozycja: '1', medalStyle: gold, event: 'Mistrzostwa Polski Mikrolotów', miejsce: 'Pobiednik', rok: '2025' },
+        { pozycja: '2', medalStyle: gold, event: 'Puchar Polski — runda II', miejsce: 'Olsztyn', rok: '2025' },
+        { pozycja: '5', medalStyle: plain, event: 'Mistrzostwa Świata FAI', miejsce: 'Węgry', rok: '2024' },
+        { pozycja: '1', medalStyle: gold, event: 'Mistrzostwa Polski Mikrolotów', miejsce: 'Piotrków', rok: '2023' },
+        { pozycja: '3', medalStyle: gold, event: 'Mistrzostwa Europy FAI', miejsce: 'Francja', rok: '2022' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1a2233; background: #fff; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  ::selection { background: #f3c200; color: #0e1f42; }
+</style>
+</helmet>
+
+<div style="width:100%;overflow-x:hidden;font-family:'IBM Plex Sans',sans-serif;line-height:1.5;">
+  <dc-import name="MikrolotyNav" active="o-komisji" hint-size="100%,112px"></dc-import>
+
+  <section style="background:#0e1f42;color:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,68px) clamp(20px,4vw,40px);">
+      <div style="font-size:12.5px;color:#9fb0d0;margin-bottom:16px;"><a href="Mikroloty AP.dc.html" style="color:#9fb0d0;">Home</a> &nbsp;/&nbsp; <span style="color:#fff;">O komisji</span></div>
+      <h1 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,4.6vw,48px);letter-spacing:-0.01em;margin:0 0 14px;">O Komisji Mikrolotowej</h1>
+      <p style="font-size:clamp(15px,1.4vw,17px);color:#c1cbe0;max-width:640px;margin:0;">Organizujemy i nadzorujemy sport mikrolotowy w Polsce — od zawodów regionalnych, przez mistrzostwa kraju, po starty reprezentacji na arenie międzynarodowej.</p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section style="padding:clamp(52px,7vw,88px) 0;background:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(32px,5vw,64px);align-items:center;">
+      <div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#b58a00;margin-bottom:14px;">Kim jesteśmy</div>
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(24px,3.2vw,34px);line-height:1.15;margin:0 0 20px;color:#0e1f42;">Sport mikrolotowy pod jednym dachem</h2>
+        <p style="font-size:16px;color:#404b63;line-height:1.7;margin:0 0 16px;">Komisja Mikrolotowa jest wyspecjalizowaną jednostką Aeroklubu Polskiego odpowiedzialną za współzawodnictwo sportowe w klasie mikrolotowej — samolotów ultralekkich (ULM) oraz paralotni.</p>
+        <p style="font-size:16px;color:#404b63;line-height:1.7;margin:0;">Ustalamy kalendarz startów, powołujemy kadrę narodową, dbamy o zgodność z przepisami FAI i reprezentujemy polskich pilotów na zawodach międzynarodowych. Wspieramy też tych, którzy dopiero zaczynają swoją przygodę z rywalizacją.</p>
+      </div>
+      <div style="aspect-ratio:4/3;overflow:hidden;background:#e6e9ef;">
+        <img src="images/aeroprakt-grass.jpg" alt="Samolot ultralekki na lotnisku" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CZYM SIĘ ZAJMUJEMY -->
+  <section style="padding:clamp(52px,7vw,88px) 0;background:#f3f4f6;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <div style="border-bottom:2px solid #0e1f42;padding-bottom:18px;margin-bottom:40px;">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#b58a00;margin-bottom:10px;">Zakres działania</div>
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,38px);margin:0;color:#0e1f42;">Czym się zajmujemy</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;">
+        <sc-for list="{{ zakres }}" as="z" hint-placeholder-count="4">
+          <div style="background:#fff;border:1px solid #dfe3ea;padding:30px 28px;">
+            <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;color:#f3c200;background:#0e1f42;width:44px;height:44px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">{{ z.no }}</div>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;margin:0 0 10px;color:#1a2233;">{{ z.title }}</h3>
+            <p style="font-size:14.5px;color:#57627a;line-height:1.6;margin:0;">{{ z.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZARZĄD -->
+  <section style="padding:clamp(52px,7vw,88px) 0;background:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <div style="border-bottom:2px solid #0e1f42;padding-bottom:18px;margin-bottom:40px;">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#b58a00;margin-bottom:10px;">Ludzie</div>
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,38px);margin:0;color:#0e1f42;">Zarząd komisji</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px;">
+        <sc-for list="{{ zarzad }}" as="p" hint-placeholder-count="4">
+          <div style="border:1px solid #dfe3ea;">
+            <div style="aspect-ratio:1/1;background:#e6e9ef;display:flex;align-items:flex-end;justify-content:center;">
+              <span style="opacity:.35;transform:translateY(4px);">{{ avatarGlyph }}</span>
+            </div>
+            <div style="padding:18px 20px;border-top:2px solid #0e1f42;">
+              <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#b58a00;margin-bottom:6px;">{{ p.rola }}</div>
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;margin:0;color:#1a2233;">{{ p.name }}</h3>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT STRIP -->
+  <section id="kontakt" style="background:#0e1f42;color:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(44px,6vw,72px) clamp(20px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:36px;">
+      <div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#f3c200;margin-bottom:14px;">Kontakt</div>
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(24px,3vw,32px);margin:0 0 12px;">Masz pytanie do komisji?</h2>
+        <p style="font-size:15.5px;color:#c1cbe0;line-height:1.6;margin:0;max-width:420px;">Napisz do biura komisji — pomożemy w sprawach startów, licencji i szkoleń.</p>
+      </div>
+      <div style="font-size:15px;line-height:2;color:#c1cbe0;">
+        <div><strong style="color:#fff;">E-mail:</strong> biuro@mikroloty.com</div>
+        <div><strong style="color:#fff;">Telefon:</strong> 22 55 67 300</div>
+        <div><strong style="color:#fff;">Adres:</strong> ul. Wybrzeże Gdyńskie 4, 01-531 Warszawa</div>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="MikrolotyFooter" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const avatarGlyph = React.createElement('svg', { width: 78, height: 78, viewBox: '0 0 24 24', fill: '#9aa7c0' },
+      React.createElement('circle', { cx: 12, cy: 9, r: 4 }),
+      React.createElement('path', { d: 'M4 21 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 21 Z' })
+    );
+    return {
+      avatarGlyph,
+      zakres: [
+        { no: '01', title: 'Organizacja zawodów', text: 'Układamy kalendarz i nadzorujemy przebieg zawodów rangi krajowej oraz eliminacji do kadry.' },
+        { no: '02', title: 'Kadra narodowa', text: 'Powołujemy i przygotowujemy reprezentację Polski na mistrzostwa Europy i świata FAI.' },
+        { no: '03', title: 'Przepisy i licencje', text: 'Dbamy o zgodność z regulaminami FAI oraz o sprawy licencji zawodniczych.' },
+        { no: '04', title: 'Promocja sportu', text: 'Zachęcamy nowych pilotów do startów i wspieramy ich pierwsze kroki w rywalizacji.' },
+      ],
+      zarzad: [
+        { rola: 'Przewodniczący', name: 'Andrzej Kamiński' },
+        { rola: 'Wiceprzewodniczący', name: 'Robert Sikora' },
+        { rola: 'Sekretarz', name: 'Magdalena Adamska' },
+        { rola: 'Członek zarządu', name: 'Grzegorz Wroński' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

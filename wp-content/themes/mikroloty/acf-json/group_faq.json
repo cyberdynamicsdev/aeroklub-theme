@@ -1,0 +1,51 @@
+{
+    "key": "group_faq",
+    "title": "FAQ — pytanie",
+    "fields": [
+        {
+            "key": "field_faq_grupa",
+            "label": "Grupa",
+            "name": "grupa",
+            "type": "select",
+            "required": 1,
+            "choices": {
+                "start": "Start w zawodach",
+                "licencje": "Licencje i przepisy",
+                "kadra": "Kadra"
+            },
+            "default_value": "start",
+            "return_format": "value",
+            "ui": 1,
+            "instructions": "Pytania są grupowane sekcjami na stronie FAQ."
+        },
+        {
+            "key": "field_faq_odpowiedz",
+            "label": "Odpowiedź",
+            "name": "odpowiedz",
+            "type": "wysiwyg",
+            "required": 1,
+            "tabs": "visual",
+            "toolbar": "basic",
+            "media_upload": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "faq"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1783254190
+}

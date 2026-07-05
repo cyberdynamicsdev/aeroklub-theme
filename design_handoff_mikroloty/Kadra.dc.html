@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1a2233; background: #fff; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  ::selection { background: #f3c200; color: #0e1f42; }
+</style>
+</helmet>
+
+<div style="width:100%;overflow-x:hidden;font-family:'IBM Plex Sans',sans-serif;line-height:1.5;">
+  <dc-import name="MikrolotyNav" active="kadra" hint-size="100%,112px"></dc-import>
+
+  <section style="background:#0e1f42;color:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,68px) clamp(20px,4vw,40px);">
+      <div style="font-size:12.5px;color:#9fb0d0;margin-bottom:16px;"><a href="Mikroloty AP.dc.html" style="color:#9fb0d0;">Home</a> &nbsp;/&nbsp; <span style="color:#fff;">Kadra</span></div>
+      <h1 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,4.6vw,48px);letter-spacing:-0.01em;margin:0 0 14px;">Kadra narodowa 2026</h1>
+      <p style="font-size:clamp(15px,1.4vw,17px);color:#c1cbe0;max-width:640px;margin:0;">Zawodnicy reprezentujący Polskę w sporcie mikrolotowym — powołani do kadry na sezon 2026 w klasach ULM i paralotniowej.</p>
+    </div>
+  </section>
+
+  <sc-for list="{{ groups }}" as="g" hint-placeholder-count="2">
+    <section style="{{ g.sectionStyle }}">
+      <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+        <div style="border-bottom:2px solid #0e1f42;padding-bottom:18px;margin-bottom:40px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div>
+            <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#b58a00;margin-bottom:10px;">{{ g.eyebrow }}</div>
+            <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(24px,3.4vw,36px);margin:0;color:#0e1f42;">{{ g.title }}</h2>
+          </div>
+          <span style="font-size:13.5px;color:#6b7791;">{{ g.count }}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px;">
+          <sc-for list="{{ g.people }}" as="p" hint-placeholder-count="6">
+            <a href="Kadra-profil.dc.html" style="border:1px solid #dfe3ea;overflow:hidden;background:#fff;transition:border-color .18s;display:block;" style-hover="border-color:#0e1f42;">
+              <div style="aspect-ratio:4/5;background:#e6e9ef;display:flex;align-items:flex-end;justify-content:center;position:relative;">
+                <span style="opacity:.35;transform:translateY(4px);">{{ avatarGlyph }}</span>
+                <span style="position:absolute;top:0;left:0;background:#f3c200;color:#0e1f42;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;">{{ p.grupa }}</span>
+              </div>
+              <div style="padding:16px 18px 18px;border-top:2px solid #0e1f42;">
+                <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:16.5px;margin:0 0 4px;color:#1a2233;">{{ p.name }}</h3>
+                <div style="font-size:12.5px;color:#7c88a3;">{{ p.rola }}</div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-for>
+
+  <!-- SZTAB -->
+  <section style="padding:clamp(52px,7vw,88px) 0;background:#0e1f42;color:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <div style="border-bottom:2px solid rgba(255,255,255,0.2);padding-bottom:18px;margin-bottom:36px;">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#f3c200;margin-bottom:10px;">Wsparcie</div>
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(24px,3.4vw,36px);margin:0;">Sztab szkoleniowy</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+        <sc-for list="{{ sztab }}" as="s" hint-placeholder-count="3">
+          <div style="border:1px solid rgba(255,255,255,0.16);padding:24px 26px;">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#f3c200;margin-bottom:8px;">{{ s.rola }}</div>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;margin:0;">{{ s.name }}</h3>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="MikrolotyFooter" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const avatarGlyph = React.createElement('svg', { width: 78, height: 78, viewBox: '0 0 24 24', fill: '#9aa7c0' },
+      React.createElement('circle', { cx: 12, cy: 9, r: 4 }),
+      React.createElement('path', { d: 'M4 21 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 21 Z' })
+    );
+    return {
+      avatarGlyph,
+      groups: [
+        {
+          eyebrow: 'Samoloty ultralekkie', title: 'Klasa ULM', count: '6 zawodników',
+          sectionStyle: 'padding:clamp(52px,7vw,80px) 0;background:#fff;',
+          people: [
+            { name: 'Marek Zieliński', grupa: 'Kadra A', rola: 'Pilot' },
+            { name: 'Piotr Nowicki', grupa: 'Kadra A', rola: 'Pilot' },
+            { name: 'Tomasz Lewandowski', grupa: 'Kadra A', rola: 'Nawigator' },
+            { name: 'Jakub Mazur', grupa: 'Kadra B', rola: 'Pilot' },
+            { name: 'Rafał Duda', grupa: 'Kadra B', rola: 'Nawigator' },
+            { name: 'Michał Górski', grupa: 'Kadra B', rola: 'Pilot' },
+          ],
+        },
+        {
+          eyebrow: 'Paralotnie', title: 'Klasa paralotniowa', count: '5 zawodników',
+          sectionStyle: 'padding:clamp(52px,7vw,80px) 0;background:#f3f4f6;',
+          people: [
+            { name: 'Anna Kowalczyk', grupa: 'Kadra A', rola: 'Celność lądowania' },
+            { name: 'Katarzyna Wójcik', grupa: 'Kadra A', rola: 'Celność lądowania' },
+            { name: 'Ewa Kaczmarek', grupa: 'Kadra B', rola: 'Celność lądowania' },
+            { name: 'Paweł Krawczyk', grupa: 'Kadra B', rola: 'Przelot' },
+            { name: 'Bartosz Zając', grupa: 'Kadra B', rola: 'Przelot' },
+          ],
+        },
+      ],
+      sztab: [
+        { rola: 'Trener kadry', name: 'Krzysztof Bąk' },
+        { rola: 'Asystent trenera', name: 'Łukasz Szymański' },
+        { rola: 'Lekarz kadry', name: 'dr Joanna Lis' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

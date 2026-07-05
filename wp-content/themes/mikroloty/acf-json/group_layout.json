@@ -1,0 +1,153 @@
+{
+    "key": "group_layout",
+    "title": "Nagłówek i stopka",
+    "fields": [
+        {
+            "key": "field_layout_tab_bar",
+            "label": "Pasek górny",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_layout_bar_tekst",
+            "label": "Tekst po lewej",
+            "name": "pasek_tekst",
+            "type": "text",
+            "default_value": "Komisja Mikrolotowa · Aeroklub Polski"
+        },
+        {
+            "key": "field_layout_bar_email",
+            "label": "E-mail",
+            "name": "pasek_email",
+            "type": "text",
+            "default_value": "biuro@mikroloty.com"
+        },
+        {
+            "key": "field_layout_bar_link_label",
+            "label": "Link — tekst",
+            "name": "pasek_link_label",
+            "type": "text",
+            "default_value": "Portal Informacyjny AP"
+        },
+        {
+            "key": "field_layout_bar_link_url",
+            "label": "Link — adres",
+            "name": "pasek_link_url",
+            "type": "url"
+        },
+        {
+            "key": "field_layout_tab_footer",
+            "label": "Stopka",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_layout_footer_opis",
+            "label": "Opis pod logo",
+            "name": "footer_opis",
+            "type": "textarea",
+            "rows": 3,
+            "default_value": "Komisja Mikrolotowa Aeroklubu Polskiego — organizacja sportu mikrolotowego w klasach ULM i paralotniowej."
+        },
+        {
+            "key": "field_layout_footer_adres",
+            "label": "Adres",
+            "name": "footer_adres",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": "br",
+            "default_value": "Aeroklub Polski\nul. Wybrzeże Gdyńskie 4\n01-531 Warszawa"
+        },
+        {
+            "key": "field_layout_footer_kolumny",
+            "label": "Kolumny linków",
+            "name": "footer_kolumny",
+            "type": "repeater",
+            "layout": "block",
+            "max": 3,
+            "button_label": "Dodaj kolumnę",
+            "sub_fields": [
+                {
+                    "key": "field_layout_footer_kol_tytul",
+                    "label": "Tytuł kolumny",
+                    "name": "tytul",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_layout_footer_kol_linki",
+                    "label": "Linki",
+                    "name": "linki",
+                    "type": "repeater",
+                    "layout": "table",
+                    "button_label": "Dodaj link",
+                    "sub_fields": [
+                        {
+                            "key": "field_layout_footer_link_etykieta",
+                            "label": "Etykieta",
+                            "name": "etykieta",
+                            "type": "text",
+                            "required": 1
+                        },
+                        {
+                            "key": "field_layout_footer_link_url",
+                            "label": "Adres",
+                            "name": "url",
+                            "type": "text",
+                            "required": 1,
+                            "instructions": "Adres URL lub ścieżka względna."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_layout_footer_dolne",
+            "label": "Dolne linki",
+            "name": "footer_dolne_linki",
+            "type": "repeater",
+            "layout": "table",
+            "button_label": "Dodaj link",
+            "sub_fields": [
+                {
+                    "key": "field_layout_footer_dolny_etykieta",
+                    "label": "Etykieta",
+                    "name": "etykieta",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_layout_footer_dolny_url",
+                    "label": "Adres",
+                    "name": "url",
+                    "type": "text",
+                    "required": 1
+                }
+            ]
+        },
+        {
+            "key": "field_layout_footer_copyright",
+            "label": "Copyright",
+            "name": "footer_copyright",
+            "type": "text",
+            "default_value": "© 1999–2026 Aeroklub Polski. Wszelkie prawa zastrzeżone."
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "ustawienia-naglowek-stopka"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "show_in_rest": 0,
+    "modified": 1783254190
+}

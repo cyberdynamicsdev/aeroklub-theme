@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1a2233; background: #fff; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  ::selection { background: #f3c200; color: #0e1f42; }
+</style>
+</helmet>
+
+<div style="width:100%;overflow-x:hidden;font-family:'IBM Plex Sans',sans-serif;line-height:1.5;">
+  <dc-import name="MikrolotyNav" active="" hint-size="100%,112px"></dc-import>
+
+  <!-- HEADER -->
+  <section style="background:#0e1f42;color:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,68px) clamp(20px,4vw,40px);">
+      <div style="font-size:12.5px;color:#9fb0d0;margin-bottom:16px;"><a href="Mikroloty AP.dc.html" style="color:#9fb0d0;">Home</a> &nbsp;/&nbsp; <span style="color:#fff;">FAQ</span></div>
+      <h1 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,4.6vw,48px);letter-spacing:-0.01em;margin:0 0 14px;">Najczęściej zadawane pytania</h1>
+      <p style="font-size:clamp(15px,1.4vw,17px);color:#c1cbe0;max-width:620px;margin:0;">Odpowiedzi na pytania, które najczęściej otrzymujemy od pilotów rozważających start w zawodach mikrolotowych.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding:clamp(48px,7vw,80px) 0;background:#fff;">
+    <div style="max-width:900px;margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+        <div style="margin-bottom:44px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+            <span style="width:22px;height:2px;background:#f3c200;"></span>
+            <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(20px,2.6vw,26px);color:#0e1f42;margin:0;">{{ g.title }}</h2>
+          </div>
+          <div style="border-top:1px solid #dfe3ea;">
+            <sc-for list="{{ g.items }}" as="qa" hint-placeholder-count="4">
+              <details style="border-bottom:1px solid #dfe3ea;">
+                <summary style="list-style:none;cursor:pointer;padding:20px 4px;display:flex;justify-content:space-between;gap:20px;align-items:center;font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;color:#1a2233;">
+                  {{ qa.q }}
+                  <span style="flex-shrink:0;width:26px;height:26px;border:1px solid #cfd6e2;display:flex;align-items:center;justify-content:center;color:#0e1f42;font-size:18px;">+</span>
+                </summary>
+                <div style="padding:0 4px 22px;font-size:15.5px;line-height:1.7;color:#4a5674;max-width:760px;">{{ qa.a }}</div>
+              </details>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+
+      <!-- still need help -->
+      <div style="background:#0e1f42;color:#fff;padding:clamp(28px,4vw,40px);display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;margin-top:20px;">
+        <div>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;margin:0 0 6px;">Nie znalazłeś odpowiedzi?</h3>
+          <p style="margin:0;color:#c1cbe0;font-size:15px;">Napisz do nas — chętnie pomożemy postawić pierwsze kroki w sporcie mikrolotowym.</p>
+        </div>
+        <a href="Kontakt.dc.html" style="background:#f3c200;color:#0e1f42;font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;padding:16px 28px;white-space:nowrap;" style-hover="background:#ffd633;">Skontaktuj się →</a>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="MikrolotyFooter" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      groups: [
+        { title: 'Start w zawodach', items: [
+          { q: 'Jakie uprawnienia są potrzebne, żeby startować w zawodach?', a: 'Do startu w zawodach mikrolotowych wymagana jest ważna licencja pilota odpowiedniej klasy (ULM lub paralotnia) oraz aktualne badania lotniczo-lekarskie. Szczegółowe wymagania określa regulamin danych zawodów.' },
+          { q: 'Czy mogę wystartować bez doświadczenia zawodniczego?', a: 'Tak. Zawody regionalne i otwarte rundy pucharowe są dobrym miejscem na debiut. Zachęcamy początkujących do udziału — organizatorzy przewidują osobną klasyfikację dla debiutantów.' },
+          { q: 'Jak zgłosić się do zawodów?', a: 'Zgłoszenia przyjmowane są elektronicznie przez formularz przy każdym wydarzeniu w zakładce Zawody. Po rejestracji otrzymasz potwierdzenie oraz komunikat organizacyjny.' },
+          { q: 'Ile kosztuje udział w zawodach?', a: 'Wpisowe różni się w zależności od rangi i organizatora. Informacja o opłatach znajduje się zawsze w komunikacie danego wydarzenia.' },
+        ] },
+        { title: 'Licencje i przepisy', items: [
+          { q: 'Gdzie znajdę regulaminy sportowe?', a: 'Wszystkie obowiązujące regulaminy, przepisy FAI oraz formularze do pobrania znajdują się w zakładce Dokumenty.' },
+          { q: 'Jak przedłużyć licencję sportową?', a: 'Licencję zawodniczą przedłuża się corocznie za pośrednictwem Aeroklubu Polskiego. Wnioski i terminy publikujemy w Aktualnościach oraz w Dokumentach.' },
+          { q: 'Czy przepisy różnią się dla klasy ULM i paralotni?', a: 'Tak — każda klasa ma odrębne przepisy konkurencyjne. Wersje obowiązujące dla danego sezonu są dostępne w zakładce Dokumenty.' },
+        ] },
+        { title: 'Kadra narodowa', items: [
+          { q: 'Jak trafia się do kadry narodowej?', a: 'Powołania do kadry opierają się na wynikach zawodów rangi mistrzowskiej oraz punktacji rankingu krajowego z poprzedniego sezonu. Skład ogłasza Komisja Mikrolotowa.' },
+          { q: 'Czy kadra ma wspólne treningi?', a: 'Tak. W sezonie organizowane są zgrupowania szkoleniowe z nawigacji i precyzji lądowania pod okiem sztabu trenerskiego.' },
+        ] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

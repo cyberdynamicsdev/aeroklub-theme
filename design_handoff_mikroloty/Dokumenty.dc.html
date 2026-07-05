@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1a2233; background: #fff; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  ::selection { background: #f3c200; color: #0e1f42; }
+</style>
+</helmet>
+
+<div style="width:100%;overflow-x:hidden;font-family:'IBM Plex Sans',sans-serif;line-height:1.5;">
+  <dc-import name="MikrolotyNav" active="dokumenty" hint-size="100%,112px"></dc-import>
+
+  <section style="background:#0e1f42;color:#fff;">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,68px) clamp(20px,4vw,40px);">
+      <div style="font-size:12.5px;color:#9fb0d0;margin-bottom:16px;"><a href="Mikroloty AP.dc.html" style="color:#9fb0d0;">Home</a> &nbsp;/&nbsp; <span style="color:#fff;">Dokumenty</span></div>
+      <h1 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,4.6vw,48px);letter-spacing:-0.01em;margin:0 0 14px;">Dokumenty do pobrania</h1>
+      <p style="font-size:clamp(15px,1.4vw,17px);color:#c1cbe0;max-width:620px;margin:0 0 26px;">Przepisy sportowe, regulaminy zawodów, formularze zgłoszeniowe i materiały dla zawodników klasy mikrolotowej.</p>
+      <div style="display:flex;align-items:center;gap:0;max-width:460px;background:#fff;">
+        <input type="text" placeholder="Szukaj dokumentu…" style="flex:1;border:none;outline:none;padding:14px 18px;font-family:inherit;font-size:14.5px;color:#1a2233;" />
+        <button style="border:none;background:#f3c200;color:#0e1f42;font-weight:700;padding:14px 22px;cursor:pointer;font-family:inherit;font-size:14px;">Szukaj</button>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(48px,6vw,80px) 0;background:#fff;">
+    <div style="max-width:1000px;margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <sc-for list="{{ categories }}" as="c" hint-placeholder-count="4">
+        <div style="margin-bottom:44px;">
+          <div style="border-bottom:2px solid #0e1f42;padding-bottom:14px;margin-bottom:8px;display:flex;align-items:baseline;gap:12px;">
+            <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(20px,2.6vw,26px);margin:0;color:#0e1f42;">{{ c.title }}</h2>
+            <span style="font-size:13px;color:#8792a8;">{{ c.count }}</span>
+          </div>
+          <sc-for list="{{ c.docs }}" as="d" hint-placeholder-count="3">
+            <a href="#" style="display:flex;align-items:center;gap:18px;padding:18px 8px;border-bottom:1px solid #e6eaf1;transition:background .15s;" style-hover="background:#f7f8fb;">
+              <span style="flex:0 0 auto;width:40px;height:48px;background:#0e1f42;color:#f3c200;font-family:'Archivo',sans-serif;font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;">{{ d.format }}</span>
+              <span style="flex:1;min-width:0;">
+                <span style="display:block;font-weight:600;font-size:15.5px;color:#1a2233;">{{ d.name }}</span>
+                <span style="display:block;font-size:13px;color:#8792a8;margin-top:3px;">{{ d.meta }}</span>
+              </span>
+              <span style="flex:0 0 auto;font-weight:700;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:#0e1f42;display:inline-flex;align-items:center;gap:8px;">Pobierz <span style="color:#f3c200;font-size:15px;">↓</span></span>
+            </a>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <dc-import name="MikrolotyFooter" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      categories: [
+        { title: 'Przepisy sportowe', count: '3 dokumenty', docs: [
+          { format: 'PDF', name: 'Regulamin sportowy klasy mikrolotowej 2026', meta: 'PDF · 1,8 MB · akt. 12.01.2026' },
+          { format: 'PDF', name: 'Sporting Code Section 10 (FAI) — wersja PL', meta: 'PDF · 3,2 MB · akt. 04.02.2026' },
+          { format: 'PDF', name: 'Klasyfikacja i punktacja zawodów', meta: 'PDF · 640 KB · akt. 12.01.2026' },
+        ] },
+        { title: 'Regulaminy zawodów', count: '2 dokumenty', docs: [
+          { format: 'PDF', name: 'Regulamin Mistrzostw Polski Mikrolotów 2026', meta: 'PDF · 1,1 MB · akt. 20.05.2026' },
+          { format: 'PDF', name: 'Regulamin Pucharu Polski Paralotni', meta: 'PDF · 920 KB · akt. 18.05.2026' },
+        ] },
+        { title: 'Formularze', count: '3 dokumenty', docs: [
+          { format: 'DOCX', name: 'Formularz zgłoszeniowy na zawody', meta: 'DOCX · 84 KB · akt. 01.03.2026' },
+          { format: 'PDF', name: 'Oświadczenie zawodnika i zgoda RODO', meta: 'PDF · 210 KB · akt. 01.03.2026' },
+          { format: 'DOCX', name: 'Wniosek o powołanie do kadry', meta: 'DOCX · 96 KB · akt. 15.02.2026' },
+        ] },
+        { title: 'Licencje', count: '2 dokumenty', docs: [
+          { format: 'PDF', name: 'Instrukcja wyrobienia licencji sportowej FAI', meta: 'PDF · 540 KB · akt. 10.01.2026' },
+          { format: 'PDF', name: 'Cennik licencji i opłat startowych 2026', meta: 'PDF · 180 KB · akt. 10.01.2026' },
+        ] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

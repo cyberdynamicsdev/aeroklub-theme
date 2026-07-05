@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="font-family:'IBM Plex Sans',sans-serif;">
+  <div style="background:#0e1f42;color:#9fb0d0;font-size:12.5px;">
+    <div style="max-width:1240px;margin:0 auto;padding:8px clamp(20px,4vw,40px);display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between;">
+      <span style="letter-spacing:.05em;text-transform:uppercase;font-weight:600;font-size:11.5px;">Komisja Mikrolotowa &middot; Aeroklub Polski</span>
+      <div style="display:flex;gap:22px;align-items:center;">
+        <a href="mailto:biuro@mikroloty.com" style="color:#9fb0d0;">biuro@mikroloty.com</a>
+        <a href="#" style="color:#9fb0d0;">Portal Informacyjny AP</a>
+      </div>
+    </div>
+  </div>
+  <header style="position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid #dfe3ea;">
+    <div style="max-width:1240px;margin:0 auto;padding:16px clamp(20px,4vw,40px);display:flex;align-items:center;gap:28px;justify-content:space-between;">
+      <a href="Mikroloty AP.dc.html" style="display:flex;align-items:center;gap:13px;flex-shrink:0;">
+        <span style="display:inline-flex;">{{ logoMark }}</span>
+        <span style="display:flex;flex-direction:column;line-height:1;">
+          <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;letter-spacing:.1em;color:#0e1f42;">MIKROLOTY</span>
+          <span style="font-size:10px;letter-spacing:.24em;color:#7c88a3;font-weight:600;margin-top:4px;">AEROKLUB POLSKI</span>
+        </span>
+      </a>
+      <nav style="display:flex;align-items:center;gap:clamp(10px,1.5vw,24px);flex-wrap:wrap;justify-content:flex-end;">
+        <sc-for list="{{ menu }}" as="item" hint-placeholder-count="6">
+          <a href="{{ item.href }}" style="{{ item.style }}" style-hover="color:#0e1f42;border-bottom:2px solid #f3c200;">{{ item.label }}</a>
+        </sc-for>
+        <div style="display:inline-flex;border:1px solid #cfd6e2;font-size:12px;font-weight:700;margin-left:6px;">
+          <button onClick="{{ setPL }}" style="{{ plStyle }}">PL</button>
+          <button onClick="{{ setEN }}" style="{{ enStyle }}">EN</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;active&quot;:{&quot;editor&quot;:null,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { lang: 'PL' };
+  renderVals() {
+    const active = this.props.active ?? '';
+    const logoMark = React.createElement('svg', { width: 40, height: 40, viewBox: '0 0 40 40', fill: 'none' },
+      React.createElement('circle', { cx: 20, cy: 20, r: 18.5, fill: '#f3c200', stroke: '#0e1f42', strokeWidth: 2 }),
+      React.createElement('path', { d: 'M9 25 L20 11 L31 25 L20 20 Z', fill: '#0e1f42' }),
+      React.createElement('path', { d: 'M13.5 27.5 L20 22.5 L26.5 27.5', stroke: '#0e1f42', strokeWidth: 2, strokeLinecap: 'round', fill: 'none' })
+    );
+    const base = 'font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;padding:8px 0;transition:color .15s,border-color .15s;';
+    const idle = base + 'color:#3a465f;border-bottom:2px solid transparent;';
+    const on = base + 'color:#0e1f42;border-bottom:2px solid #f3c200;';
+    const items = [
+      { key: 'aktualnosci', label: 'Aktualności', href: 'Aktualnosci.dc.html' },
+      { key: 'o-komisji', label: 'O komisji', href: 'O-komisji.dc.html' },
+      { key: 'zawody', label: 'Zawody', href: 'Zawody.dc.html' },
+      { key: 'kadra', label: 'Kadra', href: 'Kadra.dc.html' },
+      { key: 'dokumenty', label: 'Dokumenty', href: 'Dokumenty.dc.html' },
+      { key: 'jak-zaczac', label: 'Jak zacząć', href: 'Jak-zaczac.dc.html' },
+    ].map(it => ({ ...it, style: it.key === active ? on : idle }));
+    const segBase = 'border:none;cursor:pointer;padding:6px 13px;font-family:inherit;font-weight:700;font-size:12px;';
+    return {
+      logoMark, menu: items,
+      setPL: () => this.setState({ lang: 'PL' }),
+      setEN: () => this.setState({ lang: 'EN' }),
+      plStyle: segBase + (this.state.lang === 'PL' ? 'background:#0e1f42;color:#fff;' : 'background:transparent;color:#57627a;'),
+      enStyle: segBase + (this.state.lang === 'EN' ? 'background:#0e1f42;color:#fff;' : 'background:transparent;color:#57627a;'),
+    };
+  }
+}
+</script>
+</body>
+</html>

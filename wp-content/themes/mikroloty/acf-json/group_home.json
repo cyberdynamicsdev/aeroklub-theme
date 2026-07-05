@@ -1,0 +1,168 @@
+{
+    "key": "group_home",
+    "title": "Strona główna",
+    "fields": [
+        {
+            "key": "field_home_tab_hero",
+            "label": "Hero",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_home_hero_obraz",
+            "label": "Zdjęcie tła",
+            "name": "hero_obraz",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_home_hero_eyebrow",
+            "label": "Etykieta (eyebrow)",
+            "name": "hero_eyebrow",
+            "type": "text",
+            "default_value": "Sport lotniczy · klasa mikrolotowa"
+        },
+        {
+            "key": "field_home_hero_tytul",
+            "label": "Tytuł",
+            "name": "hero_tytul",
+            "type": "textarea",
+            "rows": 2,
+            "new_lines": "br",
+            "default_value": "Lataj, rywalizuj, reprezentuj Polskę."
+        },
+        {
+            "key": "field_home_hero_lead",
+            "label": "Opis (lead)",
+            "name": "hero_lead",
+            "type": "textarea",
+            "rows": 3
+        },
+        {
+            "key": "field_home_hero_btn1_label",
+            "label": "Przycisk 1 — tekst",
+            "name": "hero_btn1_label",
+            "type": "text",
+            "default_value": "Nadchodzące zawody"
+        },
+        {
+            "key": "field_home_hero_btn1_link",
+            "label": "Przycisk 1 — odnośnik",
+            "name": "hero_btn1_link",
+            "type": "link",
+            "return_format": "array"
+        },
+        {
+            "key": "field_home_hero_btn2_label",
+            "label": "Przycisk 2 — tekst",
+            "name": "hero_btn2_label",
+            "type": "text",
+            "default_value": "Jak zacząć startować"
+        },
+        {
+            "key": "field_home_hero_btn2_link",
+            "label": "Przycisk 2 — odnośnik",
+            "name": "hero_btn2_link",
+            "type": "link",
+            "return_format": "array"
+        },
+        {
+            "key": "field_home_hero_podpis",
+            "label": "Podpis zdjęcia",
+            "name": "hero_podpis",
+            "type": "text"
+        },
+        {
+            "key": "field_home_tab_stats",
+            "label": "Statystyki",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_home_stats",
+            "label": "Pasek statystyk",
+            "name": "stats",
+            "type": "repeater",
+            "layout": "table",
+            "max": 4,
+            "button_label": "Dodaj statystykę",
+            "sub_fields": [
+                {
+                    "key": "field_home_stat_value",
+                    "label": "Wartość",
+                    "name": "value",
+                    "type": "text",
+                    "required": 1,
+                    "placeholder": "14"
+                },
+                {
+                    "key": "field_home_stat_label",
+                    "label": "Opis",
+                    "name": "label",
+                    "type": "text",
+                    "required": 1,
+                    "placeholder": "zawodów w sezonie"
+                }
+            ]
+        },
+        {
+            "key": "field_home_tab_cta",
+            "label": "Baner CTA",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_home_cta_eyebrow",
+            "label": "Etykieta (eyebrow)",
+            "name": "cta_eyebrow",
+            "type": "text",
+            "default_value": "Dołącz do sportu"
+        },
+        {
+            "key": "field_home_cta_tytul",
+            "label": "Tytuł",
+            "name": "cta_tytul",
+            "type": "text"
+        },
+        {
+            "key": "field_home_cta_tekst",
+            "label": "Tekst",
+            "name": "cta_tekst",
+            "type": "textarea",
+            "rows": 3
+        },
+        {
+            "key": "field_home_cta_btn_label",
+            "label": "Przycisk — tekst",
+            "name": "cta_btn_label",
+            "type": "text",
+            "default_value": "Dowiedz się jak zacząć"
+        },
+        {
+            "key": "field_home_cta_btn_link",
+            "label": "Przycisk — odnośnik",
+            "name": "cta_btn_link",
+            "type": "link",
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "ustawienia-strona-glowna"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "show_in_rest": 0,
+    "modified": 1783254190
+}
