@@ -45,7 +45,8 @@ add_action('init', function () {
 
 /**
  * CPT: Athlete — national squad. One post = one athlete.
- * Menu label "Kadra"; a single post is the athlete profile.
+ * Menu label "Kadra". No public single view (see redirect below); athletes are
+ * only listed on the Kadra archive and per-season taxonomy archives.
  */
 add_action('init', function () {
     register_post_type('athlete', [
@@ -56,7 +57,6 @@ add_action('init', function () {
             'add_new' => __('Dodaj zawodnika', 'mikroloty'),
             'add_new_item' => __('Dodaj nowego zawodnika', 'mikroloty'),
             'edit_item' => __('Edytuj zawodnika', 'mikroloty'),
-            'view_item' => __('Zobacz profil', 'mikroloty'),
             'search_items' => __('Szukaj zawodników', 'mikroloty'),
             'not_found' => __('Nie znaleziono zawodników', 'mikroloty'),
             'all_items' => __('Wszyscy zawodnicy', 'mikroloty'),
@@ -66,11 +66,43 @@ add_action('init', function () {
         'has_archive' => true,
         'menu_position' => 21,
         'menu_icon' => 'dashicons-groups',
-        'supports' => ['title', 'editor', 'thumbnail', 'revisions'],
+        'supports' => ['title', 'thumbnail', 'revisions'],
         'rewrite' => ['slug' => 'kadra', 'with_front' => false],
         'show_in_rest' => true,
     ]);
+
+    /**
+     * Taxonomy: Sezon — years an athlete represented the squad.
+     * Non-hierarchical (tag-style), so editors type years comma-separated
+     * ("2025, 2026"). Powers the per-year Kadra archives.
+     */
+    register_taxonomy('sezon', 'athlete', [
+        'labels' => [
+            'name' => __('Sezony', 'mikroloty'),
+            'singular_name' => __('Sezon', 'mikroloty'),
+            'menu_name' => __('Sezony kadry', 'mikroloty'),
+            'add_new_item' => __('Dodaj rok', 'mikroloty'),
+            'new_item_name' => __('Rok (np. 2026)', 'mikroloty'),
+            'separate_items_with_commas' => __('Lata po przecinku, np. 2025, 2026', 'mikroloty'),
+        ],
+        'public' => true,
+        'hierarchical' => false,
+        'show_admin_column' => true,
+        'rewrite' => ['slug' => 'kadra-sezon', 'with_front' => false],
+        'show_in_rest' => true,
+    ]);
 }, 10);
+
+/**
+ * No individual athlete profile — redirect any single athlete URL to the
+ * Kadra archive.
+ */
+add_action('template_redirect', function () {
+    if (is_singular('athlete')) {
+        wp_safe_redirect(get_post_type_archive_link('athlete'), 301);
+        exit;
+    }
+});
 
 /**
  * CPT: Document — downloadable PDF files (regulations, rules, forms…).

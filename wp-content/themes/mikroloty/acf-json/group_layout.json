@@ -47,7 +47,7 @@
             "name": "footer_description",
             "type": "textarea",
             "rows": 3,
-            "default_value": "Komisja Mikrolotowa Aeroklubu Polskiego — organizacja sportu mikrolotowego w klasach ULM i paralotniowej."
+            "default_value": "Komisja Mikrolotowa Aeroklubu Polskiego — organizacja sportu mikrolotowego w Polsce."
         },
         {
             "key": "field_layout_footer_address",

@@ -6,7 +6,7 @@
         $heroImage = get_field('hero_image', 'option');
         $heroEyebrow = get_field('hero_eyebrow', 'option') ?: 'Sport lotniczy · klasa mikrolotowa';
         $heroTitle = get_field('hero_title', 'option') ?: 'Lataj, rywalizuj,<br>reprezentuj Polskę.';
-        $heroLead = get_field('hero_lead', 'option') ?: 'Oficjalny serwis Komisji Mikrolotowej Aeroklubu Polskiego — aktualności, kalendarz zawodów, wyniki i kadra narodowa klas ULM oraz paralotniowej.';
+        $heroLead = get_field('hero_lead', 'option') ?: 'Oficjalny serwis Komisji Mikrolotowej Aeroklubu Polskiego — aktualności, kalendarz zawodów, wyniki i kadra narodowa sportu mikrolotowego.';
         $btn1Label = get_field('hero_btn1_label', 'option') ?: 'Nadchodzące zawody';
         $btn1Link = get_field('hero_btn1_link', 'option');
         $btn2Label = get_field('hero_btn2_label', 'option') ?: 'Jak zacząć startować';
@@ -42,7 +42,13 @@
         ]);
 
         $newsQ = new WP_Query(['post_type' => 'post', 'posts_per_page' => 3]);
-        $athletesQ = new WP_Query(['post_type' => 'athlete', 'posts_per_page' => 6]);
+
+        $currentSeason = mikroloty_current_season_term();
+        $athArgs = ['post_type' => 'athlete', 'posts_per_page' => 6];
+        if ($currentSeason) {
+            $athArgs['tax_query'] = [['taxonomy' => 'sezon', 'field' => 'term_id', 'terms' => $currentSeason->term_id]];
+        }
+        $athletesQ = new WP_Query($athArgs);
 
         $linkUrl = fn ($link, $fallback = '#') => is_array($link) ? ($link['url'] ?? $fallback) : ($link ?: $fallback);
     @endphp
@@ -208,7 +214,7 @@
         <section id="squad" class="section-y bg-surface">
             <div class="container-site">
                 <x-section-head
-                    :eyebrow="'Sezon ' . date('Y')"
+                    :eyebrow="'Sezon ' . ($currentSeason?->name ?: date('Y'))"
                     title="Aktualna kadra narodowa"
                     :link="get_post_type_archive_link('athlete')"
                     link-label="Zobacz pełną kadrę" />

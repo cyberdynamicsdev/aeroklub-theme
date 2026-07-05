@@ -2,7 +2,6 @@
 
 @php
     $pid = $id ?: get_the_ID();
-    $class = get_field('aircraft_class', $pid);
     $status = mikroloty_competition_status(get_field('status', $pid));
     $date = mikroloty_date_range(get_field('start_date', $pid), get_field('end_date', $pid));
     $location = get_field('location', $pid);
@@ -13,9 +12,6 @@
     <a href="{{ $permalink }}" class="relative block aspect-video bg-placeholder overflow-hidden">
         @if (has_post_thumbnail($pid))
             {!! get_the_post_thumbnail($pid, 'large', ['class' => 'w-full h-full object-cover block']) !!}
-        @endif
-        @if ($class)
-            <span class="absolute top-0 left-0 bg-navy text-white uppercase font-bold" style="font-size:11px;letter-spacing:0.06em;padding:6px 12px;">{{ $class }}</span>
         @endif
         <span class="absolute top-0 right-0 uppercase font-bold {{ $status['classes'] }}" style="font-size:11px;letter-spacing:0.05em;padding:5px 11px;">{{ $status['label'] }}</span>
     </a>

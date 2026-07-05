@@ -31,21 +31,6 @@
             "placeholder": "np. Lotnisko Aleksandrowice, Bielsko-Biała"
         },
         {
-            "key": "field_competition_aircraft_class",
-            "label": "Klasa statku",
-            "name": "aircraft_class",
-            "type": "select",
-            "required": 1,
-            "choices": {
-                "ULM": "ULM",
-                "Paralotnia": "Paralotnia",
-                "Inne": "Inne"
-            },
-            "default_value": "ULM",
-            "return_format": "value",
-            "ui": 1
-        },
-        {
             "key": "field_competition_status",
             "label": "Status",
             "name": "status",

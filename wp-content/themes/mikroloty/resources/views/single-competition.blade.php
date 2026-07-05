@@ -2,8 +2,8 @@
 
 @section('content')
     @while (have_posts())
-        @php the_post(); @endphp        @php
-            $class = get_field('aircraft_class');
+        @php the_post(); @endphp
+        @php
             $status = mikroloty_competition_status(get_field('status'));
             $date = mikroloty_date_range(get_field('start_date'), get_field('end_date'));
             $location = get_field('location');
@@ -17,7 +17,6 @@
             <div class="flex flex-wrap gap-x-6 gap-y-2 mt-5 text-onnavy" style="font-size:14.5px;">
                 @if ($date)<span>◆ {{ $date }}</span>@endif
                 @if ($location)<span>◆ {{ $location }}</span>@endif
-                @if ($class)<span>◆ {{ $class }}</span>@endif
                 <span class="uppercase font-bold {{ $status['classes'] }}" style="font-size:11px;letter-spacing:0.05em;padding:3px 10px;">{{ $status['label'] }}</span>
             </div>
         </x-page-header>

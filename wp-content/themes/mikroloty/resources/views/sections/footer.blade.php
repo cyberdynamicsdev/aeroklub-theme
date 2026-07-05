@@ -1,5 +1,5 @@
 @php
-    $description = get_field('footer_description', 'option') ?: 'Komisja Mikrolotowa Aeroklubu Polskiego — organizacja sportu mikrolotowego w klasach ULM i paralotniowej.';
+    $description = get_field('footer_description', 'option') ?: 'Komisja Mikrolotowa Aeroklubu Polskiego — organizacja sportu mikrolotowego w Polsce.';
     $address = get_field('footer_address', 'option') ?: "Aeroklub Polski<br>ul. Wybrzeże Gdyńskie 4<br>01-531 Warszawa";
     $columns = get_field('footer_columns', 'option') ?: [];
     $bottomLinks = get_field('footer_bottom_links', 'option') ?: [];

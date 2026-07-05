@@ -107,6 +107,32 @@ if (! function_exists('mikroloty_competition_status')) {
     }
 }
 
+if (! function_exists('mikroloty_current_season_term')) {
+    /**
+     * The "current" squad season term: the current year if it exists,
+     * otherwise the most recent season. Null if no seasons defined.
+     */
+    function mikroloty_current_season_term(): ?\WP_Term
+    {
+        $year = date('Y');
+        $term = get_term_by('name', $year, 'sezon');
+
+        if ($term instanceof \WP_Term) {
+            return $term;
+        }
+
+        $terms = get_terms([
+            'taxonomy' => 'sezon',
+            'hide_empty' => true,
+            'orderby' => 'name',
+            'order' => 'DESC',
+            'number' => 1,
+        ]);
+
+        return (! is_wp_error($terms) && ! empty($terms)) ? $terms[0] : null;
+    }
+}
+
 if (! function_exists('mikroloty_reading_time')) {
     /**
      * Estimated reading time (minutes), ~200 words/min.

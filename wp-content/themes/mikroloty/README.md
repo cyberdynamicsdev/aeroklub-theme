@@ -74,21 +74,25 @@ Klucze typów są angielskie; slugi URL — polskie (SEO).
 | CPT (klucz) | Slug URL | Menu | Opis |
 |---|---|---|---|
 | `competition` | `/zawody/` | Zawody | Kalendarz i wyniki zawodów |
-| `athlete` | `/kadra/` | Kadra | Zawodnik kadry (1 wpis = 1 osoba, ma profil) |
+| `athlete` | `/kadra/` | Kadra | Zawodnik kadry (1 wpis = 1 osoba, bez podglądu) |
 | `document` | `/dokumenty/` | Dokumenty | Pliki PDF do pobrania |
 | `faq` | — | FAQ | Pytania i odpowiedzi |
 | `post` (natywne) | `/aktualnosci/` | Wpisy | Aktualności + kategorie |
 
 ### Pola ACF (nazwy pól = angielskie)
 
-- **competition**: `start_date`, `end_date`, `location`, `aircraft_class`
-  (ULM/Paralotnia/Inne), `status` (planned/ongoing/finished), `flyresult_id`,
+- **competition**: `start_date`, `end_date`, `location`,
+  `status` (planned/ongoing/finished), `flyresult_id`,
   `results` (repeater: place/pilot/score), `documents` (repeater: name/file).
-- **athlete**: `aircraft_class`, `squad` (Kadra A/Kadra B/Sztab), `role`, `club`,
-  `birth_year`, `license_no`, `stats` (repeater), `equipment` (repeater: name/value),
-  `results` (repeater: year/event/place). Portret = obraz wyróżniający; sylwetka = treść.
+- **athlete**: `role` (pilot/nawigator/trener) + **taksonomia `sezon`** — lata
+  reprezentacji, wpisywane po przecinku (np. „2025, 2026"). Nazwisko = tytuł,
+  zdjęcie = obraz wyróżniający. Bez podglądu pojedynczego zawodnika (single
+  przekierowuje na listę Kadry).
 - **document**: `file` (PDF), `category`, `year`, `description`.
 - **faq**: `group` (start/licenses/squad), `answer` (WYSIWYG). Pytanie = tytuł.
+
+**Kadra:** strona `/kadra/` pokazuje skład bieżącego roku + pasek linków do
+pozostałych sezonów. Widok konkretnego roku: `/kadra-sezon/{rok}/`.
 
 ### Strony opcji (ACF Pro → menu „Ustawienia motywu")
 - **Strona główna** (`settings-homepage`): hero (obraz, tytuł, lead, 2 przyciski),
@@ -109,10 +113,11 @@ Klucze typów są angielskie; slugi URL — polskie (SEO).
 | `front-page.blade.php` | Strona główna: hero+statystyki, zawody, aktualności, CTA, galeria, kadra |
 | `index.blade.php` | Archiwum aktualności + filtr kategorii + paginacja |
 | `single.blade.php` | Wpis: nagłówek, zdjęcie wiodące, treść, udostępnij, powiązane |
-| `archive-competition.blade.php` | Kalendarz zawodów + filtr klas (Alpine) |
+| `archive-competition.blade.php` | Kalendarz zawodów (lista) |
 | `single-competition.blade.php` | Zawody: meta, treść, tabela wyników, dokumenty |
-| `archive-athlete.blade.php` | Kadra: grupy ULM/paralotnia + sekcja Sztab |
-| `single-athlete.blade.php` | Profil zawodnika: nagłówek, statystyki, sylwetka+sprzęt, wyniki |
+| `archive-athlete.blade.php` | Kadra bieżącego roku + nawigacja lat |
+| `taxonomy-sezon.blade.php` | Kadra konkretnego roku |
+| `partials/kadra-list.blade.php` | Wspólna lista kadry (nawigacja lat + siatka) |
 | `page.blade.php` | Strona statyczna (O komisji, Jak zacząć) — nagłówek + treść |
 | `template-documents.blade.php` | Szablon „Dokumenty": grupy wg kategorii + wyszukiwarka |
 | `template-faq.blade.php` | Szablon „FAQ": grupy + rozwijane `<details>` |
