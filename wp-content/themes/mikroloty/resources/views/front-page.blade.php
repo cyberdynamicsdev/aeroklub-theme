@@ -93,11 +93,10 @@
                     :link="get_post_type_archive_link('competition')"
                     link-label="Pełny kalendarz" />
                 <div class="grid gap-6" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
-                    @while ($competitionsQ->have_posts()) @php($competitionsQ->the_post())
-                        <x-competition-card />
+                    @while ($competitionsQ->have_posts())
+                        @php $competitionsQ->the_post(); @endphp                        <x-competition-card />
                     @endwhile
-                    @php(wp_reset_postdata())
-                </div>
+                    @php wp_reset_postdata(); @endphp                </div>
             </div>
         </section>
     @endif
@@ -128,8 +127,7 @@
                             <span class="absolute left-0 bottom-0 bg-navy text-white font-semibold" style="font-size:12px;padding:7px 13px;">{{ get_the_date('d.m.Y', $featured) }}</span>
                         </a>
                         <div class="flex-1 flex flex-col" style="padding:26px 28px 28px;">
-                            @php($featuredCat = get_the_category($featured->ID))
-                            @if ($featuredCat)
+                            @php $featuredCat = get_the_category($featured->ID); @endphp                            @if ($featuredCat)
                                 <span class="uppercase font-bold text-gold-dark mb-3" style="font-size:11px;letter-spacing:0.1em;">{{ $featuredCat[0]->name }}</span>
                             @endif
                             <h3 class="font-heading font-bold text-ink m-0 mb-3" style="font-size:clamp(22px,2.4vw,27px);line-height:1.2;">
@@ -145,8 +143,7 @@
                     {{-- Side list --}}
                     <div class="flex flex-col gap-[18px]">
                         @foreach ($side as $post)
-                            @php(setup_postdata($post))
-                            <article class="card flex overflow-hidden">
+                            @php setup_postdata($post); @endphp                            <article class="card flex overflow-hidden">
                                 <a href="{{ get_permalink() }}" class="flex-none bg-placeholder overflow-hidden" style="flex-basis:130px;">
                                     @if (has_post_thumbnail())
                                         {!! get_the_post_thumbnail(get_the_ID(), 'medium', ['class' => 'w-full h-full object-cover block']) !!}
@@ -154,8 +151,7 @@
                                 </a>
                                 <div class="flex-1" style="padding:18px 20px;">
                                     <div class="flex gap-3 items-center mb-2">
-                                        @php($sideCat = get_the_category())
-                                        @if ($sideCat)
+                                        @php $sideCat = get_the_category(); @endphp                                        @if ($sideCat)
                                             <span class="uppercase font-bold text-gold-dark" style="font-size:10.5px;letter-spacing:0.1em;">{{ $sideCat[0]->name }}</span>
                                         @endif
                                         <span class="text-ink-5" style="font-size:12px;">{{ get_the_date('d.m.Y') }}</span>
@@ -166,8 +162,7 @@
                                 </div>
                             </article>
                         @endforeach
-                        @php(wp_reset_postdata())
-                        <a href="{{ $newsUrl }}" class="border border-line-2 text-center uppercase font-bold text-navy hover:bg-[#e9ecf2]" style="padding:16px;font-size:13px;letter-spacing:0.04em;">Wczytaj więcej aktualności</a>
+                        @php wp_reset_postdata(); @endphp                        <a href="{{ $newsUrl }}" class="border border-line-2 text-center uppercase font-bold text-navy hover:bg-[#e9ecf2]" style="padding:16px;font-size:13px;letter-spacing:0.04em;">Wczytaj więcej aktualności</a>
                     </div>
                 </div>
             </div>
@@ -218,11 +213,10 @@
                     :link="get_post_type_archive_link('athlete')"
                     link-label="Zobacz pełną kadrę" />
                 <div class="grid gap-5" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr));">
-                    @while ($athletesQ->have_posts()) @php($athletesQ->the_post())
-                        <x-athlete-card />
+                    @while ($athletesQ->have_posts())
+                        @php $athletesQ->the_post(); @endphp                        <x-athlete-card />
                     @endwhile
-                    @php(wp_reset_postdata())
-                </div>
+                    @php wp_reset_postdata(); @endphp                </div>
             </div>
         </section>
     @endif

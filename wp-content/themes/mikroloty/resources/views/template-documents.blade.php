@@ -49,8 +49,8 @@
                                 <h2 class="font-heading font-extrabold text-navy m-0" style="font-size:clamp(20px,2.6vw,26px);">{{ $label }}</h2>
                                 <span class="text-ink-5" style="font-size:13px;">{{ $q->found_posts }} {{ _n('dokument', 'dokumentów', $q->found_posts, 'mikroloty') }}</span>
                             </div>
-                            @while ($q->have_posts()) @php($q->the_post())
-                                @php
+                            @while ($q->have_posts())
+                                @php $q->the_post(); @endphp                                @php
                                     $file = get_field('file');
                                     $description = get_field('description');
                                     $format = $file ? strtoupper(pathinfo($file['filename'], PATHINFO_EXTENSION)) : 'PDF';
@@ -68,8 +68,7 @@
                                     <span class="uppercase font-bold text-navy inline-flex items-center gap-2" style="flex:0 0 auto;font-size:12.5px;letter-spacing:0.04em;">Pobierz <span class="text-gold" style="font-size:15px;">↓</span></span>
                                 </a>
                             @endwhile
-                            @php(wp_reset_postdata())
-                        </div>
+                            @php wp_reset_postdata(); @endphp                        </div>
                     @endif
                 @endforeach
             </div>

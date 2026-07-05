@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    @while (have_posts()) @php(the_post())
-        @php
+    @while (have_posts())
+        @php the_post(); @endphp        @php
             $categories = get_the_category();
             $tag = $categories ? $categories[0]->name : '';
             $readingTime = mikroloty_reading_time(get_the_content());
@@ -48,8 +48,7 @@
                     <p class="text-navy font-medium m-0 mb-7" style="font-size:19px;line-height:1.6;">{{ get_the_excerpt() }}</p>
                 @endif
                 <div class="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-navy prose-a:text-navy prose-img:shadow-sm">
-                    @php(the_content())
-                </div>
+                    @php the_content(); @endphp                </div>
 
                 {{-- Back / share --}}
                 <div class="flex flex-wrap gap-4 items-center justify-between mt-11 pt-[26px] border-t border-line">
@@ -85,11 +84,10 @@
                         <h2 class="font-heading font-extrabold text-navy m-0" style="font-size:clamp(22px,3vw,30px);">Powiązane aktualności</h2>
                     </div>
                     <div class="grid gap-[26px]" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
-                        @while ($relatedQ->have_posts()) @php($relatedQ->the_post())
-                            <x-news-card />
+                        @while ($relatedQ->have_posts())
+                            @php $relatedQ->the_post(); @endphp                            <x-news-card />
                         @endwhile
-                        @php(wp_reset_postdata())
-                    </div>
+                        @php wp_reset_postdata(); @endphp                    </div>
                 </div>
             </section>
         @endif

@@ -42,9 +42,8 @@
                         <span class="text-ink-3" style="font-size:13.5px;">{{ $q->found_posts }} {{ _n('zawodnik', 'zawodników', $q->found_posts, 'mikroloty') }}</span>
                     </div>
                     <div class="grid gap-[22px]" style="grid-template-columns:repeat(auto-fill,minmax(210px,1fr));">
-                        @while ($q->have_posts()) @php($q->the_post())
-                            @php($squad = get_field('squad'))
-                            <a href="{{ get_permalink() }}" class="card block overflow-hidden">
+                        @while ($q->have_posts())
+                            @php $q->the_post(); @endphp                            @php $squad = get_field('squad'); @endphp                            <a href="{{ get_permalink() }}" class="card block overflow-hidden">
                                 <span class="relative flex items-end justify-center aspect-[4/5] bg-placeholder overflow-hidden">
                                     @if (has_post_thumbnail())
                                         {!! get_the_post_thumbnail(get_the_ID(), 'medium_large', ['class' => 'absolute inset-0 w-full h-full object-cover']) !!}
@@ -61,8 +60,7 @@
                                 </span>
                             </a>
                         @endwhile
-                        @php(wp_reset_postdata())
-                    </div>
+                        @php wp_reset_postdata(); @endphp                    </div>
                 </div>
             </section>
         @endif
@@ -77,14 +75,13 @@
                     <h2 class="font-heading font-extrabold m-0" style="font-size:clamp(24px,3.4vw,36px);">Sztab szkoleniowy</h2>
                 </div>
                 <div class="grid gap-6" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
-                    @while ($staffQ->have_posts()) @php($staffQ->the_post())
-                        <div style="border:1px solid rgba(255,255,255,0.16);padding:24px 26px;">
+                    @while ($staffQ->have_posts())
+                        @php $staffQ->the_post(); @endphp                        <div style="border:1px solid rgba(255,255,255,0.16);padding:24px 26px;">
                             <div class="uppercase font-bold text-gold mb-2" style="font-size:11px;letter-spacing:0.08em;">{{ get_field('role') ?: 'Sztab' }}</div>
                             <h3 class="font-heading font-bold m-0" style="font-size:18px;">{{ get_the_title() }}</h3>
                         </div>
                     @endwhile
-                    @php(wp_reset_postdata())
-                </div>
+                    @php wp_reset_postdata(); @endphp                </div>
             </div>
         </section>
     @endif

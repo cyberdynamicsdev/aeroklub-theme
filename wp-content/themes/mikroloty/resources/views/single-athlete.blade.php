@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    @while (have_posts()) @php(the_post())
-        @php
+    @while (have_posts())
+        @php the_post(); @endphp        @php
             $class = get_field('aircraft_class');
             $squad = get_field('squad');
             $role = get_field('role');
@@ -78,8 +78,7 @@
                         <h2 class="font-heading font-extrabold text-navy m-0 mb-4 pb-3.5 border-b-2 border-navy" style="font-size:24px;">Sylwetka</h2>
                         @if (get_the_content())
                             <div class="prose max-w-none prose-p:text-ink-2 prose-headings:font-heading prose-headings:text-navy">
-                                @php(the_content())
-                            </div>
+                                @php the_content(); @endphp                            </div>
                         @endif
 
                         @if ($equipment)

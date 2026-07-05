@@ -38,8 +38,8 @@
         <div class="container-site">
             @if (have_posts())
                 <div class="grid gap-[26px]" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
-                    @while (have_posts()) @php(the_post())
-                        <x-news-card />
+                    @while (have_posts())
+                        @php the_post(); @endphp                        <x-news-card />
                     @endwhile
                 </div>
                 <div class="mt-12">{!! paginate_links(['type' => 'list', 'prev_text' => '←', 'next_text' => '→']) !!}</div>

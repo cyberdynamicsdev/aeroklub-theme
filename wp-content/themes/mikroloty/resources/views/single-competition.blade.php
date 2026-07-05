@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    @while (have_posts()) @php(the_post())
-        @php
+    @while (have_posts())
+        @php the_post(); @endphp        @php
             $class = get_field('aircraft_class');
             $status = mikroloty_competition_status(get_field('status'));
             $date = mikroloty_date_range(get_field('start_date'), get_field('end_date'));
@@ -35,8 +35,7 @@
 
                 @if (get_the_content())
                     <div class="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-navy prose-a:text-navy">
-                        @php(the_content())
-                    </div>
+                        @php the_content(); @endphp                    </div>
                 @endif
 
                 {{-- Results --}}

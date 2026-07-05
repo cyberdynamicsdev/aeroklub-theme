@@ -40,8 +40,8 @@
                             <h2 class="font-heading font-extrabold text-navy m-0" style="font-size:clamp(20px,2.6vw,26px);">{{ $label }}</h2>
                         </div>
                         <div class="border-t border-line">
-                            @while ($q->have_posts()) @php($q->the_post())
-                                <details class="border-b border-line">
+                            @while ($q->have_posts())
+                                @php $q->the_post(); @endphp                                <details class="border-b border-line">
                                     <summary class="cursor-pointer flex justify-between gap-5 items-center font-heading font-bold text-ink list-none" style="padding:20px 4px;font-size:17px;">
                                         {{ get_the_title() }}
                                         <span class="faq-toggle flex-shrink-0 flex items-center justify-center border border-line-2 text-navy" style="width:26px;height:26px;font-size:18px;"></span>
@@ -53,8 +53,7 @@
                             @endwhile
                         </div>
                     </div>
-                    @php(wp_reset_postdata())
-                @endif
+                    @php wp_reset_postdata(); @endphp                @endif
             @endforeach
 
             {{-- Didn't find an answer? --}}

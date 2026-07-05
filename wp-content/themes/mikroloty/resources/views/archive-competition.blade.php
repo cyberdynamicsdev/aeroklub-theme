@@ -27,8 +27,8 @@
             <div class="container-site">
                 @if (have_posts())
                     <div class="flex flex-col border-t border-line">
-                        @while (have_posts()) @php(the_post())
-                            @php
+                        @while (have_posts())
+                            @php the_post(); @endphp                            @php
                                 $class = get_field('aircraft_class');
                                 $status = mikroloty_competition_status(get_field('status'));
                                 $start = get_field('start_date');
