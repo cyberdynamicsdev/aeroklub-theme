@@ -3,20 +3,20 @@
 @section('content')
     @while (have_posts()) @php(the_post())
         @php
-            $kat = get_the_category();
-            $tag = $kat ? $kat[0]->name : '';
-            $czas = mikroloty_czas_czytania(get_the_content());
+            $categories = get_the_category();
+            $tag = $categories ? $categories[0]->name : '';
+            $readingTime = mikroloty_reading_time(get_the_content());
             $postsPage = get_option('page_for_posts');
-            $archUrl = $postsPage ? get_permalink($postsPage) : home_url('/');
+            $archiveUrl = $postsPage ? get_permalink($postsPage) : home_url('/');
         @endphp
 
-        {{-- Nagłówek --}}
+        {{-- Header --}}
         <section class="bg-navy text-white">
             <div class="container-site" style="max-width:820px;padding-block:clamp(40px,6vw,64px);">
                 <nav class="mb-[22px] text-onnavy-2" style="font-size:12.5px;">
                     <a href="{{ home_url('/') }}" class="text-onnavy-2 hover:text-white">Home</a>
                     <span class="mx-2">/</span>
-                    <a href="{{ $archUrl }}" class="text-onnavy-2 hover:text-white">Aktualności</a>
+                    <a href="{{ $archiveUrl }}" class="text-onnavy-2 hover:text-white">Aktualności</a>
                     <span class="mx-2">/</span>
                     <span class="text-white">Wpis</span>
                 </nav>
@@ -27,12 +27,12 @@
                 <div class="flex flex-wrap gap-x-[22px] gap-y-2" style="font-size:13.5px;color:#aab6d2;">
                     <span>{{ get_the_date('j F Y') }}</span><span>·</span>
                     <span>{{ get_the_author() ?: 'Redakcja mikroloty.com' }}</span><span>·</span>
-                    <span>{{ $czas }} min czytania</span>
+                    <span>{{ $readingTime }} min czytania</span>
                 </div>
             </div>
         </section>
 
-        {{-- Zdjęcie wiodące --}}
+        {{-- Lead image --}}
         @if (has_post_thumbnail())
             <div class="bg-navy">
                 <div class="container-site" style="max-width:1040px;">
@@ -41,7 +41,7 @@
             </div>
         @endif
 
-        {{-- Treść --}}
+        {{-- Content --}}
         <section class="bg-white" style="padding:clamp(20px,3vw,32px) 0 clamp(52px,7vw,80px);">
             <div class="container-site" style="max-width:720px;">
                 @if (has_excerpt())
@@ -51,30 +51,30 @@
                     @php(the_content())
                 </div>
 
-                {{-- Wróć / udostępnij --}}
+                {{-- Back / share --}}
                 <div class="flex flex-wrap gap-4 items-center justify-between mt-11 pt-[26px] border-t border-line">
-                    <a href="{{ $archUrl }}" class="uppercase font-bold text-navy" style="font-size:13px;letter-spacing:0.04em;">← Wróć do aktualności</a>
+                    <a href="{{ $archiveUrl }}" class="uppercase font-bold text-navy" style="font-size:13px;letter-spacing:0.04em;">← Wróć do aktualności</a>
                     <div class="flex gap-2.5 items-center">
                         <span class="text-ink-5" style="font-size:13px;">Udostępnij:</span>
                         @php
-                            $url = urlencode(get_permalink());
-                            $tytulShare = urlencode(get_the_title());
+                            $shareUrl = urlencode(get_permalink());
+                            $shareTitle = urlencode(get_the_title());
                         @endphp
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" target="_blank" rel="noopener" class="flex items-center justify-center border border-line-2 text-navy font-bold hover:border-navy" style="width:36px;height:36px;font-size:12px;">FB</a>
-                        <a href="https://twitter.com/intent/tweet?url={{ $url }}&text={{ $tytulShare }}" target="_blank" rel="noopener" class="flex items-center justify-center border border-line-2 text-navy font-bold hover:border-navy" style="width:36px;height:36px;font-size:12px;">X</a>
-                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ $url }}" target="_blank" rel="noopener" class="flex items-center justify-center border border-line-2 text-navy font-bold hover:border-navy" style="width:36px;height:36px;font-size:12px;">in</a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ $shareUrl }}" target="_blank" rel="noopener" class="flex items-center justify-center border border-line-2 text-navy font-bold hover:border-navy" style="width:36px;height:36px;font-size:12px;">FB</a>
+                        <a href="https://twitter.com/intent/tweet?url={{ $shareUrl }}&text={{ $shareTitle }}" target="_blank" rel="noopener" class="flex items-center justify-center border border-line-2 text-navy font-bold hover:border-navy" style="width:36px;height:36px;font-size:12px;">X</a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ $shareUrl }}" target="_blank" rel="noopener" class="flex items-center justify-center border border-line-2 text-navy font-bold hover:border-navy" style="width:36px;height:36px;font-size:12px;">in</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        {{-- Powiązane --}}
+        {{-- Related --}}
         @php
             $relatedQ = new WP_Query([
                 'post_type' => 'post',
                 'posts_per_page' => 3,
                 'post__not_in' => [get_the_ID()],
-                'category__in' => $kat ? [$kat[0]->term_id] : [],
+                'category__in' => $categories ? [$categories[0]->term_id] : [],
                 'ignore_sticky_posts' => true,
             ]);
         @endphp
@@ -86,7 +86,7 @@
                     </div>
                     <div class="grid gap-[26px]" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
                         @while ($relatedQ->have_posts()) @php($relatedQ->the_post())
-                            <x-aktualnosc-card />
+                            <x-news-card />
                         @endwhile
                         @php(wp_reset_postdata())
                     </div>

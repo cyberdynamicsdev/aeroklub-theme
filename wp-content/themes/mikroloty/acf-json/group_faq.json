@@ -3,15 +3,15 @@
     "title": "FAQ — pytanie",
     "fields": [
         {
-            "key": "field_faq_grupa",
+            "key": "field_faq_group",
             "label": "Grupa",
-            "name": "grupa",
+            "name": "group",
             "type": "select",
             "required": 1,
             "choices": {
                 "start": "Start w zawodach",
-                "licencje": "Licencje i przepisy",
-                "kadra": "Kadra"
+                "licenses": "Licencje i przepisy",
+                "squad": "Kadra"
             },
             "default_value": "start",
             "return_format": "value",
@@ -19,9 +19,9 @@
             "instructions": "Pytania są grupowane sekcjami na stronie FAQ."
         },
         {
-            "key": "field_faq_odpowiedz",
+            "key": "field_faq_answer",
             "label": "Odpowiedź",
-            "name": "odpowiedz",
+            "name": "answer",
             "type": "wysiwyg",
             "required": 1,
             "tabs": "visual",

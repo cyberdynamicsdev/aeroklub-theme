@@ -1,59 +1,59 @@
 <?php
 
 /**
- * Obsługa formularza kontaktowego (natywnie, bez wtyczki).
+ * Contact form handling (native, no plugin).
  *
- * Formularz POST-uje do admin-post.php z akcją `mikroloty_kontakt`.
- * Zabezpieczenia: nonce + honeypot. Wiadomość trafia mailem na adres
- * z opcji „Kontakt" (kontakt_email) lub adres administratora.
+ * The form POSTs to admin-post.php with the `mikroloty_contact` action.
+ * Protection: nonce + honeypot. The message is emailed to the address from
+ * the "Kontakt" options page (contact_email) or the site admin address.
  */
 
 namespace App;
 
-add_action('admin_post_nopriv_mikroloty_kontakt', __NAMESPACE__.'\\handle_kontakt');
-add_action('admin_post_mikroloty_kontakt', __NAMESPACE__.'\\handle_kontakt');
+add_action('admin_post_nopriv_mikroloty_contact', __NAMESPACE__.'\\handle_contact');
+add_action('admin_post_mikroloty_contact', __NAMESPACE__.'\\handle_contact');
 
-function handle_kontakt(): void
+function handle_contact(): void
 {
     $referer = wp_get_referer() ?: home_url('/');
 
-    // Honeypot — ukryte pole wypełniane przez boty.
-    if (! empty($_POST['strona_www'])) {
-        wp_safe_redirect(add_query_arg('kontakt', 'ok', $referer));
+    // Honeypot — a hidden field filled in only by bots.
+    if (! empty($_POST['website'])) {
+        wp_safe_redirect(add_query_arg('contact', 'sent', $referer));
         exit;
     }
 
-    if (! isset($_POST['_kontakt_nonce']) || ! wp_verify_nonce($_POST['_kontakt_nonce'], 'mikroloty_kontakt')) {
-        wp_safe_redirect(add_query_arg('kontakt', 'blad', $referer));
+    if (! isset($_POST['_contact_nonce']) || ! wp_verify_nonce($_POST['_contact_nonce'], 'mikroloty_contact')) {
+        wp_safe_redirect(add_query_arg('contact', 'error', $referer));
         exit;
     }
 
-    $imie = sanitize_text_field($_POST['imie'] ?? '');
+    $name = sanitize_text_field($_POST['name'] ?? '');
     $email = sanitize_email($_POST['email'] ?? '');
-    $temat = sanitize_text_field($_POST['temat'] ?? '');
-    $wiadomosc = sanitize_textarea_field($_POST['wiadomosc'] ?? '');
-    $zgoda = ! empty($_POST['zgoda']);
+    $subject = sanitize_text_field($_POST['subject'] ?? '');
+    $message = sanitize_textarea_field($_POST['message'] ?? '');
+    $consent = ! empty($_POST['consent']);
 
-    if (! $imie || ! is_email($email) || ! $wiadomosc || ! $zgoda) {
-        wp_safe_redirect(add_query_arg('kontakt', 'blad', $referer));
+    if (! $name || ! is_email($email) || ! $message || ! $consent) {
+        wp_safe_redirect(add_query_arg('contact', 'error', $referer));
         exit;
     }
 
-    $do = get_field('kontakt_email', 'option') ?: get_option('admin_email');
+    $to = get_field('contact_email', 'option') ?: get_option('admin_email');
 
-    $tresc = sprintf(
+    $body = sprintf(
         "Nowa wiadomość z formularza kontaktowego mikroloty.com\n\n".
         "Imię i nazwisko: %s\nE-mail: %s\nTemat: %s\n\nWiadomość:\n%s\n",
-        $imie, $email, $temat ?: '—', $wiadomosc
+        $name, $email, $subject ?: '—', $message
     );
 
     $headers = [
         'Content-Type: text/plain; charset=UTF-8',
-        'Reply-To: '.$imie.' <'.$email.'>',
+        'Reply-To: '.$name.' <'.$email.'>',
     ];
 
-    $wyslano = wp_mail($do, '[mikroloty.com] '.($temat ?: 'Wiadomość z formularza'), $tresc, $headers);
+    $sent = wp_mail($to, '[mikroloty.com] '.($subject ?: 'Wiadomość z formularza'), $body, $headers);
 
-    wp_safe_redirect(add_query_arg('kontakt', $wyslano ? 'ok' : 'blad', $referer));
+    wp_safe_redirect(add_query_arg('contact', $sent ? 'sent' : 'error', $referer));
     exit;
 }

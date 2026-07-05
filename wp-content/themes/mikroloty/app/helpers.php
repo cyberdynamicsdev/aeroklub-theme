@@ -1,48 +1,48 @@
 <?php
 
 /**
- * Funkcje pomocnicze motywu (globalny namespace — wygodne wywołanie w Blade).
+ * Theme helper functions (global namespace — convenient to call from Blade).
  */
 
-if (! function_exists('mikroloty_miesiac_dopelniacz')) {
+if (! function_exists('mikroloty_month_genitive')) {
     /**
-     * Polska nazwa miesiąca w dopełniaczu (np. 7 → „lipca").
-     * Niezależne od zainstalowanej lokalizacji WP — gwarantuje poprawną gramatykę.
+     * Polish month name in the genitive case (e.g. 7 → "lipca").
+     * Independent of the installed WP locale — guarantees correct grammar.
      */
-    function mikroloty_miesiac_dopelniacz(int $m): string
+    function mikroloty_month_genitive(int $m): string
     {
-        $miesiace = [
+        $months = [
             1 => 'stycznia', 2 => 'lutego', 3 => 'marca', 4 => 'kwietnia',
             5 => 'maja', 6 => 'czerwca', 7 => 'lipca', 8 => 'sierpnia',
             9 => 'września', 10 => 'października', 11 => 'listopada', 12 => 'grudnia',
         ];
 
-        return $miesiace[$m] ?? '';
+        return $months[$m] ?? '';
     }
 }
 
-if (! function_exists('mikroloty_miesiac_skrot')) {
+if (! function_exists('mikroloty_month_abbr')) {
     /**
-     * Trzyliterowy polski skrót miesiąca (1 → „Sty", 7 → „Lip").
+     * Three-letter Polish month abbreviation (1 → "Sty", 7 → "Lip").
      */
-    function mikroloty_miesiac_skrot(int $m): string
+    function mikroloty_month_abbr(int $m): string
     {
-        $skroty = [
+        $abbr = [
             1 => 'Sty', 2 => 'Lut', 3 => 'Mar', 4 => 'Kwi',
             5 => 'Maj', 6 => 'Cze', 7 => 'Lip', 8 => 'Sie',
             9 => 'Wrz', 10 => 'Paź', 11 => 'Lis', 12 => 'Gru',
         ];
 
-        return $skroty[$m] ?? '';
+        return $abbr[$m] ?? '';
     }
 }
 
-if (! function_exists('mikroloty_zakres_dat')) {
+if (! function_exists('mikroloty_date_range')) {
     /**
-     * Formatuje zakres dat zawodów z pól ACF (format Ymd).
-     * Przykłady: „18–20 lipca 2026", „28 czerwca – 2 lipca 2026", „5 września 2026".
+     * Formats a competition date range from ACF fields (Ymd format).
+     * Examples: "18–20 lipca 2026", "28 czerwca – 2 lipca 2026", "5 września 2026".
      */
-    function mikroloty_zakres_dat($start, $koniec = null): string
+    function mikroloty_date_range($start, $end = null): string
     {
         if (! $start) {
             return '';
@@ -53,49 +53,49 @@ if (! function_exists('mikroloty_zakres_dat')) {
             return '';
         }
 
-        $de = $koniec ? \DateTime::createFromFormat('Ymd', (string) $koniec) : null;
+        $de = $end ? \DateTime::createFromFormat('Ymd', (string) $end) : null;
 
-        $dzien = fn ($d) => (int) $d->format('j');
-        $mies = fn ($d) => mikroloty_miesiac_dopelniacz((int) $d->format('n'));
-        $rok = fn ($d) => $d->format('Y');
+        $day = fn ($d) => (int) $d->format('j');
+        $month = fn ($d) => mikroloty_month_genitive((int) $d->format('n'));
+        $year = fn ($d) => $d->format('Y');
 
         if (! $de || $ds == $de) {
-            return sprintf('%d %s %s', $dzien($ds), $mies($ds), $rok($ds));
+            return sprintf('%d %s %s', $day($ds), $month($ds), $year($ds));
         }
 
-        // Ten sam miesiąc i rok: „18–20 lipca 2026"
+        // Same month and year: "18–20 lipca 2026"
         if ($ds->format('Ym') === $de->format('Ym')) {
-            return sprintf('%d–%d %s %s', $dzien($ds), $dzien($de), $mies($de), $rok($de));
+            return sprintf('%d–%d %s %s', $day($ds), $day($de), $month($de), $year($de));
         }
 
-        // Ten sam rok, różne miesiące: „28 czerwca – 2 lipca 2026"
+        // Same year, different months: "28 czerwca – 2 lipca 2026"
         if ($ds->format('Y') === $de->format('Y')) {
-            return sprintf('%d %s – %d %s %s', $dzien($ds), $mies($ds), $dzien($de), $mies($de), $rok($de));
+            return sprintf('%d %s – %d %s %s', $day($ds), $month($ds), $day($de), $month($de), $year($de));
         }
 
-        // Różne lata
+        // Different years
         return sprintf(
             '%d %s %s – %d %s %s',
-            $dzien($ds), $mies($ds), $rok($ds),
-            $dzien($de), $mies($de), $rok($de)
+            $day($ds), $month($ds), $year($ds),
+            $day($de), $month($de), $year($de)
         );
     }
 }
 
-if (! function_exists('mikroloty_status_zawodow')) {
+if (! function_exists('mikroloty_competition_status')) {
     /**
-     * Zwraca etykietę i klasy pigułki statusu zawodów.
+     * Returns the label and pill classes for a competition status.
      *
      * @return array{label: string, classes: string}
      */
-    function mikroloty_status_zawodow(?string $status): array
+    function mikroloty_competition_status(?string $status): array
     {
         return match ($status) {
-            'w_trakcie' => [
+            'ongoing' => [
                 'label' => __('W trakcie', 'mikroloty'),
                 'classes' => 'bg-[var(--color-status-live)] text-white',
             ],
-            'zakonczone' => [
+            'finished' => [
                 'label' => __('Zakończone', 'mikroloty'),
                 'classes' => 'bg-navy text-onnavy-2',
             ],
@@ -107,14 +107,14 @@ if (! function_exists('mikroloty_status_zawodow')) {
     }
 }
 
-if (! function_exists('mikroloty_czas_czytania')) {
+if (! function_exists('mikroloty_reading_time')) {
     /**
-     * Szacowany czas czytania wpisu (min), ~200 słów/min.
+     * Estimated reading time (minutes), ~200 words/min.
      */
-    function mikroloty_czas_czytania(?string $tresc): int
+    function mikroloty_reading_time(?string $content): int
     {
-        $slowa = str_word_count(wp_strip_all_tags((string) $tresc));
+        $words = str_word_count(wp_strip_all_tags((string) $content));
 
-        return max(1, (int) ceil($slowa / 200));
+        return max(1, (int) ceil($words / 200));
     }
 }

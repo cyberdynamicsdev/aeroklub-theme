@@ -9,9 +9,9 @@
             "placement": "top"
         },
         {
-            "key": "field_home_hero_obraz",
+            "key": "field_home_hero_image",
             "label": "Zdjęcie tła",
-            "name": "hero_obraz",
+            "name": "hero_image",
             "type": "image",
             "return_format": "array",
             "preview_size": "medium",
@@ -25,9 +25,9 @@
             "default_value": "Sport lotniczy · klasa mikrolotowa"
         },
         {
-            "key": "field_home_hero_tytul",
+            "key": "field_home_hero_title",
             "label": "Tytuł",
-            "name": "hero_tytul",
+            "name": "hero_title",
             "type": "textarea",
             "rows": 2,
             "new_lines": "br",
@@ -69,9 +69,9 @@
             "return_format": "array"
         },
         {
-            "key": "field_home_hero_podpis",
+            "key": "field_home_hero_caption",
             "label": "Podpis zdjęcia",
-            "name": "hero_podpis",
+            "name": "hero_caption",
             "type": "text"
         },
         {
@@ -108,15 +108,15 @@
             ]
         },
         {
-            "key": "field_home_tab_galeria",
+            "key": "field_home_tab_gallery",
             "label": "Galeria",
             "type": "tab",
             "placement": "top"
         },
         {
-            "key": "field_home_galeria",
+            "key": "field_home_gallery",
             "label": "Galeria zawodów",
-            "name": "galeria",
+            "name": "gallery",
             "type": "gallery",
             "instructions": "Pierwsze zdjęcie wyświetla się jako duże (2×2). Sekcja ukrywa się, gdy galeria jest pusta.",
             "return_format": "array",
@@ -124,9 +124,9 @@
             "preview_size": "medium"
         },
         {
-            "key": "field_home_galeria_link",
+            "key": "field_home_gallery_link",
             "label": "Link „Wszystkie zdjęcia\"",
-            "name": "galeria_link",
+            "name": "gallery_link",
             "type": "link",
             "return_format": "array"
         },
@@ -144,15 +144,15 @@
             "default_value": "Dołącz do sportu"
         },
         {
-            "key": "field_home_cta_tytul",
+            "key": "field_home_cta_title",
             "label": "Tytuł",
-            "name": "cta_tytul",
+            "name": "cta_title",
             "type": "text"
         },
         {
-            "key": "field_home_cta_tekst",
+            "key": "field_home_cta_text",
             "label": "Tekst",
-            "name": "cta_tekst",
+            "name": "cta_text",
             "type": "textarea",
             "rows": 3
         },
@@ -176,7 +176,7 @@
             {
                 "param": "options_page",
                 "operator": "==",
-                "value": "ustawienia-strona-glowna"
+                "value": "settings-homepage"
             }
         ]
     ],

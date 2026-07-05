@@ -2,10 +2,10 @@
 
 @php
     $pid = $id ?: get_the_ID();
-    $klasa = get_field('klasa', $pid);
-    $grupa = get_field('grupa', $pid);
-    $rola = get_field('rola', $pid);
-    $opis = trim(implode(' · ', array_filter([$grupa, $rola])));
+    $class = get_field('aircraft_class', $pid);
+    $squad = get_field('squad', $pid);
+    $role = get_field('role', $pid);
+    $caption = trim(implode(' · ', array_filter([$squad, $role])));
     $permalink = get_permalink($pid);
 @endphp
 
@@ -19,16 +19,16 @@
                 <path d="M4 21 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 21 Z" />
             </svg>
         @endif
-        @if ($klasa)
-            <span class="absolute top-0 left-0 bg-gold text-navy uppercase font-bold" style="font-size:10.5px;letter-spacing:0.06em;padding:5px 10px;">{{ $klasa }}</span>
+        @if ($class)
+            <span class="absolute top-0 left-0 bg-gold text-navy uppercase font-bold" style="font-size:10.5px;letter-spacing:0.06em;padding:5px 10px;">{{ $class }}</span>
         @endif
     </a>
     <div class="border-t-2 border-navy" style="padding:16px 18px 18px;">
         <h3 class="font-heading font-bold text-ink m-0 mb-[3px]" style="font-size:16.5px;">
             <a href="{{ $permalink }}" class="hover:text-navy">{{ get_the_title($pid) }}</a>
         </h3>
-        @if ($opis)
-            <div class="text-ink-4" style="font-size:12.5px;">{{ $opis }}</div>
+        @if ($caption)
+            <div class="text-ink-4" style="font-size:12.5px;">{{ $caption }}</div>
         @endif
     </div>
 </article>

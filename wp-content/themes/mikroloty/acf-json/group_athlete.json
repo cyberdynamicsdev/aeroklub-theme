@@ -1,11 +1,11 @@
 {
-    "key": "group_zawodnik",
+    "key": "group_athlete",
     "title": "Zawodnik — profil",
     "fields": [
         {
-            "key": "field_zawodnik_klasa",
+            "key": "field_athlete_aircraft_class",
             "label": "Klasa",
-            "name": "klasa",
+            "name": "aircraft_class",
             "type": "select",
             "required": 1,
             "choices": {
@@ -18,9 +18,9 @@
             "instructions": "Grupuje zawodnika na liście Kadry (sekcje ULM / paralotniowa)."
         },
         {
-            "key": "field_zawodnik_grupa",
+            "key": "field_athlete_squad",
             "label": "Grupa kadry",
-            "name": "grupa",
+            "name": "squad",
             "type": "select",
             "required": 1,
             "choices": {
@@ -33,40 +33,40 @@
             "ui": 1
         },
         {
-            "key": "field_zawodnik_rola",
+            "key": "field_athlete_role",
             "label": "Rola",
-            "name": "rola",
+            "name": "role",
             "type": "text",
             "required": 0,
             "placeholder": "np. pilot, nawigator, trener"
         },
         {
-            "key": "field_zawodnik_klub",
+            "key": "field_athlete_club",
             "label": "Klub",
-            "name": "klub",
+            "name": "club",
             "type": "text",
             "required": 0
         },
         {
-            "key": "field_zawodnik_rocznik",
+            "key": "field_athlete_birth_year",
             "label": "Rocznik",
-            "name": "rocznik",
+            "name": "birth_year",
             "type": "number",
             "required": 0,
             "min": 1940,
             "max": 2020
         },
         {
-            "key": "field_zawodnik_licencja",
+            "key": "field_athlete_license_no",
             "label": "Nr licencji",
-            "name": "nr_licencji",
+            "name": "license_no",
             "type": "text",
             "required": 0
         },
         {
-            "key": "field_zawodnik_statystyki",
+            "key": "field_athlete_stats",
             "label": "Statystyki (pasek na profilu)",
-            "name": "statystyki",
+            "name": "stats",
             "type": "repeater",
             "instructions": "Pasek liczb pod nagłówkiem profilu. Ukrywa się, gdy pusty.",
             "layout": "table",
@@ -74,7 +74,7 @@
             "button_label": "Dodaj statystykę",
             "sub_fields": [
                 {
-                    "key": "field_zawodnik_stat_value",
+                    "key": "field_athlete_stat_value",
                     "label": "Wartość",
                     "name": "value",
                     "type": "text",
@@ -82,7 +82,7 @@
                     "placeholder": "9"
                 },
                 {
-                    "key": "field_zawodnik_stat_label",
+                    "key": "field_athlete_stat_label",
                     "label": "Opis",
                     "name": "label",
                     "type": "text",
@@ -92,26 +92,26 @@
             ]
         },
         {
-            "key": "field_zawodnik_sprzet",
+            "key": "field_athlete_equipment",
             "label": "Sprzęt zawodnika",
-            "name": "sprzet",
+            "name": "equipment",
             "type": "repeater",
             "instructions": "Tabela sprzętu na profilu (np. Płatowiec → Aeroprakt A-22).",
             "layout": "table",
             "button_label": "Dodaj pozycję",
             "sub_fields": [
                 {
-                    "key": "field_zawodnik_sprzet_nazwa",
+                    "key": "field_athlete_equipment_name",
                     "label": "Element",
-                    "name": "nazwa",
+                    "name": "name",
                     "type": "text",
                     "required": 1,
                     "placeholder": "np. Płatowiec"
                 },
                 {
-                    "key": "field_zawodnik_sprzet_wartosc",
+                    "key": "field_athlete_equipment_value",
                     "label": "Wartość",
-                    "name": "wartosc",
+                    "name": "value",
                     "type": "text",
                     "required": 1,
                     "placeholder": "np. Aeroprakt A-22"
@@ -119,33 +119,33 @@
             ]
         },
         {
-            "key": "field_zawodnik_wyniki",
+            "key": "field_athlete_results",
             "label": "Najważniejsze wyniki",
-            "name": "wyniki",
+            "name": "results",
             "type": "repeater",
             "layout": "table",
             "button_label": "Dodaj wynik",
             "sub_fields": [
                 {
-                    "key": "field_zawodnik_wynik_rok",
+                    "key": "field_athlete_result_year",
                     "label": "Rok",
-                    "name": "rok",
+                    "name": "year",
                     "type": "number",
                     "required": 0,
                     "min": 1990,
                     "max": 2100
                 },
                 {
-                    "key": "field_zawodnik_wynik_zawody",
+                    "key": "field_athlete_result_event",
                     "label": "Zawody",
-                    "name": "zawody",
+                    "name": "event",
                     "type": "text",
                     "required": 1
                 },
                 {
-                    "key": "field_zawodnik_wynik_miejsce",
+                    "key": "field_athlete_result_place",
                     "label": "Miejsce",
-                    "name": "miejsce",
+                    "name": "place",
                     "type": "text",
                     "required": 0,
                     "instructions": "np. 1, 2, 3 — miejsca na podium zostaną wyróżnione złotem."
@@ -158,7 +158,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "zawodnik"
+                "value": "athlete"
             }
         ]
     ],

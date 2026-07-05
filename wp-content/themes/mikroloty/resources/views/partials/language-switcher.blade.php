@@ -1,7 +1,7 @@
 {{--
-  Przełącznik języka PL|EN.
-  Podpięty pod Polylang, jeśli wtyczka jest aktywna; w przeciwnym razie
-  pokazuje statyczny wskaźnik (PL aktywny) do czasu instalacji wielojęzyczności.
+  PL|EN language switcher.
+  Wired to Polylang when the plugin is active; otherwise shows a static
+  indicator (PL active) until multilingual support is installed.
 --}}
 @php
     $languages = function_exists('pll_the_languages')

@@ -1,25 +1,25 @@
 <?php
 
 /**
- * Rejestracja własnych typów treści (Custom Post Types).
+ * Custom Post Type registration.
  *
- * Model danych dopasowany do projektu (Claude Design):
- *  - zawody     — kalendarz i wyniki zawodów
- *  - zawodnik   — jeden wpis = jeden zawodnik kadry (lista Kadra + profil zawodnika)
- *  - dokument   — pliki PDF do pobrania
- *  - faq        — pytania i odpowiedzi
- *  - aktualności = natywne wpisy (post) + kategorie (Zawody / Kadra / Komisja / Szkolenie)
+ * Data model (post-type keys are English; rewrite slugs stay Polish for SEO):
+ *  - competition — event calendar and results
+ *  - athlete     — one post per national-squad athlete (Kadra list + profile)
+ *  - document    — downloadable PDF files
+ *  - faq         — questions and answers
+ *  - news        — native WordPress posts + categories (Zawody / Kadra / Komisja / Szkolenie)
  *
- * Pola do typów dodaje ACF Pro (patrz app/acf.php + katalog acf-json/).
+ * Fields are provided by ACF Pro (see app/acf.php and the acf-json/ directory).
  */
 
 namespace App;
 
 /**
- * CPT: Zawody — kalendarz i wyniki.
+ * CPT: Competition — calendar and results.
  */
 add_action('init', function () {
-    register_post_type('zawody', [
+    register_post_type('competition', [
         'labels' => [
             'name' => __('Zawody', 'mikroloty'),
             'singular_name' => __('Zawody', 'mikroloty'),
@@ -44,11 +44,11 @@ add_action('init', function () {
 }, 10);
 
 /**
- * CPT: Zawodnik — kadra narodowa. Jeden wpis = jeden zawodnik.
- * Etykieta menu „Kadra"; pojedynczy wpis to profil zawodnika.
+ * CPT: Athlete — national squad. One post = one athlete.
+ * Menu label "Kadra"; a single post is the athlete profile.
  */
 add_action('init', function () {
-    register_post_type('zawodnik', [
+    register_post_type('athlete', [
         'labels' => [
             'name' => __('Kadra', 'mikroloty'),
             'singular_name' => __('Zawodnik', 'mikroloty'),
@@ -73,10 +73,10 @@ add_action('init', function () {
 }, 10);
 
 /**
- * CPT: Dokument — pliki PDF do pobrania (regulaminy, przepisy, formularze…).
+ * CPT: Document — downloadable PDF files (regulations, rules, forms…).
  */
 add_action('init', function () {
-    register_post_type('dokument', [
+    register_post_type('document', [
         'labels' => [
             'name' => __('Dokumenty', 'mikroloty'),
             'singular_name' => __('Dokument', 'mikroloty'),
@@ -100,7 +100,7 @@ add_action('init', function () {
 }, 10);
 
 /**
- * CPT: FAQ — pytania i odpowiedzi, grupowane tematycznie.
+ * CPT: FAQ — questions and answers, grouped by topic.
  */
 add_action('init', function () {
     register_post_type('faq', [
@@ -128,18 +128,18 @@ add_action('init', function () {
 }, 10);
 
 /**
- * Domyślne kategorie aktualności — tworzone raz, przy aktywacji motywu.
- * Redaktor od razu ma filtry: Zawody / Kadra / Komisja / Szkolenie.
+ * Default news categories — created once, on theme activation.
+ * Editors get ready-made filters: Zawody / Kadra / Komisja / Szkolenie.
  */
 add_action('after_switch_theme', function () {
-    $kategorie = [
+    $categories = [
         'zawody' => __('Zawody', 'mikroloty'),
         'kadra' => __('Kadra', 'mikroloty'),
         'komisja' => __('Komisja', 'mikroloty'),
         'szkolenie' => __('Szkolenie', 'mikroloty'),
     ];
 
-    foreach ($kategorie as $slug => $name) {
+    foreach ($categories as $slug => $name) {
         if (! term_exists($slug, 'category')) {
             wp_insert_term($name, 'category', ['slug' => $slug]);
         }

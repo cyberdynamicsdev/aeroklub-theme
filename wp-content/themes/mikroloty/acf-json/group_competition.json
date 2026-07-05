@@ -1,11 +1,11 @@
 {
-    "key": "group_zawody",
+    "key": "group_competition",
     "title": "Zawody — szczegóły",
     "fields": [
         {
-            "key": "field_zawody_data_start",
+            "key": "field_competition_start_date",
             "label": "Data rozpoczęcia",
-            "name": "data_start",
+            "name": "start_date",
             "type": "date_picker",
             "required": 1,
             "display_format": "d.m.Y",
@@ -13,9 +13,9 @@
             "first_day": 1
         },
         {
-            "key": "field_zawody_data_koniec",
+            "key": "field_competition_end_date",
             "label": "Data zakończenia",
-            "name": "data_koniec",
+            "name": "end_date",
             "type": "date_picker",
             "required": 0,
             "display_format": "d.m.Y",
@@ -23,17 +23,17 @@
             "first_day": 1
         },
         {
-            "key": "field_zawody_miejsce",
+            "key": "field_competition_location",
             "label": "Miejsce",
-            "name": "miejsce",
+            "name": "location",
             "type": "text",
             "required": 0,
             "placeholder": "np. Lotnisko Aleksandrowice, Bielsko-Biała"
         },
         {
-            "key": "field_zawody_klasa_statku",
+            "key": "field_competition_aircraft_class",
             "label": "Klasa statku",
-            "name": "klasa_statku",
+            "name": "aircraft_class",
             "type": "select",
             "required": 1,
             "choices": {
@@ -46,22 +46,22 @@
             "ui": 1
         },
         {
-            "key": "field_zawody_status",
+            "key": "field_competition_status",
             "label": "Status",
             "name": "status",
             "type": "select",
             "required": 1,
             "choices": {
-                "planowane": "Planowane",
-                "w_trakcie": "W trakcie",
-                "zakonczone": "Zakończone"
+                "planned": "Planowane",
+                "ongoing": "W trakcie",
+                "finished": "Zakończone"
             },
-            "default_value": "planowane",
+            "default_value": "planned",
             "return_format": "value",
             "ui": 1
         },
         {
-            "key": "field_zawody_flyresult_id",
+            "key": "field_competition_flyresult_id",
             "label": "ID w flyresult.com",
             "name": "flyresult_id",
             "type": "text",
@@ -69,33 +69,33 @@
             "instructions": "ID zawodów w serwisie flyresult.com — do przyszłej integracji z API. Zostaw puste, jeśli wyniki wpisujesz ręcznie poniżej."
         },
         {
-            "key": "field_zawody_wyniki",
+            "key": "field_competition_results",
             "label": "Wyniki",
-            "name": "wyniki",
+            "name": "results",
             "type": "repeater",
             "instructions": "Wpisuj ręcznie tylko gdy brak integracji z flyresult.com.",
             "layout": "table",
             "button_label": "Dodaj wynik",
             "sub_fields": [
                 {
-                    "key": "field_zawody_wynik_miejsce",
+                    "key": "field_competition_result_place",
                     "label": "Miejsce",
-                    "name": "miejsce",
+                    "name": "place",
                     "type": "number",
                     "required": 1,
                     "min": 1
                 },
                 {
-                    "key": "field_zawody_wynik_pilot",
+                    "key": "field_competition_result_pilot",
                     "label": "Pilot",
                     "name": "pilot",
                     "type": "text",
                     "required": 1
                 },
                 {
-                    "key": "field_zawody_wynik_wynik",
+                    "key": "field_competition_result_score",
                     "label": "Wynik",
-                    "name": "wynik",
+                    "name": "score",
                     "type": "text",
                     "required": 0,
                     "instructions": "np. punkty, czas, dystans"
@@ -103,25 +103,25 @@
             ]
         },
         {
-            "key": "field_zawody_dokumenty",
+            "key": "field_competition_documents",
             "label": "Dokumenty zawodów",
-            "name": "dokumenty",
+            "name": "documents",
             "type": "repeater",
             "instructions": "Regulaminy, listy startowe, komunikaty — pliki PDF przypięte do tych zawodów.",
             "layout": "table",
             "button_label": "Dodaj dokument",
             "sub_fields": [
                 {
-                    "key": "field_zawody_dok_nazwa",
+                    "key": "field_competition_document_name",
                     "label": "Nazwa",
-                    "name": "nazwa",
+                    "name": "name",
                     "type": "text",
                     "required": 1
                 },
                 {
-                    "key": "field_zawody_dok_plik",
+                    "key": "field_competition_document_file",
                     "label": "Plik PDF",
-                    "name": "plik",
+                    "name": "file",
                     "type": "file",
                     "required": 1,
                     "return_format": "array",
@@ -136,7 +136,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "zawody"
+                "value": "competition"
             }
         ]
     ],

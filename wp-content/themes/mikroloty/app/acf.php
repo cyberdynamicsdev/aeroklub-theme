@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Integracja z Advanced Custom Fields Pro.
+ * Advanced Custom Fields Pro integration.
  *
- * Definicje grup pól trzymamy w motywie jako lokalny JSON (katalog acf-json/).
- * Dzięki temu pola są wersjonowane w git i przenoszalne między środowiskami —
- * redaktor nie musi ich klikać ręcznie, a na produkcji wystarczy „Sync”.
+ * Field group definitions live in the theme as local JSON (acf-json/ directory),
+ * so fields are versioned in git and portable across environments — editors don't
+ * click them by hand, and on production a single "Sync" is enough.
  *
  * @link https://www.advancedcustomfields.com/resources/local-json/
  */
@@ -13,14 +13,14 @@
 namespace App;
 
 /**
- * Zapisuj zmiany grup pól do acf-json/ w motywie.
+ * Save field group changes to acf-json/ inside the theme.
  */
 add_filter('acf/settings/save_json', function () {
     return get_theme_file_path('acf-json');
 });
 
 /**
- * Wczytuj grupy pól z acf-json/ w motywie (zamiast domyślnej ścieżki).
+ * Load field groups from acf-json/ inside the theme (instead of the default path).
  *
  * @param  array<int, string>  $paths
  * @return array<int, string>
@@ -33,8 +33,8 @@ add_filter('acf/settings/load_json', function ($paths) {
 });
 
 /**
- * Delikatne przypomnienie w panelu, gdy ACF Pro nie jest aktywny.
- * Motyw działa bez ACF, ale pola CPT będą wtedy puste.
+ * Gentle admin notice when ACF Pro is not active.
+ * The theme works without ACF, but CPT fields will then be empty.
  */
 add_action('admin_notices', function () {
     if (function_exists('acf_get_field_groups')) {
@@ -48,8 +48,8 @@ add_action('admin_notices', function () {
 });
 
 /**
- * Strony opcji motywu — globalne, edytowalne treści (hero, CTA, pasek górny,
- * stopka, dane kontaktowe). Dzięki temu redaktor zmienia je bez dotykania kodu.
+ * Theme options pages — global, editable content (hero, CTA, top bar,
+ * footer, contact details). Lets editors change them without touching code.
  */
 add_action('acf/init', function () {
     if (! function_exists('acf_add_options_page')) {
@@ -59,7 +59,7 @@ add_action('acf/init', function () {
     acf_add_options_page([
         'page_title' => __('Ustawienia motywu', 'mikroloty'),
         'menu_title' => __('Ustawienia motywu', 'mikroloty'),
-        'menu_slug' => 'ustawienia-motywu',
+        'menu_slug' => 'theme-settings',
         'capability' => 'edit_theme_options',
         'icon_url' => 'dashicons-admin-customizer',
         'position' => 59,
@@ -69,24 +69,24 @@ add_action('acf/init', function () {
     acf_add_options_sub_page([
         'page_title' => __('Strona główna', 'mikroloty'),
         'menu_title' => __('Strona główna', 'mikroloty'),
-        'menu_slug' => 'ustawienia-strona-glowna',
-        'parent_slug' => 'ustawienia-motywu',
+        'menu_slug' => 'settings-homepage',
+        'parent_slug' => 'theme-settings',
         'capability' => 'edit_theme_options',
     ]);
 
     acf_add_options_sub_page([
         'page_title' => __('Nagłówek i stopka', 'mikroloty'),
         'menu_title' => __('Nagłówek i stopka', 'mikroloty'),
-        'menu_slug' => 'ustawienia-naglowek-stopka',
-        'parent_slug' => 'ustawienia-motywu',
+        'menu_slug' => 'settings-header-footer',
+        'parent_slug' => 'theme-settings',
         'capability' => 'edit_theme_options',
     ]);
 
     acf_add_options_sub_page([
         'page_title' => __('Kontakt', 'mikroloty'),
         'menu_title' => __('Kontakt', 'mikroloty'),
-        'menu_slug' => 'ustawienia-kontakt',
-        'parent_slug' => 'ustawienia-motywu',
+        'menu_slug' => 'settings-contact',
+        'parent_slug' => 'theme-settings',
         'capability' => 'edit_theme_options',
     ]);
 });

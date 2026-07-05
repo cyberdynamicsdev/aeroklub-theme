@@ -9,30 +9,30 @@
             "placement": "top"
         },
         {
-            "key": "field_layout_bar_tekst",
+            "key": "field_layout_bar_text",
             "label": "Tekst po lewej",
-            "name": "pasek_tekst",
+            "name": "bar_text",
             "type": "text",
             "default_value": "Komisja Mikrolotowa · Aeroklub Polski"
         },
         {
             "key": "field_layout_bar_email",
             "label": "E-mail",
-            "name": "pasek_email",
+            "name": "bar_email",
             "type": "text",
             "default_value": "biuro@mikroloty.com"
         },
         {
             "key": "field_layout_bar_link_label",
             "label": "Link — tekst",
-            "name": "pasek_link_label",
+            "name": "bar_link_label",
             "type": "text",
             "default_value": "Portal Informacyjny AP"
         },
         {
             "key": "field_layout_bar_link_url",
             "label": "Link — adres",
-            "name": "pasek_link_url",
+            "name": "bar_link_url",
             "type": "url"
         },
         {
@@ -42,50 +42,50 @@
             "placement": "top"
         },
         {
-            "key": "field_layout_footer_opis",
+            "key": "field_layout_footer_description",
             "label": "Opis pod logo",
-            "name": "footer_opis",
+            "name": "footer_description",
             "type": "textarea",
             "rows": 3,
             "default_value": "Komisja Mikrolotowa Aeroklubu Polskiego — organizacja sportu mikrolotowego w klasach ULM i paralotniowej."
         },
         {
-            "key": "field_layout_footer_adres",
+            "key": "field_layout_footer_address",
             "label": "Adres",
-            "name": "footer_adres",
+            "name": "footer_address",
             "type": "textarea",
             "rows": 3,
             "new_lines": "br",
             "default_value": "Aeroklub Polski\nul. Wybrzeże Gdyńskie 4\n01-531 Warszawa"
         },
         {
-            "key": "field_layout_footer_kolumny",
+            "key": "field_layout_footer_columns",
             "label": "Kolumny linków",
-            "name": "footer_kolumny",
+            "name": "footer_columns",
             "type": "repeater",
             "layout": "block",
             "max": 3,
             "button_label": "Dodaj kolumnę",
             "sub_fields": [
                 {
-                    "key": "field_layout_footer_kol_tytul",
+                    "key": "field_layout_footer_column_title",
                     "label": "Tytuł kolumny",
-                    "name": "tytul",
+                    "name": "title",
                     "type": "text",
                     "required": 1
                 },
                 {
-                    "key": "field_layout_footer_kol_linki",
+                    "key": "field_layout_footer_column_links",
                     "label": "Linki",
-                    "name": "linki",
+                    "name": "links",
                     "type": "repeater",
                     "layout": "table",
                     "button_label": "Dodaj link",
                     "sub_fields": [
                         {
-                            "key": "field_layout_footer_link_etykieta",
+                            "key": "field_layout_footer_link_label",
                             "label": "Etykieta",
-                            "name": "etykieta",
+                            "name": "label",
                             "type": "text",
                             "required": 1
                         },
@@ -102,22 +102,22 @@
             ]
         },
         {
-            "key": "field_layout_footer_dolne",
+            "key": "field_layout_footer_bottom_links",
             "label": "Dolne linki",
-            "name": "footer_dolne_linki",
+            "name": "footer_bottom_links",
             "type": "repeater",
             "layout": "table",
             "button_label": "Dodaj link",
             "sub_fields": [
                 {
-                    "key": "field_layout_footer_dolny_etykieta",
+                    "key": "field_layout_footer_bottom_label",
                     "label": "Etykieta",
-                    "name": "etykieta",
+                    "name": "label",
                     "type": "text",
                     "required": 1
                 },
                 {
-                    "key": "field_layout_footer_dolny_url",
+                    "key": "field_layout_footer_bottom_url",
                     "label": "Adres",
                     "name": "url",
                     "type": "text",
@@ -138,7 +138,7 @@
             {
                 "param": "options_page",
                 "operator": "==",
-                "value": "ustawienia-naglowek-stopka"
+                "value": "settings-header-footer"
             }
         ]
     ],

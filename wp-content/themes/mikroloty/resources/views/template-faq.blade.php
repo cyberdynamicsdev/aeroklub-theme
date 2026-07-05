@@ -7,30 +7,30 @@
 @section('content')
     @php
         the_post();
-        $grupy = [
+        $groups = [
             'start' => 'Start w zawodach',
-            'licencje' => 'Licencje i przepisy',
-            'kadra' => 'Kadra narodowa',
+            'licenses' => 'Licencje i przepisy',
+            'squad' => 'Kadra narodowa',
         ];
         $lead = has_excerpt() ? get_the_excerpt() : 'Odpowiedzi na pytania, które najczęściej otrzymujemy od pilotów rozważających start w zawodach mikrolotowych.';
-        $tytul = get_the_title();
-        // Strona kontaktu (jeśli istnieje) do bannera „Nie znalazłeś odpowiedzi?"
-        $kontaktPage = get_page_by_path('kontakt');
-        $kontaktUrl = $kontaktPage ? get_permalink($kontaktPage) : home_url('/kontakt/');
+        $title = get_the_title();
+        // Contact page (if it exists) for the "Didn't find an answer?" banner
+        $contactPage = get_page_by_path('kontakt');
+        $contactUrl = $contactPage ? get_permalink($contactPage) : home_url('/kontakt/');
     @endphp
 
-    <x-page-header :title="$tytul" :lead="$lead" :crumbs="[['label' => $tytul]]" />
+    <x-page-header :title="$title" :lead="$lead" :crumbs="[['label' => $title]]" />
 
     <section class="bg-white" style="padding-block:clamp(48px,7vw,80px);">
         <div class="container-site" style="max-width:900px;">
-            @foreach ($grupy as $slug => $label)
+            @foreach ($groups as $slug => $label)
                 @php
                     $q = new WP_Query([
                         'post_type' => 'faq',
                         'posts_per_page' => -1,
                         'orderby' => 'menu_order',
                         'order' => 'ASC',
-                        'meta_query' => [['key' => 'grupa', 'value' => $slug, 'compare' => '=']],
+                        'meta_query' => [['key' => 'group', 'value' => $slug, 'compare' => '=']],
                     ]);
                 @endphp
                 @if ($q->have_posts())
@@ -47,7 +47,7 @@
                                         <span class="faq-toggle flex-shrink-0 flex items-center justify-center border border-line-2 text-navy" style="width:26px;height:26px;font-size:18px;"></span>
                                     </summary>
                                     <div class="prose max-w-none text-ink-2" style="padding:0 4px 22px;font-size:15.5px;line-height:1.7;max-width:760px;">
-                                        {!! get_field('odpowiedz') !!}
+                                        {!! get_field('answer') !!}
                                     </div>
                                 </details>
                             @endwhile
@@ -57,13 +57,13 @@
                 @endif
             @endforeach
 
-            {{-- Nie znalazłeś odpowiedzi? --}}
+            {{-- Didn't find an answer? --}}
             <div class="bg-navy text-white flex flex-wrap gap-5 items-center justify-between mt-5" style="padding:clamp(28px,4vw,40px);">
                 <div>
                     <h3 class="font-heading font-extrabold m-0 mb-1.5" style="font-size:22px;">Nie znalazłeś odpowiedzi?</h3>
                     <p class="m-0 text-onnavy" style="font-size:15px;">Napisz do nas — chętnie pomożemy postawić pierwsze kroki w sporcie mikrolotowym.</p>
                 </div>
-                <a href="{{ $kontaktUrl }}" class="btn btn-gold whitespace-nowrap">Skontaktuj się →</a>
+                <a href="{{ $contactUrl }}" class="btn btn-gold whitespace-nowrap">Skontaktuj się →</a>
             </div>
         </div>
     </section>

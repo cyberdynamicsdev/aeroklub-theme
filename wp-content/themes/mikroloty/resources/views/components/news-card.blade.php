@@ -3,9 +3,9 @@
 @php
     $pid = $id ?: get_the_ID();
     $permalink = get_permalink($pid);
-    $kategorie = get_the_category($pid);
-    $tag = $kategorie ? $kategorie[0]->name : '';
-    $data = get_the_date('d.m.Y', $pid);
+    $categories = get_the_category($pid);
+    $tag = $categories ? $categories[0]->name : '';
+    $date = get_the_date('d.m.Y', $pid);
 @endphp
 
 <article class="card flex flex-col overflow-hidden">
@@ -13,7 +13,7 @@
         @if (has_post_thumbnail($pid))
             {!! get_the_post_thumbnail($pid, 'large', ['class' => 'w-full h-full object-cover block']) !!}
         @endif
-        <span class="absolute left-0 bottom-0 bg-navy text-white font-semibold" style="font-size:12px;padding:7px 13px;">{{ $data }}</span>
+        <span class="absolute left-0 bottom-0 bg-navy text-white font-semibold" style="font-size:12px;padding:7px 13px;">{{ $date }}</span>
     </a>
     <div class="flex-1 flex flex-col" style="padding:24px 26px 26px;">
         @if ($tag)

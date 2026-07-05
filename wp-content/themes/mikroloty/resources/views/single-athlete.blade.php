@@ -3,29 +3,29 @@
 @section('content')
     @while (have_posts()) @php(the_post())
         @php
-            $klasa = get_field('klasa');
-            $grupa = get_field('grupa');
-            $rola = get_field('rola');
-            $klub = get_field('klub');
-            $rocznik = get_field('rocznik');
-            $licencja = get_field('nr_licencji');
-            $stats = get_field('statystyki') ?: [];
-            $sprzet = get_field('sprzet') ?: [];
-            $wyniki = get_field('wyniki') ?: [];
+            $class = get_field('aircraft_class');
+            $squad = get_field('squad');
+            $role = get_field('role');
+            $club = get_field('club');
+            $birthYear = get_field('birth_year');
+            $license = get_field('license_no');
+            $stats = get_field('stats') ?: [];
+            $equipment = get_field('equipment') ?: [];
+            $results = get_field('results') ?: [];
             $meta = array_filter([
-                $klub ? '◆ ' . $klub : null,
-                $rocznik ? '◆ Rocznik ' . $rocznik : null,
-                $licencja ? '◆ Lic. ' . $licencja : null,
+                $club ? '◆ ' . $club : null,
+                $birthYear ? '◆ Rocznik ' . $birthYear : null,
+                $license ? '◆ Lic. ' . $license : null,
             ]);
         @endphp
 
-        {{-- Nagłówek profilu --}}
+        {{-- Profile header --}}
         <section class="bg-navy text-white">
             <div class="container-site" style="padding-block:clamp(32px,4vw,44px);">
                 <nav class="mb-7 text-onnavy-2" style="font-size:12.5px;">
                     <a href="{{ home_url('/') }}" class="text-onnavy-2 hover:text-white">Home</a>
                     <span class="mx-2">/</span>
-                    <a href="{{ get_post_type_archive_link('zawodnik') }}" class="text-onnavy-2 hover:text-white">Kadra</a>
+                    <a href="{{ get_post_type_archive_link('athlete') }}" class="text-onnavy-2 hover:text-white">Kadra</a>
                     <span class="mx-2">/</span>
                     <span class="text-white">{{ get_the_title() }}</span>
                 </nav>
@@ -36,18 +36,18 @@
                         @else
                             <svg width="96" height="96" viewBox="0 0 24 24" fill="#8393b5" class="opacity-40" aria-hidden="true"><circle cx="12" cy="9" r="4" /><path d="M4 21 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 21 Z" /></svg>
                         @endif
-                        @if ($klasa)
-                            <span class="absolute top-0 left-0 bg-gold text-navy uppercase font-bold" style="font-size:11px;letter-spacing:0.06em;padding:6px 12px;">{{ $klasa }}</span>
+                        @if ($class)
+                            <span class="absolute top-0 left-0 bg-gold text-navy uppercase font-bold" style="font-size:11px;letter-spacing:0.06em;padding:6px 12px;">{{ $class }}</span>
                         @endif
                     </div>
                     <div class="pb-2">
-                        @if ($grupa || $rola)
-                            <div class="uppercase font-bold text-gold mb-3.5" style="font-size:12.5px;letter-spacing:0.16em;">{{ trim(implode(' · ', array_filter([$grupa, $rola]))) }}</div>
+                        @if ($squad || $role)
+                            <div class="uppercase font-bold text-gold mb-3.5" style="font-size:12.5px;letter-spacing:0.16em;">{{ trim(implode(' · ', array_filter([$squad, $role]))) }}</div>
                         @endif
                         <h1 class="font-heading font-extrabold m-0 mb-4" style="font-size:clamp(32px,5vw,54px);line-height:1.02;letter-spacing:-0.01em;">{{ get_the_title() }}</h1>
                         @if ($meta)
                             <div class="flex flex-wrap gap-x-5 gap-y-2 text-onnavy" style="font-size:14.5px;">
-                                @foreach ($meta as $m)<span>{{ $m }}</span>@endforeach
+                                @foreach ($meta as $item)<span>{{ $item }}</span>@endforeach
                             </div>
                         @endif
                     </div>
@@ -55,7 +55,7 @@
             </div>
         </section>
 
-        {{-- Pasek statystyk --}}
+        {{-- Stats strip --}}
         @if ($stats)
             <div class="text-white" style="background:#16294a;">
                 <div class="container-site grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));">
@@ -69,11 +69,11 @@
             </div>
         @endif
 
-        {{-- Główna treść --}}
+        {{-- Main content --}}
         <section class="bg-white" style="padding-block:clamp(48px,7vw,80px);">
             <div class="container-site grid gap-y-14" style="grid-template-columns:1fr;">
                 <div class="grid gap-x-14 gap-y-14 items-start" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
-                    {{-- Sylwetka + sprzęt --}}
+                    {{-- Bio + equipment --}}
                     <div>
                         <h2 class="font-heading font-extrabold text-navy m-0 mb-4 pb-3.5 border-b-2 border-navy" style="font-size:24px;">Sylwetka</h2>
                         @if (get_the_content())
@@ -82,32 +82,32 @@
                             </div>
                         @endif
 
-                        @if ($sprzet)
+                        @if ($equipment)
                             <h3 class="font-heading font-bold text-navy uppercase mt-8 mb-3.5" style="font-size:16px;letter-spacing:0.04em;">Sprzęt zawodnika</h3>
                             <div class="border border-line">
-                                @foreach ($sprzet as $r)
+                                @foreach ($equipment as $row)
                                     <div class="flex justify-between gap-4 border-b border-line-3" style="padding:13px 18px;font-size:14.5px;">
-                                        <span class="text-ink-4">{{ $r['nazwa'] }}</span>
-                                        <span class="font-semibold text-ink">{{ $r['wartosc'] }}</span>
+                                        <span class="text-ink-4">{{ $row['name'] }}</span>
+                                        <span class="font-semibold text-ink">{{ $row['value'] }}</span>
                                     </div>
                                 @endforeach
                             </div>
                         @endif
                     </div>
 
-                    {{-- Wyniki --}}
-                    @if ($wyniki)
+                    {{-- Results --}}
+                    @if ($results)
                         <div>
                             <h2 class="font-heading font-extrabold text-navy m-0 mb-4 pb-3.5 border-b-2 border-navy" style="font-size:24px;">Najważniejsze wyniki</h2>
                             <div class="flex flex-col">
-                                @foreach ($wyniki as $w)
-                                    @php $poz = (int) preg_replace('/\D/', '', (string) ($w['miejsce'] ?? '')); @endphp
+                                @foreach ($results as $row)
+                                    @php $place = (int) preg_replace('/\D/', '', (string) ($row['place'] ?? '')); @endphp
                                     <div class="flex gap-4 items-center border-b border-line-3" style="padding:15px 0;">
-                                        <span class="font-heading font-extrabold flex items-center justify-center {{ $poz >= 1 && $poz <= 3 ? 'bg-gold text-navy' : 'bg-line-3 text-ink-3' }}" style="flex:0 0 44px;width:44px;height:44px;font-size:16px;">{{ $w['miejsce'] }}</span>
+                                        <span class="font-heading font-extrabold flex items-center justify-center {{ $place >= 1 && $place <= 3 ? 'bg-gold text-navy' : 'bg-line-3 text-ink-3' }}" style="flex:0 0 44px;width:44px;height:44px;font-size:16px;">{{ $row['place'] }}</span>
                                         <div class="flex-1">
-                                            <div class="font-semibold text-ink" style="font-size:15px;">{{ $w['zawody'] }}</div>
+                                            <div class="font-semibold text-ink" style="font-size:15px;">{{ $row['event'] }}</div>
                                         </div>
-                                        <span class="font-heading font-bold text-navy" style="font-size:15px;">{{ $w['rok'] }}</span>
+                                        <span class="font-heading font-bold text-navy" style="font-size:15px;">{{ $row['year'] }}</span>
                                     </div>
                                 @endforeach
                             </div>
@@ -115,7 +115,7 @@
                     @endif
                 </div>
 
-                <a href="{{ get_post_type_archive_link('zawodnik') }}" class="uppercase font-bold text-navy justify-self-start" style="font-size:13px;letter-spacing:0.04em;">← Wróć do kadry</a>
+                <a href="{{ get_post_type_archive_link('athlete') }}" class="uppercase font-bold text-navy justify-self-start" style="font-size:13px;letter-spacing:0.04em;">← Wróć do kadry</a>
             </div>
         </section>
     @endwhile

@@ -1,53 +1,53 @@
 {
-    "key": "group_kontakt",
+    "key": "group_contact",
     "title": "Kontakt",
     "fields": [
         {
-            "key": "field_kontakt_adres",
+            "key": "field_contact_address",
             "label": "Adres",
-            "name": "kontakt_adres",
+            "name": "contact_address",
             "type": "textarea",
             "rows": 3,
             "new_lines": "br",
             "default_value": "Aeroklub Polski\nul. Wybrzeże Gdyńskie 4\n01-531 Warszawa"
         },
         {
-            "key": "field_kontakt_email",
+            "key": "field_contact_email",
             "label": "E-mail ogólny",
-            "name": "kontakt_email",
+            "name": "contact_email",
             "type": "text",
             "default_value": "biuro@mikroloty.com"
         },
         {
-            "key": "field_kontakt_telefon",
+            "key": "field_contact_phone",
             "label": "Telefon",
-            "name": "kontakt_telefon",
+            "name": "contact_phone",
             "type": "text"
         },
         {
-            "key": "field_kontakt_osoby",
+            "key": "field_contact_people",
             "label": "Kontakty tematyczne",
-            "name": "kontakt_osoby",
+            "name": "contact_people",
             "type": "repeater",
             "layout": "table",
             "button_label": "Dodaj osobę",
             "sub_fields": [
                 {
-                    "key": "field_kontakt_osoba_imie",
+                    "key": "field_contact_person_name",
                     "label": "Osoba",
-                    "name": "osoba",
+                    "name": "name",
                     "type": "text",
                     "required": 1
                 },
                 {
-                    "key": "field_kontakt_osoba_rola",
+                    "key": "field_contact_person_role",
                     "label": "Rola",
-                    "name": "rola",
+                    "name": "role",
                     "type": "text",
                     "required": 0
                 },
                 {
-                    "key": "field_kontakt_osoba_email",
+                    "key": "field_contact_person_email",
                     "label": "E-mail",
                     "name": "email",
                     "type": "text",
@@ -56,9 +56,9 @@
             ]
         },
         {
-            "key": "field_kontakt_mapa",
+            "key": "field_contact_map",
             "label": "Mapa (kod osadzenia)",
-            "name": "kontakt_mapa",
+            "name": "contact_map",
             "type": "textarea",
             "rows": 4,
             "instructions": "Wklej kod iframe z Google Maps / OpenStreetMap. Zostaw puste, aby ukryć mapę."
@@ -69,7 +69,7 @@
             {
                 "param": "options_page",
                 "operator": "==",
-                "value": "ustawienia-kontakt"
+                "value": "settings-contact"
             }
         ]
     ],

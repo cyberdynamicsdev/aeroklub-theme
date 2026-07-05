@@ -1,7 +1,7 @@
 @props([
     'title' => '',
     'lead' => null,
-    'crumbs' => [],   // [['label' => ..., 'url' => ...], ...] — ostatni bez url = bieżąca
+    'crumbs' => [],   // [['label' => ..., 'url' => ...], ...] — last item without url = current page
     'width' => 'wide', // wide (1240) | narrow (820)
 ])
 
