@@ -1,4 +1,11 @@
 @import "tailwindcss" theme(static);
+
+/* Font Inter — self-hostowany (wariant zmienny), bez zależności od zewnętrznego CDN. */
+@import "@fontsource-variable/inter";
+
+/* Style dla treści z edytora Gutenberg (klasa .prose). */
+@plugin "@tailwindcss/typography";
+
 @source "../../app/**/*.php";
 @source "../**/*.blade.php";
 @source "../**/*.js";
