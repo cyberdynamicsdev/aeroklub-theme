@@ -1,0 +1,152 @@
+{
+    "key": "group_zawody",
+    "title": "Zawody — szczegóły",
+    "fields": [
+        {
+            "key": "field_zawody_data_start",
+            "label": "Data rozpoczęcia",
+            "name": "data_start",
+            "type": "date_picker",
+            "required": 1,
+            "display_format": "d.m.Y",
+            "return_format": "Ymd",
+            "first_day": 1
+        },
+        {
+            "key": "field_zawody_data_koniec",
+            "label": "Data zakończenia",
+            "name": "data_koniec",
+            "type": "date_picker",
+            "required": 0,
+            "display_format": "d.m.Y",
+            "return_format": "Ymd",
+            "first_day": 1
+        },
+        {
+            "key": "field_zawody_miejsce",
+            "label": "Miejsce",
+            "name": "miejsce",
+            "type": "text",
+            "required": 0,
+            "placeholder": "np. Lotnisko Aleksandrowice, Bielsko-Biała"
+        },
+        {
+            "key": "field_zawody_klasa_statku",
+            "label": "Klasa statku",
+            "name": "klasa_statku",
+            "type": "checkbox",
+            "required": 0,
+            "choices": {
+                "ULM": "ULM",
+                "Paralotnia": "Paralotnia",
+                "Inne": "Inne"
+            },
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
+            "key": "field_zawody_status",
+            "label": "Status",
+            "name": "status",
+            "type": "select",
+            "required": 1,
+            "choices": {
+                "planowane": "Planowane",
+                "w_trakcie": "W trakcie",
+                "zakonczone": "Zakończone"
+            },
+            "default_value": "planowane",
+            "return_format": "value",
+            "ui": 1
+        },
+        {
+            "key": "field_zawody_flyresult_id",
+            "label": "ID w flyresult.com",
+            "name": "flyresult_id",
+            "type": "text",
+            "required": 0,
+            "instructions": "ID zawodów w serwisie flyresult.com — do przyszłej integracji z API. Zostaw puste, jeśli wyniki wpisujesz ręcznie poniżej."
+        },
+        {
+            "key": "field_zawody_wyniki",
+            "label": "Wyniki",
+            "name": "wyniki",
+            "type": "repeater",
+            "instructions": "Wpisuj ręcznie tylko gdy brak integracji z flyresult.com.",
+            "layout": "table",
+            "button_label": "Dodaj wynik",
+            "sub_fields": [
+                {
+                    "key": "field_zawody_wynik_miejsce",
+                    "label": "Miejsce",
+                    "name": "miejsce",
+                    "type": "number",
+                    "required": 1,
+                    "min": 1
+                },
+                {
+                    "key": "field_zawody_wynik_pilot",
+                    "label": "Pilot",
+                    "name": "pilot",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_zawody_wynik_wynik",
+                    "label": "Wynik",
+                    "name": "wynik",
+                    "type": "text",
+                    "required": 0,
+                    "instructions": "np. punkty, czas, dystans"
+                }
+            ]
+        },
+        {
+            "key": "field_zawody_dokumenty",
+            "label": "Dokumenty zawodów",
+            "name": "dokumenty",
+            "type": "repeater",
+            "instructions": "Regulaminy, listy startowe, komunikaty — pliki PDF przypięte do tych zawodów.",
+            "layout": "table",
+            "button_label": "Dodaj dokument",
+            "sub_fields": [
+                {
+                    "key": "field_zawody_dok_nazwa",
+                    "label": "Nazwa",
+                    "name": "nazwa",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_zawody_dok_plik",
+                    "label": "Plik PDF",
+                    "name": "plik",
+                    "type": "file",
+                    "required": 1,
+                    "return_format": "array",
+                    "library": "all",
+                    "mime_types": "pdf"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "zawody"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1783254190
+}
