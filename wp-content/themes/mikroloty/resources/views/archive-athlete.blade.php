@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('partials.people-archive', [
-        'cpt' => 'athlete',
-        'taxonomy' => 'sezon',
-        'baseTitle' => __('Kadra narodowa', 'mikroloty'),
-        'lead' => mikroloty_t(get_field('archive_squad_lead', 'option') ?: 'Zawodnicy reprezentujący Polskę w sporcie mikrolotowym.'),
-        'crumbLabel' => __('Kadra', 'mikroloty'),
-        'emptyText' => __('Brak zawodników do wyświetlenia.', 'mikroloty'),
-        'term' => null,
-    ])
+    @php
+        $current = mikroloty_current_season_term('sezon');
+        $title = __('Kadra narodowa', 'mikroloty') . ($current ? ' ' . $current->name : '');
+    @endphp
+
+    <x-page-header
+        :title="$title"
+        :lead="mikroloty_t(get_field('archive_squad_lead', 'option') ?: 'Reprezentacja, kadra narodowa i sędziowie sportu mikrolotowego.')"
+        :crumbs="[['label' => __('Kadra', 'mikroloty')]]" />
+
+    @include('partials.kadra-body', ['term' => $current])
 @endsection

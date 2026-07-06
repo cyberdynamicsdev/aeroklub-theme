@@ -44,9 +44,15 @@ add_action('init', function () {
 }, 10);
 
 /**
- * CPT: Athlete — national squad. One post = one athlete.
- * Menu label "Kadra". No public single view (see redirect below); athletes are
- * only listed on the Kadra archive and per-season taxonomy archives.
+ * People CPTs shown together on one "Kadra" page (per season):
+ *  - national_team — away team for the FAI world championships (shown if any)
+ *  - athlete       — national squad members
+ *  - judge         — competition judges
+ *
+ * All three share one season taxonomy (`sezon`) so a year selects all groups at
+ * once. Only `athlete` has an archive (the /kadra/ page renders all three
+ * sections); judges and the national team are listed within it, no own archive
+ * and no single view.
  */
 add_action('init', function () {
     register_post_type('athlete', [
@@ -59,7 +65,7 @@ add_action('init', function () {
             'edit_item' => __('Edytuj zawodnika', 'mikroloty'),
             'search_items' => __('Szukaj zawodników', 'mikroloty'),
             'not_found' => __('Nie znaleziono zawodników', 'mikroloty'),
-            'all_items' => __('Wszyscy zawodnicy', 'mikroloty'),
+            'all_items' => __('Zawodnicy', 'mikroloty'),
             'archives' => __('Kadra narodowa', 'mikroloty'),
         ],
         'public' => true,
@@ -71,12 +77,52 @@ add_action('init', function () {
         'show_in_rest' => true,
     ]);
 
+    register_post_type('judge', [
+        'labels' => [
+            'name' => __('Sędziowie', 'mikroloty'),
+            'singular_name' => __('Sędzia', 'mikroloty'),
+            'menu_name' => __('Sędziowie', 'mikroloty'),
+            'add_new' => __('Dodaj sędziego', 'mikroloty'),
+            'add_new_item' => __('Dodaj nowego sędziego', 'mikroloty'),
+            'edit_item' => __('Edytuj sędziego', 'mikroloty'),
+            'search_items' => __('Szukaj sędziów', 'mikroloty'),
+            'not_found' => __('Nie znaleziono sędziów', 'mikroloty'),
+            'all_items' => __('Wszyscy sędziowie', 'mikroloty'),
+        ],
+        'public' => true,
+        'has_archive' => false,
+        'show_in_menu' => 'edit.php?post_type=athlete',
+        'supports' => ['title', 'thumbnail', 'revisions'],
+        'rewrite' => ['slug' => 'sedziowie', 'with_front' => false],
+        'show_in_rest' => true,
+    ]);
+
+    register_post_type('national_team', [
+        'labels' => [
+            'name' => __('Reprezentacja', 'mikroloty'),
+            'singular_name' => __('Reprezentant', 'mikroloty'),
+            'menu_name' => __('Reprezentacja', 'mikroloty'),
+            'add_new' => __('Dodaj reprezentanta', 'mikroloty'),
+            'add_new_item' => __('Dodaj nowego reprezentanta', 'mikroloty'),
+            'edit_item' => __('Edytuj reprezentanta', 'mikroloty'),
+            'search_items' => __('Szukaj reprezentantów', 'mikroloty'),
+            'not_found' => __('Nie znaleziono reprezentantów', 'mikroloty'),
+            'all_items' => __('Reprezentacja', 'mikroloty'),
+        ],
+        'public' => true,
+        'has_archive' => false,
+        'show_in_menu' => 'edit.php?post_type=athlete',
+        'supports' => ['title', 'thumbnail', 'revisions'],
+        'rewrite' => ['slug' => 'reprezentacja', 'with_front' => false],
+        'show_in_rest' => true,
+    ]);
+
     /**
-     * Taxonomy: Sezon — years an athlete represented the squad.
-     * Non-hierarchical (tag-style), so editors type years comma-separated
-     * ("2025, 2026"). Powers the per-year Kadra archives.
+     * Taxonomy: Sezon — the season(s) a person belongs to, shared by all three
+     * people CPTs. Non-hierarchical (tag-style): editors type years
+     * comma-separated ("2025, 2026"). Powers the per-year Kadra view.
      */
-    register_taxonomy('sezon', 'athlete', [
+    register_taxonomy('sezon', ['athlete', 'judge', 'national_team'], [
         'labels' => [
             'name' => __('Sezony', 'mikroloty'),
             'singular_name' => __('Sezon', 'mikroloty'),
@@ -94,100 +140,12 @@ add_action('init', function () {
 }, 10);
 
 /**
- * CPT: Judge — competition judges. Same shape as athletes: one post per person,
- * a role, and years (taxonomy). No public single view.
- */
-add_action('init', function () {
-    register_post_type('judge', [
-        'labels' => [
-            'name' => __('Sędziowie', 'mikroloty'),
-            'singular_name' => __('Sędzia', 'mikroloty'),
-            'menu_name' => __('Sędziowie', 'mikroloty'),
-            'add_new' => __('Dodaj sędziego', 'mikroloty'),
-            'add_new_item' => __('Dodaj nowego sędziego', 'mikroloty'),
-            'edit_item' => __('Edytuj sędziego', 'mikroloty'),
-            'search_items' => __('Szukaj sędziów', 'mikroloty'),
-            'not_found' => __('Nie znaleziono sędziów', 'mikroloty'),
-            'all_items' => __('Wszyscy sędziowie', 'mikroloty'),
-            'archives' => __('Sędziowie', 'mikroloty'),
-        ],
-        'public' => true,
-        'has_archive' => true,
-        'menu_position' => 22,
-        'menu_icon' => 'dashicons-hammer',
-        'supports' => ['title', 'thumbnail', 'revisions'],
-        'rewrite' => ['slug' => 'sedziowie', 'with_front' => false],
-        'show_in_rest' => true,
-    ]);
-
-    register_taxonomy('sezon_sedziow', 'judge', [
-        'labels' => [
-            'name' => __('Sezony', 'mikroloty'),
-            'singular_name' => __('Sezon', 'mikroloty'),
-            'menu_name' => __('Sezony (sędziowie)', 'mikroloty'),
-            'add_new_item' => __('Dodaj rok', 'mikroloty'),
-            'new_item_name' => __('Rok (np. 2026)', 'mikroloty'),
-            'separate_items_with_commas' => __('Lata po przecinku, np. 2025, 2026', 'mikroloty'),
-        ],
-        'public' => true,
-        'hierarchical' => false,
-        'show_admin_column' => true,
-        'rewrite' => ['slug' => 'sedziowie-sezon', 'with_front' => false],
-        'show_in_rest' => true,
-    ]);
-}, 10);
-
-/**
- * CPT: National team — the away team selected for the FAI world championships
- * in a given year. Same shape: one post per person, a role, and years.
- */
-add_action('init', function () {
-    register_post_type('national_team', [
-        'labels' => [
-            'name' => __('Reprezentacja', 'mikroloty'),
-            'singular_name' => __('Reprezentant', 'mikroloty'),
-            'menu_name' => __('Reprezentacja', 'mikroloty'),
-            'add_new' => __('Dodaj reprezentanta', 'mikroloty'),
-            'add_new_item' => __('Dodaj nowego reprezentanta', 'mikroloty'),
-            'edit_item' => __('Edytuj reprezentanta', 'mikroloty'),
-            'search_items' => __('Szukaj reprezentantów', 'mikroloty'),
-            'not_found' => __('Nie znaleziono reprezentantów', 'mikroloty'),
-            'all_items' => __('Cała reprezentacja', 'mikroloty'),
-            'archives' => __('Reprezentacja', 'mikroloty'),
-        ],
-        'public' => true,
-        'has_archive' => true,
-        'menu_position' => 23,
-        'menu_icon' => 'dashicons-flag',
-        'supports' => ['title', 'thumbnail', 'revisions'],
-        'rewrite' => ['slug' => 'reprezentacja', 'with_front' => false],
-        'show_in_rest' => true,
-    ]);
-
-    register_taxonomy('sezon_reprezentacji', 'national_team', [
-        'labels' => [
-            'name' => __('Sezony', 'mikroloty'),
-            'singular_name' => __('Sezon', 'mikroloty'),
-            'menu_name' => __('Sezony (reprezentacja)', 'mikroloty'),
-            'add_new_item' => __('Dodaj rok', 'mikroloty'),
-            'new_item_name' => __('Rok (np. 2026)', 'mikroloty'),
-            'separate_items_with_commas' => __('Lata po przecinku, np. 2025, 2026', 'mikroloty'),
-        ],
-        'public' => true,
-        'hierarchical' => false,
-        'show_admin_column' => true,
-        'rewrite' => ['slug' => 'reprezentacja-sezon', 'with_front' => false],
-        'show_in_rest' => true,
-    ]);
-}, 10);
-
-/**
  * No individual profile for people CPTs — redirect any single URL to the
- * matching archive.
+ * unified Kadra page.
  */
 add_action('template_redirect', function () {
     if (is_singular(['athlete', 'judge', 'national_team'])) {
-        wp_safe_redirect(get_post_type_archive_link(get_post_type()), 301);
+        wp_safe_redirect(get_post_type_archive_link('athlete'), 301);
         exit;
     }
 });

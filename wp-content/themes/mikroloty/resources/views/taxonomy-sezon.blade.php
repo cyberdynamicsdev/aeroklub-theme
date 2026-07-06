@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('partials.people-archive', [
-        'cpt' => 'athlete',
-        'taxonomy' => 'sezon',
-        'baseTitle' => __('Kadra narodowa', 'mikroloty'),
-        'lead' => mikroloty_t(get_field('archive_squad_lead', 'option') ?: 'Zawodnicy reprezentujący Polskę w sporcie mikrolotowym.'),
-        'crumbLabel' => __('Kadra', 'mikroloty'),
-        'emptyText' => __('Brak zawodników do wyświetlenia.', 'mikroloty'),
-        'term' => get_queried_object(),
-    ])
+    @php $term = get_queried_object(); @endphp
+
+    <x-page-header
+        :title="__('Kadra narodowa', 'mikroloty') . ' ' . $term->name"
+        :lead="mikroloty_t(get_field('archive_squad_lead', 'option') ?: 'Reprezentacja, kadra narodowa i sędziowie sportu mikrolotowego.')"
+        :crumbs="[['label' => __('Kadra', 'mikroloty'), 'url' => get_post_type_archive_link('athlete')], ['label' => $term->name]]" />
+
+    @include('partials.kadra-body', ['term' => $term])
 @endsection

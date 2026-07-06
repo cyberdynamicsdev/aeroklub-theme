@@ -196,24 +196,35 @@ msgstr "Media / partnership"
 msgid "Inne"
 msgstr "Other"
 
-# --- Judges / national team ---
-msgid "Sędziowie"
-msgstr "Judges"
-
+# --- Kadra sections (national team / athletes / judges) ---
 msgid "Reprezentacja"
 msgstr "National team"
 
-msgid "Sędziowie zawodów mikrolotowych w danym sezonie."
-msgstr "Microlight competition judges for the season."
+msgid "Zawodnicy"
+msgstr "Athletes"
 
-msgid "Zespół reprezentujący Polskę na mistrzostwach świata FAI w danym roku."
-msgstr "The team representing Poland at the FAI World Championships that year."
+msgid "Sędziowie"
+msgstr "Judges"
 
-msgid "Brak sędziów do wyświetlenia."
-msgstr "No judges to display."
+msgid "Mistrzostwa świata FAI"
+msgstr "FAI World Championships"
 
-msgid "Brak reprezentantów do wyświetlenia."
-msgstr "No team members to display."
+msgid "Skład kadry"
+msgstr "National squad"
+
+msgid "Panel sędziowski"
+msgstr "Judging panel"
+
+msgid "osoba"
+msgid_plural "osób"
+msgstr[0] "person"
+msgstr[1] "people"
+
+msgid "Brak osób do wyświetlenia w tym sezonie."
+msgstr "No people to display for this season."
+
+msgid "Reprezentacja, kadra narodowa i sędziowie sportu mikrolotowego."
+msgstr "The national team, squad and judges of microlight sport."
 
 # --- Breadcrumbs / labels ---
 msgid "Zawody"

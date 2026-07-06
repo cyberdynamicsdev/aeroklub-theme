@@ -38,8 +38,6 @@
                     <li><a href="#">O komisji</a></li>
                     <li><a href="{{ get_post_type_archive_link('competition') ?: '#' }}">Zawody</a></li>
                     <li><a href="{{ get_post_type_archive_link('athlete') ?: '#' }}">Kadra</a></li>
-                    <li><a href="{{ get_post_type_archive_link('judge') ?: '#' }}">Sędziowie</a></li>
-                    <li><a href="{{ get_post_type_archive_link('national_team') ?: '#' }}">Reprezentacja</a></li>
                     <li><a href="{{ get_post_type_archive_link('document') ?: '#' }}">Dokumenty</a></li>
                     <li><a href="#">Jak zacząć</a></li>
                 </ul>

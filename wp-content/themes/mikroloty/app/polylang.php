@@ -31,11 +31,7 @@ add_filter('pll_get_post_types', function ($post_types, $is_settings) {
 }, 10, 2);
 
 add_filter('pll_get_taxonomies', function ($taxonomies, $is_settings) {
-    return array_merge($taxonomies, [
-        'sezon' => 'sezon',
-        'sezon_sedziow' => 'sezon_sedziow',
-        'sezon_reprezentacji' => 'sezon_reprezentacji',
-    ]);
+    return array_merge($taxonomies, ['sezon' => 'sezon']);
 }, 10, 2);
 
 add_action('init', function () {

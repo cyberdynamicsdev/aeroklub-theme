@@ -75,8 +75,8 @@ Klucze typów są angielskie; slugi URL — polskie (SEO).
 |---|---|---|---|
 | `competition` | `/zawody/` | Zawody | Kalendarz i wyniki zawodów |
 | `athlete` | `/kadra/` | Kadra | Zawodnik kadry (1 wpis = 1 osoba, bez podglądu) |
-| `judge` | `/sedziowie/` | Sędziowie | Sędzia zawodów (jak kadra, wg lat) |
-| `national_team` | `/reprezentacja/` | Reprezentacja | Zespół wyjazdowy na MŚ (jak kadra, wg lat) |
+| `judge` | — | Kadra → Sędziowie | Sędzia zawodów (bez własnego archiwum) |
+| `national_team` | — | Kadra → Reprezentacja | Zespół wyjazdowy na MŚ (bez własnego archiwum) |
 | `document` | `/dokumenty/` | Dokumenty | Pliki PDF do pobrania |
 | `faq` | — | FAQ | Pytania i odpowiedzi |
 | `post` (natywne) | `/aktualnosci/` | Wpisy | Aktualności + kategorie |
@@ -93,14 +93,16 @@ Klucze typów są angielskie; slugi URL — polskie (SEO).
 - **document**: `file` (PDF), `category`, `year`, `description`.
 - **faq**: `group` (start/licenses/squad), `answer` (WYSIWYG). Pytanie = tytuł.
 
-- **judge** i **national_team**: identyczna struktura jak `athlete` — `role` +
-  własna taksonomia lat (`sezon_sedziow`, `sezon_reprezentacji`), bez podglądu.
+- **judge** i **national_team**: identyczna struktura jak `athlete` (`role` +
+  zdjęcie, bez podglądu). Współdzielą z kadrą **jedną** taksonomię lat `sezon`.
 
-**Kadra / Sędziowie / Reprezentacja** działają tak samo: archiwum pokazuje skład
-bieżącego roku + pasek linków do pozostałych sezonów; widok konkretnego roku pod
-`/{sekcja}-sezon/{rok}/` (np. `/kadra-sezon/2025/`, `/sedziowie-sezon/2026/`).
-Lata wpisujesz po przecinku przy osobie (taksonomia sezonów, styl tagów).
-Wspólny kod: `partials/people-archive.blade.php` + `partials/people-list.blade.php`.
+**Jedna strona Kadra** (`/kadra/`) pokazuje dla wybranego roku trzy sekcje w
+kolejności: **Reprezentacja** (jeśli jest) → **Zawodnicy** → **Sędziowie**, plus
+pasek nawigacji lat. Widok konkretnego roku: `/kadra-sezon/{rok}/`. Rok wybierasz
+raz — dotyczy wszystkich trzech grup. Lata wpisujesz po przecinku przy osobie
+(taksonomia `sezon`, styl tagów). Sekcja pojawia się tylko, gdy ma osoby.
+Kod: `partials/kadra-body.blade.php` + `partials/season-nav.blade.php`.
+W panelu Sędziowie i Reprezentacja są podmenu pod „Kadra".
 
 ### Strony opcji (ACF Pro → menu „Ustawienia motywu")
 - **Strona główna** (`settings-homepage`): hero (obraz, tytuł, lead, 2 przyciski),
@@ -123,10 +125,10 @@ Wspólny kod: `partials/people-archive.blade.php` + `partials/people-list.blade.
 | `single.blade.php` | Wpis: nagłówek, zdjęcie wiodące, treść, udostępnij, powiązane |
 | `archive-competition.blade.php` | Kalendarz zawodów (lista) |
 | `single-competition.blade.php` | Zawody: meta, treść, tabela wyników, dokumenty |
-| `archive-{athlete,judge,national_team}.blade.php` | Kadra / Sędziowie / Reprezentacja — bieżący rok + nawigacja lat |
-| `taxonomy-sezon*.blade.php` | Widok konkretnego roku dla każdej z trzech grup |
-| `partials/people-archive.blade.php` | Wspólny szablon archiwum (nagłówek + zapytanie + lista) |
-| `partials/people-list.blade.php` | Wspólna siatka osób + nawigacja lat |
+| `archive-athlete.blade.php` | Strona Kadra — bieżący rok (3 sekcje) + nawigacja lat |
+| `taxonomy-sezon.blade.php` | Strona Kadra dla konkretnego roku |
+| `partials/kadra-body.blade.php` | 3 sekcje kadry (reprezentacja/zawodnicy/sędziowie) |
+| `partials/season-nav.blade.php` | Pasek nawigacji lat |
 | `page.blade.php` | Strona statyczna (O komisji, Jak zacząć) — nagłówek + treść |
 | `template-documents.blade.php` | Szablon „Dokumenty": grupy wg kategorii + wyszukiwarka |
 | `template-faq.blade.php` | Szablon „FAQ": grupy + rozwijane `<details>` |
