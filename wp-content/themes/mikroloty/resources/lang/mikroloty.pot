@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-05T21:43:38+00:00\n"
+"POT-Creation-Date: 2026-07-06T11:42:09+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: mikroloty\n"
@@ -79,7 +79,7 @@ msgstr ""
 #: app/post-types.php:24
 #: app/post-types.php:25
 #: app/post-types.php:26
-#: app/post-types.php:168
+#: app/post-types.php:256
 msgid "Zawody"
 msgstr ""
 
@@ -117,7 +117,9 @@ msgstr ""
 
 #: app/post-types.php:54
 #: app/post-types.php:56
-#: app/post-types.php:169
+#: app/post-types.php:257
+#: resources/views/archive-athlete.blade.php:9
+#: resources/views/taxonomy-sezon.blade.php:9
 msgid "Kadra"
 msgstr ""
 
@@ -150,15 +152,20 @@ msgid "Wszyscy zawodnicy"
 msgstr ""
 
 #: app/post-types.php:63
-#: resources/views/archive-athlete.blade.php:6
+#: resources/views/archive-athlete.blade.php:7
+#: resources/views/taxonomy-sezon.blade.php:7
 msgid "Kadra narodowa"
 msgstr ""
 
 #: app/post-types.php:81
+#: app/post-types.php:125
+#: app/post-types.php:169
 msgid "Sezony"
 msgstr ""
 
 #: app/post-types.php:82
+#: app/post-types.php:126
+#: app/post-types.php:170
 msgid "Sezon"
 msgstr ""
 
@@ -167,99 +174,189 @@ msgid "Sezony kadry"
 msgstr ""
 
 #: app/post-types.php:84
+#: app/post-types.php:128
+#: app/post-types.php:172
 msgid "Dodaj rok"
 msgstr ""
 
 #: app/post-types.php:85
+#: app/post-types.php:129
+#: app/post-types.php:173
 msgid "Rok (np. 2026)"
 msgstr ""
 
 #: app/post-types.php:86
+#: app/post-types.php:130
+#: app/post-types.php:174
 msgid "Lata po przecinku, np. 2025, 2026"
 msgstr ""
 
+#: app/post-types.php:103
+#: app/post-types.php:105
+#: app/post-types.php:112
+#: resources/views/archive-judge.blade.php:7
+#: resources/views/archive-judge.blade.php:9
+#: resources/views/taxonomy-sezon_sedziow.blade.php:7
+#: resources/views/taxonomy-sezon_sedziow.blade.php:9
+msgid "Sędziowie"
+msgstr ""
+
+#: app/post-types.php:104
+msgid "Sędzia"
+msgstr ""
+
+#: app/post-types.php:106
+msgid "Dodaj sędziego"
+msgstr ""
+
+#: app/post-types.php:107
+msgid "Dodaj nowego sędziego"
+msgstr ""
+
+#: app/post-types.php:108
+msgid "Edytuj sędziego"
+msgstr ""
+
+#: app/post-types.php:109
+msgid "Szukaj sędziów"
+msgstr ""
+
+#: app/post-types.php:110
+msgid "Nie znaleziono sędziów"
+msgstr ""
+
+#: app/post-types.php:111
+msgid "Wszyscy sędziowie"
+msgstr ""
+
+#: app/post-types.php:127
+msgid "Sezony (sędziowie)"
+msgstr ""
+
+#: app/post-types.php:147
+#: app/post-types.php:149
+#: app/post-types.php:156
+#: resources/views/archive-national_team.blade.php:7
+#: resources/views/archive-national_team.blade.php:9
+#: resources/views/taxonomy-sezon_reprezentacji.blade.php:7
+#: resources/views/taxonomy-sezon_reprezentacji.blade.php:9
+msgid "Reprezentacja"
+msgstr ""
+
+#: app/post-types.php:148
+msgid "Reprezentant"
+msgstr ""
+
+#: app/post-types.php:150
+msgid "Dodaj reprezentanta"
+msgstr ""
+
+#: app/post-types.php:151
+msgid "Dodaj nowego reprezentanta"
+msgstr ""
+
+#: app/post-types.php:152
+msgid "Edytuj reprezentanta"
+msgstr ""
+
+#: app/post-types.php:153
+msgid "Szukaj reprezentantów"
+msgstr ""
+
+#: app/post-types.php:154
+msgid "Nie znaleziono reprezentantów"
+msgstr ""
+
+#: app/post-types.php:155
+msgid "Cała reprezentacja"
+msgstr ""
+
+#: app/post-types.php:171
+msgid "Sezony (reprezentacja)"
+msgstr ""
+
 #. Template Name of the theme
-#: app/post-types.php:113
-#: app/post-types.php:115
+#: app/post-types.php:201
+#: app/post-types.php:203
 #: resources/views/single-competition.blade.php:67
 msgid "Dokumenty"
 msgstr ""
 
-#: app/post-types.php:114
+#: app/post-types.php:202
 msgid "Dokument"
 msgstr ""
 
-#: app/post-types.php:116
+#: app/post-types.php:204
 msgid "Dodaj dokument"
 msgstr ""
 
-#: app/post-types.php:117
+#: app/post-types.php:205
 msgid "Dodaj nowy dokument"
 msgstr ""
 
-#: app/post-types.php:118
+#: app/post-types.php:206
 msgid "Edytuj dokument"
 msgstr ""
 
-#: app/post-types.php:119
+#: app/post-types.php:207
 msgid "Zobacz dokument"
 msgstr ""
 
-#: app/post-types.php:120
+#: app/post-types.php:208
 msgid "Szukaj dokumentów"
 msgstr ""
 
-#: app/post-types.php:121
+#: app/post-types.php:209
 msgid "Nie znaleziono dokumentów"
 msgstr ""
 
-#: app/post-types.php:122
+#: app/post-types.php:210
 msgid "Wszystkie dokumenty"
 msgstr ""
 
 #. Template Name of the theme
-#: app/post-types.php:140
-#: app/post-types.php:142
+#: app/post-types.php:228
+#: app/post-types.php:230
 msgid "FAQ"
 msgstr ""
 
-#: app/post-types.php:141
+#: app/post-types.php:229
 msgid "Pytanie FAQ"
 msgstr ""
 
-#: app/post-types.php:143
+#: app/post-types.php:231
 msgid "Dodaj pytanie"
 msgstr ""
 
-#: app/post-types.php:144
+#: app/post-types.php:232
 msgid "Dodaj nowe pytanie"
 msgstr ""
 
-#: app/post-types.php:145
+#: app/post-types.php:233
 msgid "Edytuj pytanie"
 msgstr ""
 
-#: app/post-types.php:146
+#: app/post-types.php:234
 msgid "Zobacz pytanie"
 msgstr ""
 
-#: app/post-types.php:147
+#: app/post-types.php:235
 msgid "Szukaj w FAQ"
 msgstr ""
 
-#: app/post-types.php:148
+#: app/post-types.php:236
 msgid "Nie znaleziono pytań"
 msgstr ""
 
-#: app/post-types.php:149
+#: app/post-types.php:237
 msgid "Wszystkie pytania"
 msgstr ""
 
-#: app/post-types.php:170
+#: app/post-types.php:258
 msgid "Komisja"
 msgstr ""
 
-#: app/post-types.php:171
+#: app/post-types.php:259
 msgid "Szkolenie"
 msgstr ""
 
@@ -270,6 +367,11 @@ msgstr ""
 
 #: app/setup.php:119
 msgid "Menu w stopce"
+msgstr ""
+
+#: resources/views/archive-athlete.blade.php:10
+#: resources/views/taxonomy-sezon.blade.php:10
+msgid "Brak zawodników do wyświetlenia."
 msgstr ""
 
 #: resources/views/archive-competition.blade.php:21
@@ -287,6 +389,26 @@ msgstr ""
 
 #: resources/views/archive-competition.blade.php:49
 msgid "Brak zawodów do wyświetlenia."
+msgstr ""
+
+#: resources/views/archive-judge.blade.php:8
+#: resources/views/taxonomy-sezon_sedziow.blade.php:8
+msgid "Sędziowie zawodów mikrolotowych w danym sezonie."
+msgstr ""
+
+#: resources/views/archive-judge.blade.php:10
+#: resources/views/taxonomy-sezon_sedziow.blade.php:10
+msgid "Brak sędziów do wyświetlenia."
+msgstr ""
+
+#: resources/views/archive-national_team.blade.php:8
+#: resources/views/taxonomy-sezon_reprezentacji.blade.php:8
+msgid "Zespół reprezentujący Polskę na mistrzostwach świata FAI w danym roku."
+msgstr ""
+
+#: resources/views/archive-national_team.blade.php:10
+#: resources/views/taxonomy-sezon_reprezentacji.blade.php:10
+msgid "Brak reprezentantów do wyświetlenia."
 msgstr ""
 
 #: resources/views/components/news-card.blade.php:28
@@ -314,12 +436,8 @@ msgstr ""
 msgid "Przejdź do treści"
 msgstr ""
 
-#: resources/views/partials/kadra-list.blade.php:19
+#: resources/views/partials/people-list.blade.php:24
 msgid "Sezon:"
-msgstr ""
-
-#: resources/views/partials/kadra-list.blade.php:42
-msgid "Brak zawodników do wyświetlenia."
 msgstr ""
 
 #: resources/views/single-competition.blade.php:47

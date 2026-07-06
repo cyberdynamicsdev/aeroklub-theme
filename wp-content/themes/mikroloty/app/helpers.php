@@ -125,20 +125,20 @@ if (! function_exists('mikroloty_t')) {
 
 if (! function_exists('mikroloty_current_season_term')) {
     /**
-     * The "current" squad season term: the current year if it exists,
-     * otherwise the most recent season. Null if no seasons defined.
+     * The "current" season term for a people taxonomy: the current year if it
+     * exists, otherwise the most recent season. Null if no seasons defined.
      */
-    function mikroloty_current_season_term(): ?\WP_Term
+    function mikroloty_current_season_term(string $taxonomy = 'sezon'): ?\WP_Term
     {
         $year = date('Y');
-        $term = get_term_by('name', $year, 'sezon');
+        $term = get_term_by('name', $year, $taxonomy);
 
         if ($term instanceof \WP_Term) {
             return $term;
         }
 
         $terms = get_terms([
-            'taxonomy' => 'sezon',
+            'taxonomy' => $taxonomy,
             'hide_empty' => true,
             'orderby' => 'name',
             'order' => 'DESC',

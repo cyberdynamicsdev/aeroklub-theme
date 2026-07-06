@@ -23,13 +23,19 @@ add_filter('pll_get_post_types', function ($post_types, $is_settings) {
     return array_merge($post_types, [
         'competition' => 'competition',
         'athlete' => 'athlete',
+        'judge' => 'judge',
+        'national_team' => 'national_team',
         'document' => 'document',
         'faq' => 'faq',
     ]);
 }, 10, 2);
 
 add_filter('pll_get_taxonomies', function ($taxonomies, $is_settings) {
-    return array_merge($taxonomies, ['sezon' => 'sezon']);
+    return array_merge($taxonomies, [
+        'sezon' => 'sezon',
+        'sezon_sedziow' => 'sezon_sedziow',
+        'sezon_reprezentacji' => 'sezon_reprezentacji',
+    ]);
 }, 10, 2);
 
 add_action('init', function () {

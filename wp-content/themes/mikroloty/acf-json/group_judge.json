@@ -1,0 +1,24 @@
+{
+    "key": "group_judge",
+    "title": "Sędzia",
+    "fields": [
+        {
+            "key": "field_judge_role",
+            "label": "Rola",
+            "name": "role",
+            "type": "text",
+            "required": 0,
+            "placeholder": "np. Sędzia główny, Sędzia",
+            "instructions": "Funkcja sędziowska."
+        }
+    ],
+    "location": [[{ "param": "post_type", "operator": "==", "value": "judge" }]],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "show_in_rest": 0,
+    "modified": 1783254190
+}

@@ -1,16 +1,21 @@
 {{--
-  Kadra: season navigation (year links) + athlete grid.
-  Expects: $athletes (WP_Query), $activeTermId (int|null).
+  Reusable people list (kadra / sędziowie / reprezentacja):
+  season navigation (year links) + person-card grid.
+
+  Expects:
+    $people      (WP_Query)
+    $activeTermId (int|null)
+    $taxonomy     (string)  — season taxonomy of the given CPT
+    $emptyText    (string)  — message when there are no people
 --}}
 @php
     $seasons = get_terms([
-        'taxonomy' => 'sezon',
+        'taxonomy' => $taxonomy,
         'hide_empty' => true,
         'orderby' => 'name',
         'order' => 'DESC',
     ]);
     $seasons = is_wp_error($seasons) ? [] : $seasons;
-    $archiveUrl = get_post_type_archive_link('athlete');
 @endphp
 
 @if (count($seasons) > 1)
@@ -29,16 +34,16 @@
 
 <section class="bg-white" style="padding-block:clamp(48px,7vw,80px);">
     <div class="container-site">
-        @if ($athletes->have_posts())
+        @if ($people->have_posts())
             <div class="grid gap-[22px]" style="grid-template-columns:repeat(auto-fill,minmax(210px,1fr));">
-                @while ($athletes->have_posts())
-                    @php $athletes->the_post(); @endphp
+                @while ($people->have_posts())
+                    @php $people->the_post(); @endphp
                     <x-athlete-card />
                 @endwhile
                 @php wp_reset_postdata(); @endphp
             </div>
         @else
-            <p class="text-ink-3">{{ __('Brak zawodników do wyświetlenia.', 'mikroloty') }}</p>
+            <p class="text-ink-3">{{ $emptyText }}</p>
         @endif
     </div>
 </section>

@@ -75,6 +75,8 @@ Klucze typów są angielskie; slugi URL — polskie (SEO).
 |---|---|---|---|
 | `competition` | `/zawody/` | Zawody | Kalendarz i wyniki zawodów |
 | `athlete` | `/kadra/` | Kadra | Zawodnik kadry (1 wpis = 1 osoba, bez podglądu) |
+| `judge` | `/sedziowie/` | Sędziowie | Sędzia zawodów (jak kadra, wg lat) |
+| `national_team` | `/reprezentacja/` | Reprezentacja | Zespół wyjazdowy na MŚ (jak kadra, wg lat) |
 | `document` | `/dokumenty/` | Dokumenty | Pliki PDF do pobrania |
 | `faq` | — | FAQ | Pytania i odpowiedzi |
 | `post` (natywne) | `/aktualnosci/` | Wpisy | Aktualności + kategorie |
@@ -91,8 +93,14 @@ Klucze typów są angielskie; slugi URL — polskie (SEO).
 - **document**: `file` (PDF), `category`, `year`, `description`.
 - **faq**: `group` (start/licenses/squad), `answer` (WYSIWYG). Pytanie = tytuł.
 
-**Kadra:** strona `/kadra/` pokazuje skład bieżącego roku + pasek linków do
-pozostałych sezonów. Widok konkretnego roku: `/kadra-sezon/{rok}/`.
+- **judge** i **national_team**: identyczna struktura jak `athlete` — `role` +
+  własna taksonomia lat (`sezon_sedziow`, `sezon_reprezentacji`), bez podglądu.
+
+**Kadra / Sędziowie / Reprezentacja** działają tak samo: archiwum pokazuje skład
+bieżącego roku + pasek linków do pozostałych sezonów; widok konkretnego roku pod
+`/{sekcja}-sezon/{rok}/` (np. `/kadra-sezon/2025/`, `/sedziowie-sezon/2026/`).
+Lata wpisujesz po przecinku przy osobie (taksonomia sezonów, styl tagów).
+Wspólny kod: `partials/people-archive.blade.php` + `partials/people-list.blade.php`.
 
 ### Strony opcji (ACF Pro → menu „Ustawienia motywu")
 - **Strona główna** (`settings-homepage`): hero (obraz, tytuł, lead, 2 przyciski),
@@ -115,9 +123,10 @@ pozostałych sezonów. Widok konkretnego roku: `/kadra-sezon/{rok}/`.
 | `single.blade.php` | Wpis: nagłówek, zdjęcie wiodące, treść, udostępnij, powiązane |
 | `archive-competition.blade.php` | Kalendarz zawodów (lista) |
 | `single-competition.blade.php` | Zawody: meta, treść, tabela wyników, dokumenty |
-| `archive-athlete.blade.php` | Kadra bieżącego roku + nawigacja lat |
-| `taxonomy-sezon.blade.php` | Kadra konkretnego roku |
-| `partials/kadra-list.blade.php` | Wspólna lista kadry (nawigacja lat + siatka) |
+| `archive-{athlete,judge,national_team}.blade.php` | Kadra / Sędziowie / Reprezentacja — bieżący rok + nawigacja lat |
+| `taxonomy-sezon*.blade.php` | Widok konkretnego roku dla każdej z trzech grup |
+| `partials/people-archive.blade.php` | Wspólny szablon archiwum (nagłówek + zapytanie + lista) |
+| `partials/people-list.blade.php` | Wspólna siatka osób + nawigacja lat |
 | `page.blade.php` | Strona statyczna (O komisji, Jak zacząć) — nagłówek + treść |
 | `template-documents.blade.php` | Szablon „Dokumenty": grupy wg kategorii + wyszukiwarka |
 | `template-faq.blade.php` | Szablon „FAQ": grupy + rozwijane `<details>` |
@@ -181,8 +190,10 @@ Oparta na **Polylang** (darmowy). Motyw jest w pełni przygotowany:
 ### Konfiguracja Polylang (jednorazowo)
 1. Zainstaluj i aktywuj **Polylang**.
 2. Dodaj języki: **Polski (pl_PL)** jako domyślny i **English (en_US)**.
-3. Przypisz istniejącą treść do języka domyślnego (Polylang zaproponuje to
-   powiadomieniem) i **przebuduj bezpośrednie odnośniki** (Ustawienia → Bezpośrednie odnośniki → Zapisz).
+3. Przypisz istniejącą treść **oraz terminy** (sezony) do języka domyślnego —
+   Polylang zaproponuje to powiadomieniem. Bez tego archiwa lat (np.
+   `/kadra-sezon/2025/`) mogą zwracać 404. Następnie **przebuduj bezpośrednie
+   odnośniki** (Ustawienia → Bezpośrednie odnośniki → Zapisz).
 4. Tłumacz treść wg potrzeb: strony (główna, O komisji, Jak zacząć), wpisy,
    opcjonalnie CPT. Etykiety UI działają automatycznie (EN dołączony).
 
