@@ -4,6 +4,13 @@
     @php
         // --- Theme options (Homepage) ---
         $heroImage = get_field('hero_image', 'option');
+        // Background: ACF option, else the theme's bundled default photo (if present).
+        $heroImageUrl = $heroImage['url'] ?? null;
+        $heroImageAlt = $heroImage['alt'] ?? '';
+        if (! $heroImageUrl && file_exists(get_theme_file_path('resources/images/hero-default.jpg'))) {
+            $heroImageUrl = get_theme_file_uri('resources/images/hero-default.jpg');
+            $heroImageAlt = __('Statki mikrolotowe na lotnisku o zachodzie słońca', 'mikroloty');
+        }
         $heroEyebrow = mikroloty_t(get_field('hero_eyebrow', 'option') ?: 'Sport lotniczy · klasa mikrolotowa');
         $heroTitle = mikroloty_t(get_field('hero_title', 'option') ?: 'Lataj, rywalizuj,<br>reprezentuj Polskę.');
         $heroLead = mikroloty_t(get_field('hero_lead', 'option') ?: 'Oficjalny serwis Komisji Mikrolotowej Aeroklubu Polskiego — aktualności, kalendarz zawodów, wyniki i kadra narodowa sportu mikrolotowego.');
@@ -65,8 +72,8 @@
 
     {{-- ============ HERO ============ --}}
     <section class="relative bg-navy text-white overflow-hidden flex items-stretch" style="min-height:clamp(460px,62vh,640px);">
-        @if ($heroImage)
-            <img src="{{ $heroImage['url'] }}" alt="{{ $heroImage['alt'] ?: '' }}" class="absolute inset-0 w-full h-full object-cover" style="object-position:center 40%;" />
+        @if ($heroImageUrl)
+            <img src="{{ $heroImageUrl }}" alt="{{ $heroImageAlt }}" class="absolute inset-0 w-full h-full object-cover" style="object-position:center 40%;" />
         @endif
         <div class="absolute inset-0" style="background:linear-gradient(90deg,rgba(10,22,48,0.95) 0%,rgba(10,22,48,0.82) 46%,rgba(10,22,48,0.35) 100%);"></div>
 
